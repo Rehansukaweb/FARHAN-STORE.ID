@@ -112,7 +112,7 @@
     <p>📞 WHATSAPP: <a href="https://wa.me/6285717426626" target="_blank">085717826626</a></p>
     <p>📷 INSTAGRAM: <a href="https://instagram.com/huyrehan" target="_blank">@huyrehan</a></p>
   </div>
-<a href="https://lynk.id/rhn.id" target="_blank" style="background:#1db954;color:#fff;padding:10px 15px;border-radius:5px;text-decoration:none;">Kunjungi Toko digital Saya</a>
+
 
   <a href="halaman2.html" class="btn">➡BIODATA RHN CAPITAL</a>
   </section>
