@@ -82,7 +82,7 @@
   <p>PERUSAHAAN YANG BERGERAK DI BIDANG KEUANGAN DAN ASET DIGITAL</p>
 </header>
 <div style="text-align:center; margin-top: 20px;">
-  <img src="RHN CPTL.png.jpg" alt="Logo RHN" style="width:1000px;">
+  <img src="RHN CPTL.png.jpg" alt="Logo RHN" style="width:750px;">
 </div>
 <section>
   <h2>VISI KAMI</h2>
