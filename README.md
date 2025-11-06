@@ -114,7 +114,7 @@
   </div>
 
 
-  <a href="halaman2.html" class="btn">➡**ANALISA HARIAN RHN CAPITAL**</a>
+  <a href="halaman2.html" class="btn">➡ANALISA HARIAN RHN</a>
   </section>
 <h1><b><marquee>SELAMAT DATANG DI RHN CAPITAL</marquee></b></h1>
 <footer>
