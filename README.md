@@ -112,7 +112,7 @@
     <p>📞 WHATSAPP: <a href="https://wa.me/6285717426626" target="_blank">085717826626</a></p>
     <p>📷 INSTAGRAM: <a href="https://instagram.com/huyrehan" target="_blank">@huyrehan</a></p>
   </div>
-
+  <a href="Halaman4.html" class="btn">➡Halaman 3</a>
   <a href="Halaman3.html" class="btn">➡Halaman 3</a>
   <a href="halaman2.html" class="btn">➡ANALISA HARIAN RHN</a>
   </section>
