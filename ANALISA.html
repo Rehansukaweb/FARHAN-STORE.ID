@@ -1,114 +1,108 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>RHN Capital | Analisa Harian</title>
   <style>
     * {margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
-    body {
-      background:#050505; color:#eee; text-align:center;
-    }
+    body {background:#050505;color:#eee;}
     nav {
-      background:#0a0a0a; padding:15px 20px; display:flex; justify-content:space-between; align-items:center;
-      border-bottom:1px solid #00c6ff; position:sticky; top:0; z-index:999;
+      background:#0a0a0a;border-bottom:1px solid #00c6ff;
+      display:flex;justify-content:space-between;align-items:center;
+      padding:12px 20px;position:sticky;top:0;z-index:100;
     }
-    .logo {
-      display:flex; align-items:center; gap:8px;
-    }
-    .logo span {
-      font-weight:700; font-size:22px; color:#00c6ff;
-    }
-    .logo img {
-      width:35px; height:35px; border-radius:50%;
-      border:2px solid #00c6ff;
-    }
-    nav a {
-      text-decoration:none; color:#bbb; margin-left:18px; transition:.3s;
-    }
-    nav a:hover { color:#00c6ff; }
-
+    nav .logo {display:flex;align-items:center;gap:10px;}
+    nav .logo img {width:36px;height:36px;border-radius:50%;border:2px solid #00c6ff;}
+    nav .logo span {color:#00c6ff;font-size:20px;font-weight:700;}
+    nav a {color:#bbb;text-decoration:none;margin-left:15px;transition:.3s;}
+    nav a:hover {color:#00c6ff;}
     header {
-      padding:40px 20px;
       background:linear-gradient(90deg,#0033cc,#00c6ff);
-      color:#fff;
+      text-align:center;color:#fff;padding:40px 20px;
     }
-    header h1 {font-size:30px;}
-    header p {font-size:15px;margin-top:8px;}
-
-    .container {
-      width:95%; max-width:1000px; margin:30px auto;
-    }
-
+    header h1 {font-size:28px;margin-bottom:10px;}
+    .container {max-width:1000px;margin:30px auto;padding:0 15px;}
     .card {
-      background:#111; border:1px solid #00c6ff33; border-radius:12px;
-      padding:20px; margin-bottom:25px; transition:.3s;
+      background:#111;border:1px solid #00c6ff33;border-radius:12px;
+      padding:20px;margin-bottom:25px;transition:.3s;
     }
-    .card:hover {transform:translateY(-5px);box-shadow:0 0 20px #00c6ff44;}
-    .card img {
-      width:100%; border-radius:10px; margin-bottom:12px;
-    }
+    .card:hover {transform:translateY(-5px);box-shadow:0 0 15px #00c6ff55;}
+    .card img {width:100%;border-radius:10px;margin-bottom:10px;}
     .card h3 {color:#00c6ff;margin-bottom:6px;}
-    .card p {font-size:14px;color:#ccc;}
-
+    .card p {color:#ccc;font-size:14px;line-height:1.4;}
     button {
-      margin-top:10px; padding:8px 16px; background:#00c6ff;
-      color:#000; border:none; border-radius:6px; cursor:pointer;
-      transition:.3s; font-weight:600;
+      margin-top:10px;padding:8px 15px;background:#00c6ff;border:none;
+      border-radius:6px;color:#000;font-weight:600;cursor:pointer;transition:.3s;
     }
     button:hover {background:#0099cc;}
-
     footer {
-      margin-top:30px; padding:20px; color:#777;
-      border-top:1px solid #222; font-size:14px;
+      border-top:1px solid #222;color:#777;text-align:center;
+      padding:20px;font-size:13px;margin-top:40px;
     }
   </style>
 </head>
 <body>
-
   <nav>
     <div class="logo">
-      <img src="https://i.imgur.com/6pU7OIF.png" alt="RHN Logo">
+      <img src="RHN LOGO.jpg" alt="RHN Logo">
       <span>RHN Capital</span>
     </div>
     <div>
-      <a href="#">Home</a>
-      <a href="#">Analisa</a>
-      <a href="#">Tentang</a>
+      <a href="index.html">Home</a>
+      <a href="halaman2.html">Tentang</a>
+      <a href="ANALISA.html">Analisa</a>
     </div>
   </nav>
 
   <header>
     <h1>Analisa Harian Market Crypto</h1>
-    <p>Pantau update dan strategi harian langsung dari RHN Capital</p>
+    <p>Pembaruan pasar, grafik, dan strategi harian dari RHN Capital.</p>
   </header>
 
   <div class="container">
-
     <div class="card">
-      <img src="ANALISA HARIAN 01.png" alt="Analisa BTC">
-      <h3>Bitcoin (BTC/USDT)</h3>
-      <p>BTC masih sideways, namun potensi breakout mulai terbentuk di area resistance utama.</p>
-      <button onclick="window.open('https://www.tradingview.com/chart/?symbol=BINANCE:BTCUSDT')">Lihat Grafik</button>
+      <img src="ANALISA HARIAN 01.png" alt="Analisa Harian">
+      <h3>Analisa Umum Hari Ini</h3>
+      <p>Market global bergerak stabil, namun volatilitas tinggi di beberapa aset besar.</p>
     </div>
 
     <div class="card">
-      <img src="pepe" alt="Analisa PEPE">
+      <img src="DOMINASI BTC" alt="Dominasi BTC">
+      <h3>Dominasi Bitcoin (BTC.D)</h3>
+      <p>Dominasi BTC menurun, potensi altcoin season mulai terlihat jika tren ini berlanjut.</p>
+      <button onclick="window.open('https://www.tradingview.com/chart/?symbol=CRYPTOCAP:BTC.D')">Lihat Grafik</button>
+    </div>
+
+    <div class="card">
+      <img src="ETH" alt="ETH">
+      <h3>Ethereum (ETH/USDT)</h3>
+      <p>ETH mulai menunjukkan tanda-tanda pemulihan, support kuat masih bertahan di area 3.000.</p>
+      <button onclick="window.open('https://www.tradingview.com/chart/?symbol=BINANCE:ETHUSDT')">Lihat Grafik</button>
+    </div>
+
+    <div class="card">
+      <img src="pepe" alt="PEPE">
       <h3>PEPE</h3>
-      <p>PEPE masih di zona akumulasi kuat, potensi reversal tinggi jika volume meningkat.</p>
+      <p>PEPE masih di zona akumulasi, peluang kenaikan signifikan jika volume beli meningkat.</p>
       <button onclick="window.open('https://www.tradingview.com/chart/?symbol=BINANCE:PEPEUSDT')">Lihat Grafik</button>
     </div>
 
     <div class="card">
-      <img src="ETH" alt="Analisa ETH">
-      <h3>Ethereum (ETH/USDT)</h3>
-      <p>ETH menunjukkan sinyal bullish halus, peluang naik ke area 3,400 masih terbuka.</p>
-      <button onclick="window.open('https://www.tradingview.com/chart/?symbol=BINANCE:ETHUSDT')">Lihat Grafik</button>
+      <img src="XAUUSD" alt="XAUUSD">
+      <h3>Emas (XAUUSD)</h3>
+      <p>Harga emas terkoreksi ringan, peluang rebound jika dolar melemah pada sesi berikutnya.</p>
+      <button onclick="window.open('https://www.tradingview.com/chart/?symbol=OANDA:XAUUSD')">Lihat Grafik</button>
     </div>
 
+    <div class="card">
+      <img src="USDJPY" alt="USDJPY">
+      <h3>USDJPY</h3>
+      <p>USDJPY naik ringan setelah data ekonomi AS dirilis positif, waspadai area resistance 152.50.</p>
+      <button onclick="window.open('https://www.tradingview.com/chart/?symbol=OANDA:USDJPY')">Lihat Grafik</button>
+    </div>
   </div>
 
-  <footer>© 2025 RHN Capital | Dibuat dengan ⚡ oleh Mohamed O</footer>
-
+  <footer>© 2025 RHN Capital | Semua hak dilindungi.</footer>
 </body>
 </html>
