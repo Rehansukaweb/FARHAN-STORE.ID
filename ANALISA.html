@@ -1,259 +1,570 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Analisa Harian | RHN Capital</title>
+  <meta name="description" content="Analisa Harian Crypto — RHN Capital. Ganti gambar harian, auto-refresh, dark/light mode, search realtime.">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      font-family: 'Poppins', sans-serif;
-      background-color: #050505;
-      color: #f1f1f1;
-      overflow-x: hidden;
+    :root{
+      --bg-dark:#050505;
+      --panel-dark: rgba(255,255,255,0.03);
+      --muted:#cfd8dc;
+      --accent:#00c6ff;
+      --glass: rgba(255,255,255,0.04);
+      --card-border: rgba(0,198,255,0.12);
+      --success: #16a34a;
+      --danger: #ef4444;
+      --max-width:1200px;
+    }
+    [data-theme="light"]{
+      --bg-dark:#f7fbff;
+      --panel-dark: rgba(0,0,0,0.02);
+      --muted:#4b5563;
+      --accent:#0066ff;
+      --glass: rgba(0,0,0,0.03);
+      --card-border: rgba(0,102,255,0.08);
     }
 
-    /* Navbar */
-    nav {
-      background: rgba(0, 0, 0, 0.6);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid #0ff;
-      padding: 15px 30px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-    }
-    nav h1 {
-      font-size: 22px;
-      color: #00c6ff;
-      font-weight: 700;
-      letter-spacing: 1px;
-    }
-    nav a {
-      color: #ccc;
-      margin-left: 20px;
-      text-decoration: none;
-      font-weight: 500;
-      transition: 0.3s;
-    }
-    nav a:hover {
-      color: #00c6ff;
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%}
+    body{
+      font-family:"Poppins",system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;
+      background:var(--bg-dark);
+      color:var(--muted);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.45;
+      padding:18px;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
     }
 
-    /* Header */
-    header {
-      text-align: center;
-      padding: 60px 20px;
-      background: linear-gradient(90deg, #0040ff, #00c6ff);
-      color: #fff;
-      animation: fadeDown 1s ease-in-out;
+    /* layout */
+    .wrap{width:100%;max-width:var(--max-width)}
+    nav{
+      width:100%;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:12px;
+      padding:14px 18px;
+      background: linear-gradient(90deg, rgba(0,0,0,0.4), rgba(255,255,255,0.02));
+      border-radius:12px;
+      border:1px solid rgba(255,255,255,0.02);
+      margin-bottom:18px;
+      position:sticky; top:12px; z-index:40;
+      backdrop-filter: blur(6px);
     }
-    header h2 {
-      font-size: 32px;
-      font-weight: 700;
+    .brand{display:flex;align-items:center;gap:12px}
+    .logo{
+      width:44px;height:44px;border-radius:10px;
+      display:inline-grid;place-items:center;
+      background:linear-gradient(135deg,var(--accent),#4dd7ff);
+      color:#001;
+      font-weight:700;
+      box-shadow:0 6px 18px rgba(0,0,0,0.25);
     }
-    header p {
-      font-size: 16px;
-      color: #eee;
-      margin-top: 10px;
+    .brand h1{font-size:18px;color:var(--accent);letter-spacing:0.6px}
+    .nav-links a{color:var(--muted);text-decoration:none;margin-left:14px;font-weight:600}
+    .nav-links a:hover{color:var(--accent)}
+
+    header{
+      width:100%;
+      padding:36px 18px;
+      border-radius:12px;
+      color: white;
+      background: linear-gradient(90deg,#0040ff 0%, #00c6ff 100%);
+      margin-bottom:22px;
+      box-shadow:0 10px 40px rgba(0,0,0,0.35);
     }
-    @keyframes fadeDown {
-      from {opacity: 0; transform: translateY(-20px);}
-      to {opacity: 1; transform: translateY(0);}
+    header h2{font-size:26px;margin-bottom:6px}
+    header p{font-size:14px;opacity:0.95}
+
+    /* controls */
+    .controls{
+      margin:18px 0;
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      align-items:center;
+    }
+    .btn{
+      background:var(--glass);
+      color:var(--muted);
+      border:1px solid var(--card-border);
+      padding:8px 12px;border-radius:10px;font-weight:600;
+      cursor:pointer;
+      transition:all .18s ease;
+    }
+    .btn:hover{transform:translateY(-3px);box-shadow:0 8px 20px rgba(0,0,0,0.18)}
+    .btn.primary{background:linear-gradient(90deg,var(--accent),#6be7ff);color:#001;border:none}
+    .small{padding:6px 8px;font-size:13px}
+    .muted{color:var(--muted);font-size:13px}
+
+    /* layout grid */
+    .main-grid{
+      display:grid;
+      grid-template-columns: 2fr 1fr;
+      gap:22px;
+      width:100%;
+    }
+    @media (max-width:980px){.main-grid{grid-template-columns:1fr}}
+    .panel{
+      background:var(--panel-dark);
+      border-radius:14px;
+      padding:14px;
+      border:1px solid var(--card-border);
+      box-shadow:0 6px 20px rgba(0,0,0,0.22);
     }
 
-    /* Container */
-    .container {
-      max-width: 1100px;
-      margin: 40px auto;
-      padding: 20px;
+    /* image box */
+    .image-box{height:420px; overflow:hidden; border-radius:12px; background:#111; display:flex;align-items:center;justify-content:center}
+    .image-box img{width:100%;height:100%;object-fit:cover; display:block}
+
+    /* cards list */
+    .cards{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    @media (max-width:680px){.cards{grid-template-columns:1fr}}
+    .card{
+      border-radius:10px;padding:12px;background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent);
+      border:1px solid rgba(255,255,255,0.02);
+    }
+    .card h3{color:var(--accent);font-size:15px;margin-bottom:6px;text-transform:uppercase}
+    .card p{font-size:13px;color:var(--muted)}
+
+    /* search */
+    .searchwrap{display:flex;gap:8px;align-items:center;margin-bottom:12px}
+    .searchwrap input[type="search"]{
+      width:100%;padding:10px 12px;border-radius:10px;border:1px solid rgba(255,255,255,0.04);
+      background:transparent;color:var(--muted);outline:none;font-weight:600;
+      box-shadow:inset 0 1px 0 rgba(255,255,255,0.01)
     }
 
-    /* Search */
-    .search-box {
-      text-align: center;
-      margin-bottom: 35px;
-    }
-    .search-box input {
-      width: 80%;
-      max-width: 420px;
-      padding: 12px 16px;
-      border-radius: 10px;
-      border: none;
-      outline: none;
-      font-size: 15px;
-      color: #111;
-      background-color: #f1f1f1;
-      transition: 0.3s;
-    }
-    .search-box input:focus {
-      box-shadow: 0 0 10px #00c6ff;
-    }
+    /* file inputs area */
+    .uploader{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+    .uploader label{cursor:pointer}
+    .small-input{padding:8px;border-radius:8px;border:1px solid rgba(255,255,255,0.03);background:transparent;color:var(--muted)}
 
-    /* Grid */
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 25px;
+    /* tiny toast */
+    .toast{
+      position:fixed;left:50%;transform:translateX(-50%);bottom:28px;background:#000000cc;color:#fff;padding:10px 14px;border-radius:10px;z-index:999;
+      display:none;font-weight:600;
     }
+    .toast.show{display:block; animation:pop .28s ease}
+    @keyframes pop{from{transform:translateX(-50%) translateY(6px) scale(.98);opacity:.0} to{transform:translateX(-50%) translateY(0) scale(1);opacity:1}}
 
-    /* Card */
-    .card {
-      background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(0,0,0,0.8));
-      border: 1px solid rgba(0,200,255,0.1);
-      border-radius: 16px;
-      padding: 20px;
-      transition: 0.3s ease;
-      box-shadow: 0 0 15px rgba(0,200,255,0.05);
-      position: relative;
-    }
-    .card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 0 25px rgba(0,200,255,0.3);
-    }
-    .card img {
-      width: 100%;
-      border-radius: 10px;
-      margin-bottom: 12px;
-    }
-    .card h3 {
-      font-size: 20px;
-      color: #00c6ff;
-      margin-bottom: 8px;
-    }
-    .card p {
-      font-size: 14px;
-      color: #ccc;
-      line-height: 1.5;
-    }
+    footer{margin-top:30px;color:var(--muted);font-size:13px;text-align:center}
 
-    /* Chart container */
-    .chart-container {
-      margin-top: 15px;
-      border-radius: 10px;
-      overflow: hidden;
-    }
-
-    /* Footer */
-    footer {
-      text-align: center;
-      padding: 25px 10px;
-      color: #777;
-      border-top: 1px solid #333;
-      margin-top: 50px;
-      font-size: 14px;
-    }
-
-    @media (max-width: 600px) {
-      header h2 { font-size: 26px; }
-      nav { flex-direction: column; }
-      nav a { margin: 8px 0; }
-    }
+    /* tiny helpers */
+    .row{display:flex;gap:8px;align-items:center}
+    .flexcol{display:flex;flex-direction:column;gap:8px}
+    .right{margin-left:auto}
+    .muted-small{font-size:12px;color:rgba(255,255,255,0.6)}
   </style>
 </head>
 <body>
-  <!-- Navbar -->
-  <nav>
-    <h1>RHN Capital</h1>
-    <div>
-      <a href="index.html">Home</a>
-      <a href="halaman2.html">Tentang</a>
-      <a href="halaman3.html">Analisa</a>
-    </div>
-  </nav>
-
-  <!-- Header -->
-  <header>
-    <h2>Analisa Harian Market Crypto</h2>
-    <p>Pembaruan pasar, grafik real-time, dan pandangan strategis dari tim RHN Capital.</p>
-  </header>
-
-  <!-- Content -->
-  <div class="container">
-    <div class="search-box">
-      <input type="text" id="search" placeholder="Cari analisa (contoh: BTC, PEPE, XAUUSD)...">
-    </div>
-
-    <div class="grid" id="analysisGrid">
-      <div class="card" data-name="BTC">
-        <img src="ANALISA HARIAN 01.png" alt="Analisa BTC">
-        <h3>Bitcoin (BTC)</h3>
-        <p>BTC masih dalam tren bearish jangka pendek, namun peluang rebound di area demand utama tetap terbuka.</p>
-        <div class="chart-container">
-          <iframe src="https://s.tradingview.com/widgetembed/?frameElementId=tradingview_btc&symbol=BINANCE:BTCUSDT&interval=60&theme=dark"
-            width="100%" height="250" frameborder="0"></iframe>
+  <div class="wrap">
+    <nav>
+      <div class="brand">
+        <div class="logo">RH</div>
+        <div>
+          <h1>RHN Capital</h1>
+          <div class="muted" style="font-size:12px">Analisa Harian Crypto</div>
         </div>
       </div>
 
-      <div class="card" data-name="PEPE">
-        <img src="pepe" alt="Analisa PEPE">
-        <h3>PEPE</h3>
-        <p>PEPE berada di zona support utama, potensi reversal kuat jika volume beli meningkat dari area bawah.</p>
-        <div class="chart-container">
-          <iframe src="https://s.tradingview.com/widgetembed/?frameElementId=tradingview_pepe&symbol=BINANCE:PEPEUSDT&interval=60&theme=dark"
-            width="100%" height="250" frameborder="0"></iframe>
-        </div>
+      <div class="nav-links">
+        <a href="#">Home</a>
+        <a href="#">Tentang</a>
+        <a href="#">Analisa</a>
+      </div>
+    </nav>
+
+    <header>
+      <h2>Analisa Harian Market Crypto</h2>
+      <p>Update cepat, gambar harian, auto-refresh, dan tema otomatis — siap pakai.</p>
+    </header>
+
+    <!-- Controls -->
+    <div class="controls">
+      <div class="searchwrap" style="flex:1;min-width:220px">
+        <input id="search" type="search" placeholder="Cari analisa... (contoh: BTC, PEPE, ETH)">
       </div>
 
-      <div class="card" data-name="XAUUSD">
-        <img src="XAUUSD" alt="Analisa XAUUSD">
-        <h3>XAUUSD</h3>
-        <p>Emas menunjukkan pelemahan setelah gagal menembus resistance 2450. Jika tekanan jual berlanjut, potensi koreksi makin kuat.</p>
-        <div class="chart-container">
-          <iframe src="https://s.tradingview.com/widgetembed/?frameElementId=tradingview_xau&symbol=OANDA:XAUUSD&interval=60&theme=dark"
-            width="100%" height="250" frameborder="0"></iframe>
-        </div>
-      </div>
+      <div class="uploader">
+        <!-- upload file (local personal fallback) -->
+        <label class="btn small" title="Upload gambar dari device">
+          <input id="fileUpload" type="file" accept="image/*" style="display:none">
+          Upload Gambar
+        </label>
 
-      <div class="card" data-name="DOMINASI BTC">
-        <img src="DOMINASI BTC" alt="Dominasi BTC">
-        <h3>Dominasi BTC</h3>
-        <p>Dominasi BTC turun di bawah 60%. Jika tren ini lanjut, altcoin season bisa dimulai dalam beberapa minggu ke depan.</p>
-        <div class="chart-container">
-          <iframe src="https://s.tradingview.com/widgetembed/?frameElementId=tradingview_domi&symbol=CRYPTOCAP:BTC.D&interval=60&theme=dark"
-            width="100%" height="250" frameborder="0"></iframe>
+        <!-- URL input -->
+        <input id="imgUrl" class="small-input" placeholder="Atau masukkan URL gambar (paste lalu Enter)" aria-label="Image URL">
+
+        <button id="setUrlBtn" class="btn small">Gunakan URL</button>
+        <button id="resetBtn" class="btn small">Reset Gambar</button>
+
+        <div class="row">
+          <button id="themeToggle" class="btn small">Tema</button>
+          <button id="downloadBtn" class="btn small">Download</button>
         </div>
       </div>
     </div>
+
+    <div class="main-grid">
+      <!-- left -->
+      <section class="panel">
+        <div style="display:flex;gap:12px;align-items:center;margin-bottom:12px">
+          <div style="font-weight:700;color:var(--muted)">Analisa Hari Ini</div>
+          <div class="muted-small right" id="datebox"></div>
+        </div>
+
+        <div class="image-box" id="imageBox">
+          <!-- initial src is server public file 'daily.png' - replace it to update globally -->
+          <img id="dailyImage" src="daily.png" alt="Gambar Analisa Hari Ini" loading="eager">
+        </div>
+
+        <div style="margin-top:12px;display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+          <button id="refreshNow" class="btn">Refresh Sekarang</button>
+          <div class="muted-small">Auto-refresh tiap hari jam <strong id="refreshHourLabel">08:00</strong> (browser lokal)</div>
+          <div style="margin-left:auto" class="muted-small">Mode: <span id="modeLabel">Auto</span></div>
+        </div>
+
+        <div style="margin-top:16px" class="cards">
+          <div class="card">
+            <h3>Market Sentimen</h3>
+            <p id="sentimenText">Bullish ringan — perhatikan volume dan support utama.</p>
+          </div>
+          <div class="card">
+            <h3>Top Pick</h3>
+            <p id="topPickText">PEPE — potensi pantulan dari area support kuat jika volume meningkat.</p>
+          </div>
+          <div class="card">
+            <h3>Catatan Risiko</h3>
+            <p id="riskText">Waspada data ekonomi besar (AS) — volatilitas meningkat.</p>
+          </div>
+          <div class="card">
+            <h3>Quick Tips</h3>
+            <p id="tipsText">Gunakan stop loss ketat, jangan gunakan seluruh modal untuk satu trade.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- right -->
+      <aside class="panel">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+          <div style="font-weight:700;color:var(--muted)">Daftar Analisa</div>
+          <div class="muted-small">Filter cepat</div>
+        </div>
+
+        <div id="listArea" style="display:flex;flex-direction:column;gap:10px">
+          <!-- entries; update image file names as needed -->
+          <div class="card" data-name="BTC"><h3>Bitcoin (BTC)</h3><p>Sideways; pantau support & volume untuk konfirmasi rebound.</p></div>
+          <div class="card" data-name="PEPE"><h3>PEPE</h3><p>Zona demand; kunci jika volume masuk kuat.</p></div>
+          <div class="card" data-name="ETH"><h3>Ethereum (ETH)</h3><p>Konsolidasi; breakout di atas resistance jadi sinyal bullish.</p></div>
+          <div class="card" data-name="XAUUSD"><h3>XAUUSD</h3><p>Emas: support kuat di area X, perhatikan data makro.</p></div>
+          <div class="card" data-name="DOMINASI BTC"><h3>Dominasi BTC</h3><p>Dominasi melemah; altcoin season mungkin mendekat.</p></div>
+        </div>
+
+        <div style="margin-top:14px" class="muted-small">
+          Tip: Untuk update gambar global, replace file <code>daily.png</code> di folder server / hosting (github pages / hostinger).<br>
+          Jika ingin hanya Anda yang ganti (tidak global), gunakan tombol Upload.
+        </div>
+      </aside>
+    </div>
+
+    <footer>
+      © 2025 RHN Capital — dibuat untuk analisa harian. All rights reserved.
+    </footer>
   </div>
 
-  <div class="card" data-name="ETH">
-  <img src="ETH" alt="ETH">
-  <h3>Ethereum (ETH/USDT)</h3>
-  <p>
-    ETH masih menunjukkan pergerakan sideways setelah koreksi. Jika harga
-    bertahan di atas area support utama, potensi rebound ke resistance berikutnya cukup tinggi.
-  </p>
-
-  <div class="chart-container">
-    <iframe
-      src="https://s.tradingview.com/widgetembed/?frameElementId=tradingview_eth_binance&symbol=BINANCE:ETHUSDT&interval=60&theme=dark"
-      width="100%"
-      height="250"
-      frameborder="0"
-      scrolling="no">
-    </iframe>
-  </div>
-</div>
-
-
-  <footer>© 2025 RHN Capital | Semua hak dilindungi.</footer>
+  <div id="toast" class="toast"></div>
 
   <script>
-    // fitur search realtime
-    const searchInput = document.getElementById("search");
-    const cards = document.querySelectorAll(".card");
-    searchInput.addEventListener("keyup", function() {
-      const filter = this.value.toLowerCase();
-      cards.forEach(card => {
-        const name = card.dataset.name.toLowerCase();
-        card.style.display = name.includes(filter) ? "block" : "none";
+    (function(){
+      // ---------- CONFIG (BEST DEFAULTS) ----------
+      const AUTO_REFRESH_HOUR = 8; // jam lokal (08:00) ketika mencoba refresh gambar global
+      const DAILY_SERVER_IMAGE = 'daily.png'; // path pada server untuk update global
+      const LOCALSTORAGE_KEY_IMAGE = 'rhn_daily_image_dataurl'; // personal fallback
+      const LOCALSTORAGE_KEY_THEME = 'rhn_theme_pref';
+      const LOCALSTORAGE_KEY_DATE = 'rhn_daily_image_date';
+      const TOAST_EL = document.getElementById('toast');
+
+      // ---------- HELPERS ----------
+      function showToast(msg, duration=2200){
+        TOAST_EL.textContent = msg;
+        TOAST_EL.classList.add('show');
+        clearTimeout(showToast._t);
+        showToast._t = setTimeout(()=>TOAST_EL.classList.remove('show'), duration);
+      }
+
+      function todayString(){ // YYYY-MM-DD
+        const d = new Date();
+        return d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0');
+      }
+
+      // ---------- ELEMENTS ----------
+      const dailyImageEl = document.getElementById('dailyImage');
+      const fileUpload = document.getElementById('fileUpload');
+      const imgUrlInput = document.getElementById('imgUrl');
+      const setUrlBtn = document.getElementById('setUrlBtn');
+      const resetBtn = document.getElementById('resetBtn');
+      const refreshNowBtn = document.getElementById('refreshNow');
+      const downloadBtn = document.getElementById('downloadBtn');
+      const themeToggle = document.getElementById('themeToggle');
+      const datebox = document.getElementById('datebox');
+      const refreshHourLabel = document.getElementById('refreshHourLabel');
+      const modeLabel = document.getElementById('modeLabel');
+      const searchInput = document.getElementById('search');
+
+      refreshHourLabel.textContent = String(AUTO_REFRESH_HOUR).padStart(2,'0') + ':00';
+
+      // ---------- THEME (auto + toggle) ----------
+      function applyTheme(theme){
+        if(theme === 'dark' || (theme === 'auto' && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches)){
+          document.documentElement.setAttribute('data-theme','');
+          modeLabel.textContent = (theme==='auto') ? 'Auto (Dark preferred)' : 'Dark';
+        } else {
+          document.documentElement.setAttribute('data-theme','light');
+          modeLabel.textContent = (theme==='auto') ? 'Auto (Light preferred)' : 'Light';
+        }
+      }
+      // initial theme: from localStorage or auto
+      let savedTheme = localStorage.getItem(LOCALSTORAGE_KEY_THEME) || 'auto';
+      applyTheme(savedTheme);
+      // listen to toggle: cycle auto -> dark -> light -> auto
+      themeToggle.addEventListener('click', ()=>{
+        const order = ['auto','dark','light'];
+        let idx = order.indexOf(savedTheme);
+        idx = (idx + 1) % order.length;
+        savedTheme = order[idx];
+        localStorage.setItem(LOCALSTORAGE_KEY_THEME, savedTheme);
+        applyTheme(savedTheme);
+        showToast('Tema: ' + (savedTheme==='auto' ? 'Auto' : savedTheme.charAt(0).toUpperCase()+savedTheme.slice(1)));
       });
-    });
+
+      // react to system theme changes if in auto
+      if(window.matchMedia){
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+          if(localStorage.getItem(LOCALSTORAGE_KEY_THEME) === 'auto' || !localStorage.getItem(LOCALSTORAGE_KEY_THEME)){
+            applyTheme('auto');
+          }
+        });
+      }
+
+      // ---------- DATE DISPLAY ----------
+      function renderDate(){ datebox.textContent = new Date().toLocaleDateString('id-ID', {weekday:'long', day:'numeric', month:'long', year:'numeric'}); }
+      renderDate();
+
+      // ---------- LOAD IMAGE LOGIC ----------
+      // Priority:
+      // 1) If user uploaded personal image (localStorage dataURL), show personal image (user preview)
+      // 2) Else attempt to load server image daily.png with cache-busting when date changes
+      // 3) Else fallback to in-file src (daily.png) or placeholder
+
+      async function probeImage(url){
+        // try fetching as HEAD-ish check. Use fetch with no-cors fallback to setting image src directly.
+        try{
+          const r = await fetch(url, {method:'GET', cache:'no-store'});
+          if(r.ok){
+            // create object URL
+            return url;
+          } else {
+            return null;
+          }
+        }catch(e){
+          return null;
+        }
+      }
+
+      async function loadBestImageOnStart(){
+        // 1. personal localStorage dataurl
+        const personal = localStorage.getItem(LOCALSTORAGE_KEY_IMAGE);
+        if(personal){
+          dailyImageEl.src = personal;
+          modeLabel.textContent += ' • Personal';
+          return;
+        }
+
+        // 2. server daily image (try with timestamp to avoid cache)
+        const today = todayString();
+        const lastDate = localStorage.getItem(LOCALSTORAGE_KEY_DATE);
+        // if date changed (or no record), try fetch server image to get updated global image
+        if(!lastDate || lastDate !== today){
+          const url = DAILY_SERVER_IMAGE + '?ts=' + Date.now();
+          const ok = await probeImage(url);
+          if(ok){
+            dailyImageEl.src = url;
+            localStorage.setItem(LOCALSTORAGE_KEY_DATE, today);
+            showToast('Gambar global diperbarui (server).');
+            return;
+          }
+          // else try without ts param (some servers block query)
+          const ok2 = await probeImage(DAILY_SERVER_IMAGE);
+          if(ok2){
+            dailyImageEl.src = DAILY_SERVER_IMAGE;
+            localStorage.setItem(LOCALSTORAGE_KEY_DATE, today);
+            showToast('Gambar global diperbarui (server).');
+            return;
+          }
+        }
+
+        // 3. fallback: keep existing src (from HTML) or show placeholder
+        // if default src 404, browser will show broken image — but we keep it as-is
+      }
+
+      // ---------- AUTO REFRESH SCHEDULE ----------
+      // Check every minute if we passed AUTO_REFRESH_HOUR and date changed => try to fetch server image
+      setInterval(async () => {
+        const now = new Date();
+        const lastDate = localStorage.getItem(LOCALSTORAGE_KEY_DATE) || '';
+        const today = todayString();
+        // if date changed (new day) at any time, attempt to fetch server image
+        if(today !== lastDate){
+          // If current local hour >= AUTO_REFRESH_HOUR, perform refresh immediately.
+          // Also attempt refresh on date change regardless of hour to be safe.
+          await tryRefreshServerImage();
+        } else {
+          // if same day, but we reached the refresh hour and haven't refreshed today yet,
+          // we'll refresh at the first minute where hours >= AUTO_REFRESH_HOUR and lastDate != today
+          if(now.getHours() === AUTO_REFRESH_HOUR && now.getMinutes() === 0){
+            await tryRefreshServerImage();
+          }
+        }
+      }, 60_000); // 60s
+
+      // also try at page visibility change (when user focused tab) and on load
+      document.addEventListener('visibilitychange', async () => {
+        if(document.visibilityState === 'visible'){
+          await tryRefreshServerImage();
+        }
+      });
+
+      async function tryRefreshServerImage(){
+        const today = todayString();
+        const url = DAILY_SERVER_IMAGE + '?ts=' + Date.now();
+        const ok = await probeImage(url);
+        if(ok){
+          dailyImageEl.src = url;
+          localStorage.setItem(LOCALSTORAGE_KEY_DATE, today);
+          // only clear personal image if you WANT global to override personal? We keep personal untouched.
+          showToast('Gambar global berhasil diambil dari server.');
+        } else {
+          // nothing to do; do not override personal or fallback
+          // still update stored date to avoid repeated failing probes (but we won't set date to avoid skipping future attempts)
+          // do not set local date here so we will try again next interval.
+        }
+      }
+
+      // ---------- UPLOAD HANDLER (personal preview) ----------
+      fileUpload.addEventListener('change', (ev)=>{
+        const f = ev.target.files && ev.target.files[0];
+        if(!f){ return; }
+        if(f.size > 2_500_000){ // 2.5 MB
+          showToast('File terlalu besar. Gunakan gambar < 2.5MB.');
+          return;
+        }
+        const reader = new FileReader();
+        reader.onload = () => {
+          try{
+            localStorage.setItem(LOCALSTORAGE_KEY_IMAGE, reader.result);
+            // we set image but do NOT modify server file; this is personal preview
+            dailyImageEl.src = reader.result;
+            showToast('Gambar disimpan untuk Anda (local).');
+          }catch(e){
+            showToast('Gagal menyimpan gambar (kapasitas penyimpanan penuh).');
+          }
+        };
+        reader.readAsDataURL(f);
+        // reset input
+        ev.target.value = '';
+      });
+
+      // ---------- SET IMAGE VIA URL ----------
+      setUrlBtn.addEventListener('click', async ()=>{
+        const url = imgUrlInput.value.trim();
+        if(!url){ showToast('Masukkan URL gambar dahulu.'); return; }
+        // try load
+        const ok = await probeImage(url);
+        if(ok){
+          dailyImageEl.src = url;
+          // store personal url into localStorage as reference; we won't store huge dataURL
+          try{
+            localStorage.setItem(LOCALSTORAGE_KEY_IMAGE, url);
+          }catch(e){}
+          showToast('Menggunakan gambar dari URL (personal).');
+          imgUrlInput.value = '';
+        } else {
+          showToast('Tidak dapat memuat URL. Cek kembali link.');
+        }
+      });
+
+      // allow Enter in input
+      imgUrlInput.addEventListener('keydown', (e)=>{ if(e.key === 'Enter'){ setUrlBtn.click(); } });
+
+      // ---------- RESET (hapus personal override) ----------
+      resetBtn.addEventListener('click', ()=>{
+        localStorage.removeItem(LOCALSTORAGE_KEY_IMAGE);
+        // try to get server image immediately
+        tryRefreshServerImage().then(()=> showToast('Gambar personal di-reset. Mencoba ambil gambar server...'));
+      });
+
+      // ---------- REFRESH NOW ----------
+      refreshNowBtn.addEventListener('click', async ()=>{
+        // try server first (cache-busting)
+        await tryRefreshServerImage();
+        // if nothing changed, and there is personal image, keep it
+        showToast('Refresh selesai.');
+      });
+
+      // ---------- DOWNLOAD CURRENT IMAGE ----------
+      downloadBtn.addEventListener('click', ()=>{
+        const src = dailyImageEl.src;
+        if(!src){ showToast('Tidak ada gambar untuk didownload'); return; }
+        // create link
+        fetch(src).then(r=>r.blob()).then(blob=>{
+          const a = document.createElement('a');
+          const url = URL.createObjectURL(blob);
+          a.href = url;
+          a.download = 'analisa-harian.png';
+          document.body.appendChild(a);
+          a.click();
+          a.remove();
+          URL.revokeObjectURL(url);
+          showToast('Downloading...');
+        }).catch(()=> showToast('Gagal mendownload gambar (CORS atau file tidak tersedia).'));
+      });
+
+      // ---------- SEARCH FILTER ----------
+      searchInput.addEventListener('input', ()=>{
+        const q = searchInput.value.trim().toLowerCase();
+        const items = document.querySelectorAll('#listArea .card');
+        items.forEach(it=>{
+          const name = (it.dataset.name || it.textContent || '').toLowerCase();
+          it.style.display = name.includes(q) ? 'block' : 'none';
+        });
+      });
+
+      // ---------- INITIAL LOAD ----------
+      // Prefer server image when day changed OR no personal image
+      loadBestImageOnStart();
+
+      // ---------- extra: allow clicking image to open in new tab ----------
+      dailyImageEl.addEventListener('click', ()=>{ window.open(dailyImageEl.src, '_blank'); });
+
+      // safety: update toast position on resize
+      window.addEventListener('resize', ()=>{ /* just prevents weird reflow */ });
+
+      // expose some debug on window (optional)
+      window.RHN = {
+        config:{AUTO_REFRESH_HOUR, DAILY_SERVER_IMAGE},
+        refreshNow: tryRefreshServerImage,
+        clearPersonalImage: ()=>{ localStorage.removeItem(LOCALSTORAGE_KEY_IMAGE); showToast('Personal image cleared'); }
+      };
+
+    })();
   </script>
 </body>
 </html>
