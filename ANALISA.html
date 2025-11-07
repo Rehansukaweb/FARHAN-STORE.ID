@@ -1,570 +1,526 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Analisa Harian | RHN Capital</title>
-  <meta name="description" content="Analisa Harian Crypto — RHN Capital. Ganti gambar harian, auto-refresh, dark/light mode, search realtime.">
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>RHN Capital — Analisa Harian (Ultimate)</title>
+  <meta name="description" content="Analisa Harian Crypto — RHN Capital. Ganti gambar harian, tema, upload, URL, auto-refresh, modal detail, share."/>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
+    /* ========== THEME VARIABLES ========== */
     :root{
-      --bg-dark:#050505;
-      --panel-dark: rgba(255,255,255,0.03);
-      --muted:#cfd8dc;
-      --accent:#00c6ff;
-      --glass: rgba(255,255,255,0.04);
-      --card-border: rgba(0,198,255,0.12);
-      --success: #16a34a;
-      --danger: #ef4444;
-      --max-width:1200px;
+      --bg:#05060a; --panel: rgba(255,255,255,0.02); --muted:#cbd5e1; --accent:#00c6ff; --card-border: rgba(0,198,255,0.12);
+      --glass: rgba(255,255,255,0.03); --success:#16a34a; --danger:#ef4444; --maxw:1200px;
     }
-    [data-theme="light"]{
-      --bg-dark:#f7fbff;
-      --panel-dark: rgba(0,0,0,0.02);
-      --muted:#4b5563;
-      --accent:#0066ff;
-      --glass: rgba(0,0,0,0.03);
-      --card-border: rgba(0,102,255,0.08);
-    }
+    [data-theme="purple"]{ --bg:#0b0520; --panel: rgba(255,255,255,0.02); --muted:#e6d9ff; --accent:#8b5cf6; --card-border: rgba(139,92,246,0.12); }
+    [data-theme="green"]{ --bg:#021205; --panel: rgba(255,255,255,0.02); --muted:#c9f7d3; --accent:#00ff88; --card-border: rgba(0,255,136,0.08); }
+    [data-theme="light"]{ --bg:#f6fbff; --panel:#ffffff; --muted:#475569; --accent:#0066ff; --card-border: rgba(0,102,255,0.08); --glass: rgba(0,0,0,0.03); color-scheme: light; }
 
+    /* ========== BASE ========== */
     *{box-sizing:border-box;margin:0;padding:0}
     html,body{height:100%}
     body{
       font-family:"Poppins",system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;
-      background:var(--bg-dark);
-      color:var(--muted);
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
-      line-height:1.45;
-      padding:18px;
-      display:flex;
-      flex-direction:column;
-      align-items:center;
+      background:var(--bg); color:var(--muted);
+      -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+      padding:18px; display:flex; justify-content:center;
     }
+    .wrap{width:100%;max-width:var(--maxw)}
+    a{color:inherit}
 
-    /* layout */
-    .wrap{width:100%;max-width:var(--max-width)}
-    nav{
-      width:100%;
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      gap:12px;
-      padding:14px 18px;
-      background: linear-gradient(90deg, rgba(0,0,0,0.4), rgba(255,255,255,0.02));
-      border-radius:12px;
-      border:1px solid rgba(255,255,255,0.02);
-      margin-bottom:18px;
-      position:sticky; top:12px; z-index:40;
-      backdrop-filter: blur(6px);
-    }
-    .brand{display:flex;align-items:center;gap:12px}
-    .logo{
-      width:44px;height:44px;border-radius:10px;
-      display:inline-grid;place-items:center;
-      background:linear-gradient(135deg,var(--accent),#4dd7ff);
-      color:#001;
-      font-weight:700;
-      box-shadow:0 6px 18px rgba(0,0,0,0.25);
-    }
-    .brand h1{font-size:18px;color:var(--accent);letter-spacing:0.6px}
-    .nav-links a{color:var(--muted);text-decoration:none;margin-left:14px;font-weight:600}
-    .nav-links a:hover{color:var(--accent)}
+    /* ========== NAV ========== */
+    nav{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px;border-radius:10px;background:linear-gradient(90deg,rgba(255,255,255,0.01),var(--panel));border:1px solid rgba(255,255,255,0.02); margin-bottom:14px}
+    .brand{display:flex;gap:12px;align-items:center}
+    /* fancy RHN logo */
+    .rhn-logo{width:52px;height:52px;border-radius:12px;background:linear-gradient(135deg,var(--accent),#4dd7ff);display:grid;place-items:center;color:#001;font-weight:800;box-shadow:0 8px 26px rgba(0,0,0,0.35)}
+    .brand h1{font-size:16px;color:var(--accent);font-weight:700}
+    .nav-actions{display:flex;gap:8px;align-items:center}
 
-    header{
-      width:100%;
-      padding:36px 18px;
-      border-radius:12px;
-      color: white;
-      background: linear-gradient(90deg,#0040ff 0%, #00c6ff 100%);
-      margin-bottom:22px;
-      box-shadow:0 10px 40px rgba(0,0,0,0.35);
-    }
-    header h2{font-size:26px;margin-bottom:6px}
-    header p{font-size:14px;opacity:0.95}
+    /* ========== HEADER ========== */
+    header{padding:22px;border-radius:12px;background:linear-gradient(90deg, rgba(0,0,0,0.25), rgba(255,255,255,0.02));margin-bottom:18px}
+    header h2{font-size:20px;color:var(--accent);margin-bottom:6px}
+    header p{font-size:13px;color:var(--muted)}
 
-    /* controls */
-    .controls{
-      margin:18px 0;
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-      align-items:center;
-    }
-    .btn{
-      background:var(--glass);
-      color:var(--muted);
-      border:1px solid var(--card-border);
-      padding:8px 12px;border-radius:10px;font-weight:600;
-      cursor:pointer;
-      transition:all .18s ease;
-    }
-    .btn:hover{transform:translateY(-3px);box-shadow:0 8px 20px rgba(0,0,0,0.18)}
+    /* ========== CONTROLS ========== */
+    .controls{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:14px 0}
+    .btn{padding:8px 12px;border-radius:10px;border:1px solid var(--card-border);background:var(--glass);color:var(--muted);cursor:pointer;font-weight:600}
     .btn.primary{background:linear-gradient(90deg,var(--accent),#6be7ff);color:#001;border:none}
+    .btn.ghost{background:transparent}
     .small{padding:6px 8px;font-size:13px}
-    .muted{color:var(--muted);font-size:13px}
+    input[type="text"],input[type="search"]{padding:10px;border-radius:10px;border:1px solid rgba(255,255,255,0.03);background:transparent;color:var(--muted);min-width:200px}
+    .uploader{display:flex;gap:8px;align-items:center}
 
-    /* layout grid */
-    .main-grid{
-      display:grid;
-      grid-template-columns: 2fr 1fr;
-      gap:22px;
-      width:100%;
-    }
-    @media (max-width:980px){.main-grid{grid-template-columns:1fr}}
-    .panel{
-      background:var(--panel-dark);
-      border-radius:14px;
-      padding:14px;
-      border:1px solid var(--card-border);
-      box-shadow:0 6px 20px rgba(0,0,0,0.22);
-    }
+    /* ========== MAIN GRID ========== */
+    .main{display:grid;grid-template-columns:2fr 1fr;gap:18px}
+    @media (max-width:980px){.main{grid-template-columns:1fr}}
+    .panel{background:var(--panel);padding:12px;border-radius:12px;border:1px solid var(--card-border)}
+    .image-box{height:420px;border-radius:10px;overflow:hidden;background:#000;display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,0.02)}
+    .image-box img{width:100%;height:100%;object-fit:cover;display:block}
 
-    /* image box */
-    .image-box{height:420px; overflow:hidden; border-radius:12px; background:#111; display:flex;align-items:center;justify-content:center}
-    .image-box img{width:100%;height:100%;object-fit:cover; display:block}
+    /* cards grid inside left */
+    .cards-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:12px}
+    @media (max-width:760px){.cards-grid{grid-template-columns:1fr}}
+    .mini-card{background:linear-gradient(180deg, rgba(255,255,255,0.01), transparent);padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.02)}
+    .mini-card h4{color:var(--accent);font-size:13px;margin-bottom:6px;text-transform:uppercase}
+    .mini-card p{font-size:13px;color:var(--muted)}
 
-    /* cards list */
-    .cards{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-    @media (max-width:680px){.cards{grid-template-columns:1fr}}
-    .card{
-      border-radius:10px;padding:12px;background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent);
-      border:1px solid rgba(255,255,255,0.02);
-    }
-    .card h3{color:var(--accent);font-size:15px;margin-bottom:6px;text-transform:uppercase}
-    .card p{font-size:13px;color:var(--muted)}
+    /* right list */
+    .list .list-item{padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.02);margin-bottom:8px;background:linear-gradient(180deg, rgba(255,255,255,0.01), transparent);cursor:pointer}
+    .list .list-item:hover{transform:translateY(-4px);box-shadow:0 10px 30px rgba(0,0,0,0.28)}
 
-    /* search */
-    .searchwrap{display:flex;gap:8px;align-items:center;margin-bottom:12px}
-    .searchwrap input[type="search"]{
-      width:100%;padding:10px 12px;border-radius:10px;border:1px solid rgba(255,255,255,0.04);
-      background:transparent;color:var(--muted);outline:none;font-weight:600;
-      box-shadow:inset 0 1px 0 rgba(255,255,255,0.01)
-    }
+    /* modal */
+    .modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,0.6);z-index:999}
+    .modal.open{display:flex}
+    .modal-box{width:95%;max-width:1000px;background:var(--panel);padding:12px;border-radius:12px;border:1px solid var(--card-border)}
+    .modal-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+    .modal-body{display:flex;gap:12px;flex-wrap:wrap}
+    .modal-body img{width:48%;max-height:420px;object-fit:cover;border-radius:8px}
+    .modal-body .meta{width:48%;display:flex;flex-direction:column;gap:8px}
 
-    /* file inputs area */
-    .uploader{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
-    .uploader label{cursor:pointer}
-    .small-input{padding:8px;border-radius:8px;border:1px solid rgba(255,255,255,0.03);background:transparent;color:var(--muted)}
+    /* toast */
+    .toast{position:fixed;left:50%;transform:translateX(-50%);bottom:20px;background:#000000ce;color:#fff;padding:10px 14px;border-radius:10px;display:none;z-index:1001}
+    .toast.show{display:block}
 
-    /* tiny toast */
-    .toast{
-      position:fixed;left:50%;transform:translateX(-50%);bottom:28px;background:#000000cc;color:#fff;padding:10px 14px;border-radius:10px;z-index:999;
-      display:none;font-weight:600;
-    }
-    .toast.show{display:block; animation:pop .28s ease}
-    @keyframes pop{from{transform:translateX(-50%) translateY(6px) scale(.98);opacity:.0} to{transform:translateX(-50%) translateY(0) scale(1);opacity:1}}
-
-    footer{margin-top:30px;color:var(--muted);font-size:13px;text-align:center}
-
-    /* tiny helpers */
-    .row{display:flex;gap:8px;align-items:center}
-    .flexcol{display:flex;flex-direction:column;gap:8px}
-    .right{margin-left:auto}
-    .muted-small{font-size:12px;color:rgba(255,255,255,0.6)}
+    footer{margin-top:20px;text-align:center;color:var(--muted);font-size:13px}
+    code{background:rgba(255,255,255,0.02);padding:2px 6px;border-radius:6px;color:var(--muted)}
   </style>
 </head>
 <body>
-  <div class="wrap">
+  <div class="wrap" id="app">
+    <!-- NAV -->
     <nav>
       <div class="brand">
-        <div class="logo">RH</div>
+        <div class="rhn-logo" title="RHN Capital">RHN</div>
         <div>
           <h1>RHN Capital</h1>
-          <div class="muted" style="font-size:12px">Analisa Harian Crypto</div>
+          <div style="font-size:12px;color:var(--muted)">Analisa Harian Crypto</div>
         </div>
       </div>
-
-      <div class="nav-links">
-        <a href="#">Home</a>
-        <a href="#">Tentang</a>
-        <a href="#">Analisa</a>
+      <div class="nav-actions">
+        <div style="display:flex;gap:8px;align-items:center">
+          <select id="themeSelect" class="small" title="Pilih Tema">
+            <option value="auto">Auto (Sistem)</option>
+            <option value="dark">Hitam Kebiruan</option>
+            <option value="purple">Ungu</option>
+            <option value="green">Hijau</option>
+            <option value="light">Terang</option>
+          </select>
+          <button id="copyLinkBtn" class="btn small">Copy Link</button>
+        </div>
       </div>
     </nav>
 
+    <!-- HEADER -->
     <header>
-      <h2>Analisa Harian Market Crypto</h2>
-      <p>Update cepat, gambar harian, auto-refresh, dan tema otomatis — siap pakai.</p>
+      <h2>Analisa Harian Market Crypto — RHN Capital</h2>
+      <p>Ganti gambar harian, upload cepat, tema, auto-refresh, dan detail popup. Klik kartu untuk lihat detail.</p>
     </header>
 
-    <!-- Controls -->
+    <!-- CONTROLS -->
     <div class="controls">
-      <div class="searchwrap" style="flex:1;min-width:220px">
-        <input id="search" type="search" placeholder="Cari analisa... (contoh: BTC, PEPE, ETH)">
+      <div style="flex:1;min-width:220px">
+        <input id="search" type="search" placeholder="Cari analisa (contoh: BTC, PEPE, ETH)"/>
       </div>
 
       <div class="uploader">
-        <!-- upload file (local personal fallback) -->
-        <label class="btn small" title="Upload gambar dari device">
-          <input id="fileUpload" type="file" accept="image/*" style="display:none">
+        <label class="btn" title="Upload gambar personal">
+          <input id="fileInput" type="file" accept="image/*" style="display:none"/>
           Upload Gambar
         </label>
-
-        <!-- URL input -->
-        <input id="imgUrl" class="small-input" placeholder="Atau masukkan URL gambar (paste lalu Enter)" aria-label="Image URL">
-
-        <button id="setUrlBtn" class="btn small">Gunakan URL</button>
-        <button id="resetBtn" class="btn small">Reset Gambar</button>
-
-        <div class="row">
-          <button id="themeToggle" class="btn small">Tema</button>
-          <button id="downloadBtn" class="btn small">Download</button>
-        </div>
+        <input id="imgUrl" type="text" placeholder="Masukkan URL gambar lalu Enter" />
+        <button id="useUrlBtn" class="btn">Gunakan URL</button>
+        <button id="resetBtn" class="btn">Reset Personal</button>
+        <button id="refreshBtn" class="btn">Refresh Server</button>
+        <button id="downloadBtn" class="btn">Download</button>
       </div>
     </div>
 
-    <div class="main-grid">
-      <!-- left -->
+    <!-- MAIN -->
+    <div class="main">
+      <!-- LEFT -->
       <section class="panel">
-        <div style="display:flex;gap:12px;align-items:center;margin-bottom:12px">
-          <div style="font-weight:700;color:var(--muted)">Analisa Hari Ini</div>
-          <div class="muted-small right" id="datebox"></div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+          <div style="font-weight:700">Analisa Hari Ini</div>
+          <div style="font-size:13px;color:var(--muted)" id="dateDisplay"></div>
         </div>
 
-        <div class="image-box" id="imageBox">
-          <!-- initial src is server public file 'daily.png' - replace it to update globally -->
-          <img id="dailyImage" src="daily.png" alt="Gambar Analisa Hari Ini" loading="eager">
+        <div class="image-box panel" id="imageBox" title="Klik untuk buka gambar besar">
+          <img id="mainImage" src="daily.png" alt="Gambar Analisa"/>
         </div>
 
-        <div style="margin-top:12px;display:flex;gap:10px;align-items:center;flex-wrap:wrap">
-          <button id="refreshNow" class="btn">Refresh Sekarang</button>
-          <div class="muted-small">Auto-refresh tiap hari jam <strong id="refreshHourLabel">08:00</strong> (browser lokal)</div>
-          <div style="margin-left:auto" class="muted-small">Mode: <span id="modeLabel">Auto</span></div>
+        <div style="margin-top:10px;display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+          <button id="showAllBtn" class="btn small">Tampilkan Semua</button>
+          <button data-filter="BTC" class="btn small filterBtn">BTC</button>
+          <button data-filter="PEPE" class="btn small filterBtn">PEPE</button>
+          <button data-filter="ETH" class="btn small filterBtn">ETH</button>
+          <button data-filter="XAUUSD" class="btn small filterBtn">XAUUSD</button>
+          <div style="margin-left:auto;color:var(--muted);font-size:13px">Auto-refresh jam <code id="hourLabel">08:00</code></div>
         </div>
 
-        <div style="margin-top:16px" class="cards">
-          <div class="card">
-            <h3>Market Sentimen</h3>
-            <p id="sentimenText">Bullish ringan — perhatikan volume dan support utama.</p>
-          </div>
-          <div class="card">
-            <h3>Top Pick</h3>
-            <p id="topPickText">PEPE — potensi pantulan dari area support kuat jika volume meningkat.</p>
-          </div>
-          <div class="card">
-            <h3>Catatan Risiko</h3>
-            <p id="riskText">Waspada data ekonomi besar (AS) — volatilitas meningkat.</p>
-          </div>
-          <div class="card">
-            <h3>Quick Tips</h3>
-            <p id="tipsText">Gunakan stop loss ketat, jangan gunakan seluruh modal untuk satu trade.</p>
-          </div>
+        <div class="cards-grid" id="quickCards">
+          <div class="mini-card"><h4>Market Sentimen</h4><p id="sentimen">Bullish ringan — perhatikan volume & support.</p></div>
+          <div class="mini-card"><h4>Top Pick</h4><p id="topPick">PEPE — pantulan dari support kemungkinan besar.</p></div>
+          <div class="mini-card"><h4>Catatan Risiko</h4><p id="riskNote">Waspada data makro besar — volatilitas tinggi.</p></div>
+          <div class="mini-card"><h4>Quick Tips</h4><p id="tips">Stop loss ketat, jangan all-in pada satu posisi.</p></div>
         </div>
       </section>
 
-      <!-- right -->
-      <aside class="panel">
+      <!-- RIGHT -->
+      <aside class="panel list">
         <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
-          <div style="font-weight:700;color:var(--muted)">Daftar Analisa</div>
-          <div class="muted-small">Filter cepat</div>
+          <div style="font-weight:700">Daftar Analisa</div>
+          <div style="font-size:12px;color:var(--muted)">Klik untuk detail</div>
         </div>
 
-        <div id="listArea" style="display:flex;flex-direction:column;gap:10px">
-          <!-- entries; update image file names as needed -->
-          <div class="card" data-name="BTC"><h3>Bitcoin (BTC)</h3><p>Sideways; pantau support & volume untuk konfirmasi rebound.</p></div>
-          <div class="card" data-name="PEPE"><h3>PEPE</h3><p>Zona demand; kunci jika volume masuk kuat.</p></div>
-          <div class="card" data-name="ETH"><h3>Ethereum (ETH)</h3><p>Konsolidasi; breakout di atas resistance jadi sinyal bullish.</p></div>
-          <div class="card" data-name="XAUUSD"><h3>XAUUSD</h3><p>Emas: support kuat di area X, perhatikan data makro.</p></div>
-          <div class="card" data-name="DOMINASI BTC"><h3>Dominasi BTC</h3><p>Dominasi melemah; altcoin season mungkin mendekat.</p></div>
-        </div>
-
-        <div style="margin-top:14px" class="muted-small">
-          Tip: Untuk update gambar global, replace file <code>daily.png</code> di folder server / hosting (github pages / hostinger).<br>
-          Jika ingin hanya Anda yang ganti (tidak global), gunakan tombol Upload.
+        <!-- LIST ITEMS (Update nama gambar file sesuai yang lo punya) -->
+        <div id="listArea">
+          <div class="list-item" data-name="BTC" data-img="btc.png" data-desc="BTC konsolidasi; pantau support & volume.">Bitcoin (BTC)</div>
+          <div class="list-item" data-name="PEPE" data-img="pepe.png" data-desc="PEPE di zona demand; potensi reversal jika volume kuat.">PEPE</div>
+          <div class="list-item" data-name="ETH" data-img="eth.png" data-desc="ETH sideways; breakout ke atas akan konfirmasi bullish.">Ethereum (ETH)</div>
+          <div class="list-item" data-name="XAUUSD" data-img="xauusd.png" data-desc="Emas: support penting, perhatikan rilis makro.">XAUUSD</div>
+          <div class="list-item" data-name="DOM" data-img="dominasi.png" data-desc="Dominasi BTC melemah; altcoin season mungkin datang.">Dominasi BTC</div>
         </div>
       </aside>
     </div>
 
-    <footer>
-      © 2025 RHN Capital — dibuat untuk analisa harian. All rights reserved.
-    </footer>
+    <footer>© 2025 RHN Capital — All rights reserved.</footer>
   </div>
 
-  <div id="toast" class="toast"></div>
+  <!-- MODAL DETAIL -->
+  <div id="modal" class="modal" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="modal-box">
+      <div class="modal-header">
+        <div style="font-weight:700" id="modalTitle">Title</div>
+        <div>
+          <button id="modalClose" class="btn small">Tutup</button>
+        </div>
+      </div>
+      <div class="modal-body">
+        <img id="modalImage" src="" alt="Detail Image"/>
+        <div class="meta">
+          <div id="modalDesc" style="color:var(--muted)"></div>
+          <div style="margin-top:auto;display:flex;gap:8px">
+            <button id="openChart" class="btn small primary">Buka Chart</button>
+            <button id="modalDownload" class="btn small">Download</button>
+            <button id="modalShare" class="btn small">Copy Link</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
 
   <script>
-    (function(){
-      // ---------- CONFIG (BEST DEFAULTS) ----------
-      const AUTO_REFRESH_HOUR = 8; // jam lokal (08:00) ketika mencoba refresh gambar global
-      const DAILY_SERVER_IMAGE = 'daily.png'; // path pada server untuk update global
-      const LOCALSTORAGE_KEY_IMAGE = 'rhn_daily_image_dataurl'; // personal fallback
-      const LOCALSTORAGE_KEY_THEME = 'rhn_theme_pref';
-      const LOCALSTORAGE_KEY_DATE = 'rhn_daily_image_date';
-      const TOAST_EL = document.getElementById('toast');
+  (function(){
+    /* ======= CONFIG ======= */
+    const AUTO_HOUR = 8; // refresh hour local
+    const SERVER_IMAGE = 'daily.png';
+    const LS_PERSONAL = 'rhn_personal_image';
+    const LS_THEME = 'rhn_theme';
+    const LS_DATE = 'rhn_image_date';
+    const MAX_SIZE = 2_500_000; // 2.5MB
 
-      // ---------- HELPERS ----------
-      function showToast(msg, duration=2200){
-        TOAST_EL.textContent = msg;
-        TOAST_EL.classList.add('show');
-        clearTimeout(showToast._t);
-        showToast._t = setTimeout(()=>TOAST_EL.classList.remove('show'), duration);
+    /* ======= ELEMENTS ======= */
+    const themeSelect = document.getElementById('themeSelect');
+    const copyLinkBtn = document.getElementById('copyLinkBtn');
+    const dateDisplay = document.getElementById('dateDisplay');
+    const hourLabel = document.getElementById('hourLabel');
+    const fileInput = document.getElementById('fileInput');
+    const imgUrl = document.getElementById('imgUrl');
+    const useUrlBtn = document.getElementById('useUrlBtn');
+    const resetBtn = document.getElementById('resetBtn');
+    const refreshBtn = document.getElementById('refreshBtn');
+    const downloadBtn = document.getElementById('downloadBtn');
+    const mainImage = document.getElementById('mainImage');
+    const imageBox = document.getElementById('imageBox');
+    const showAllBtn = document.getElementById('showAllBtn');
+    const filterBtns = document.querySelectorAll('.filterBtn');
+    const listArea = document.getElementById('listArea');
+    const searchInput = document.getElementById('search');
+    const listItems = document.querySelectorAll('.list-item');
+    const toast = document.getElementById('toast');
+
+    const modal = document.getElementById('modal');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalImage = document.getElementById('modalImage');
+    const modalDesc = document.getElementById('modalDesc');
+    const modalClose = document.getElementById('modalClose');
+    const openChart = document.getElementById('openChart');
+    const modalDownload = document.getElementById('modalDownload');
+    const modalShare = document.getElementById('modalShare');
+
+    hourLabel.textContent = String(AUTO_HOUR).padStart(2,'0') + ':00';
+
+    /* ======= TOAST ======= */
+    let toastTimer = null;
+    function showToast(msg, ms=2200){
+      toast.textContent = msg;
+      toast.classList.add('show');
+      toast.style.display = 'block';
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(()=>{ toast.classList.remove('show'); toast.style.display='none'; }, ms);
+    }
+
+    /* ======= THEME HANDLING ======= */
+    function applyTheme(pref){
+      if(pref === 'auto'){
+        const dark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light');
+      } else {
+        document.documentElement.setAttribute('data-theme', pref);
       }
+    }
+    // load saved theme
+    const savedTheme = localStorage.getItem(LS_THEME) || 'auto';
+    themeSelect.value = savedTheme;
+    applyTheme(savedTheme);
+    themeSelect.addEventListener('change', () => {
+      const v = themeSelect.value;
+      localStorage.setItem(LS_THEME, v);
+      applyTheme(v);
+      showToast('Tema disimpan: ' + v);
+    });
+    if(window.matchMedia){
+      window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', ()=> {
+        if((localStorage.getItem(LS_THEME) || 'auto') === 'auto') applyTheme('auto');
+      });
+    }
 
-      function todayString(){ // YYYY-MM-DD
-        const d = new Date();
-        return d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0');
+    /* ======= DATE ======= */
+    function renderDate(){
+      const d = new Date();
+      dateDisplay.textContent = d.toLocaleDateString('id-ID', {weekday:'long', day:'numeric', month:'long', year:'numeric'});
+    }
+    renderDate();
+
+    /* ======= IMAGE PROBE USING Image() to avoid CORS fetch issues ======= */
+    function probeImageURL(url, timeout=6000){
+      return new Promise((resolve)=> {
+        try {
+          const img = new Image();
+          let done = false;
+          const clean = (val)=>{ if(done) return; done=true; img.onload = img.onerror = null; resolve(val); };
+          img.onload = ()=> clean(true);
+          img.onerror = ()=> clean(false);
+          img.src = url + (url.includes('?') ? '&' : '?') + 'ts=' + Date.now();
+          setTimeout(()=>clean(false), timeout);
+        } catch(e){
+          resolve(false);
+        }
+      });
+    }
+
+    /* ======= LOAD PREFERRED IMAGE ON START ======= */
+    async function loadInitialImage(){
+      const personal = localStorage.getItem(LS_PERSONAL);
+      if(personal){
+        mainImage.src = personal;
+        showToast('Menampilkan gambar personal (local).');
+        return;
       }
-
-      // ---------- ELEMENTS ----------
-      const dailyImageEl = document.getElementById('dailyImage');
-      const fileUpload = document.getElementById('fileUpload');
-      const imgUrlInput = document.getElementById('imgUrl');
-      const setUrlBtn = document.getElementById('setUrlBtn');
-      const resetBtn = document.getElementById('resetBtn');
-      const refreshNowBtn = document.getElementById('refreshNow');
-      const downloadBtn = document.getElementById('downloadBtn');
-      const themeToggle = document.getElementById('themeToggle');
-      const datebox = document.getElementById('datebox');
-      const refreshHourLabel = document.getElementById('refreshHourLabel');
-      const modeLabel = document.getElementById('modeLabel');
-      const searchInput = document.getElementById('search');
-
-      refreshHourLabel.textContent = String(AUTO_REFRESH_HOUR).padStart(2,'0') + ':00';
-
-      // ---------- THEME (auto + toggle) ----------
-      function applyTheme(theme){
-        if(theme === 'dark' || (theme === 'auto' && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches)){
-          document.documentElement.setAttribute('data-theme','');
-          modeLabel.textContent = (theme==='auto') ? 'Auto (Dark preferred)' : 'Dark';
-        } else {
-          document.documentElement.setAttribute('data-theme','light');
-          modeLabel.textContent = (theme==='auto') ? 'Auto (Light preferred)' : 'Light';
+      // if date changed, try server image
+      const today = new Date().toISOString().slice(0,10);
+      const lastDate = localStorage.getItem(LS_DATE);
+      if(!lastDate || lastDate !== today){
+        const ok = await probeImageURL(SERVER_IMAGE);
+        if(ok){
+          mainImage.src = SERVER_IMAGE + '?ts=' + Date.now();
+          localStorage.setItem(LS_DATE, today);
+          showToast('Mengambil gambar terbaru dari server.');
+          return;
         }
       }
-      // initial theme: from localStorage or auto
-      let savedTheme = localStorage.getItem(LOCALSTORAGE_KEY_THEME) || 'auto';
-      applyTheme(savedTheme);
-      // listen to toggle: cycle auto -> dark -> light -> auto
-      themeToggle.addEventListener('click', ()=>{
-        const order = ['auto','dark','light'];
-        let idx = order.indexOf(savedTheme);
-        idx = (idx + 1) % order.length;
-        savedTheme = order[idx];
-        localStorage.setItem(LOCALSTORAGE_KEY_THEME, savedTheme);
-        applyTheme(savedTheme);
-        showToast('Tema: ' + (savedTheme==='auto' ? 'Auto' : savedTheme.charAt(0).toUpperCase()+savedTheme.slice(1)));
-      });
+      // fallback: keep default src from HTML
+    }
+    loadInitialImage();
 
-      // react to system theme changes if in auto
-      if(window.matchMedia){
-        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
-          if(localStorage.getItem(LOCALSTORAGE_KEY_THEME) === 'auto' || !localStorage.getItem(LOCALSTORAGE_KEY_THEME)){
-            applyTheme('auto');
-          }
-        });
+    /* ======= AUTO REFRESH EVERY DAY at AUTO_HOUR (checks every minute) ======= */
+    setInterval(async ()=>{
+      const now = new Date();
+      const today = now.toISOString().slice(0,10);
+      const lastDate = localStorage.getItem(LS_DATE) || '';
+      if(today !== lastDate && now.getHours() >= AUTO_HOUR){
+        const ok = await probeImageURL(SERVER_IMAGE);
+        if(ok){
+          mainImage.src = SERVER_IMAGE + '?ts=' + Date.now();
+          localStorage.setItem(LS_DATE, today);
+          showToast('Gambar server di-refresh otomatis.');
+        }
       }
+    }, 60_000);
 
-      // ---------- DATE DISPLAY ----------
-      function renderDate(){ datebox.textContent = new Date().toLocaleDateString('id-ID', {weekday:'long', day:'numeric', month:'long', year:'numeric'}); }
-      renderDate();
-
-      // ---------- LOAD IMAGE LOGIC ----------
-      // Priority:
-      // 1) If user uploaded personal image (localStorage dataURL), show personal image (user preview)
-      // 2) Else attempt to load server image daily.png with cache-busting when date changes
-      // 3) Else fallback to in-file src (daily.png) or placeholder
-
-      async function probeImage(url){
-        // try fetching as HEAD-ish check. Use fetch with no-cors fallback to setting image src directly.
+    /* ======= FILE UPLOAD (personal preview saved) ======= */
+    fileInput.addEventListener('change', (e)=>{
+      const f = e.target.files && e.target.files[0];
+      if(!f) return;
+      if(f.size > MAX_SIZE){ showToast('File terlalu besar (< 2.5MB disarankan).'); return; }
+      const r = new FileReader();
+      r.onload = ()=> {
         try{
-          const r = await fetch(url, {method:'GET', cache:'no-store'});
-          if(r.ok){
-            // create object URL
-            return url;
-          } else {
-            return null;
-          }
-        }catch(e){
-          return null;
+          localStorage.setItem(LS_PERSONAL, r.result);
+          mainImage.src = r.result;
+          showToast('Gambar disimpan secara lokal untuk Anda.');
+        }catch(err){
+          showToast('Gagal menyimpan gambar ke localStorage.');
         }
+      };
+      r.readAsDataURL(f);
+      e.target.value = '';
+    });
+
+    /* ======= USE IMAGE FROM URL ======= */
+    useUrlBtn.addEventListener('click', async ()=>{
+      const url = imgUrl.value.trim(); if(!url) { showToast('Masukkan URL gambar dulu.'); return; }
+      showToast('Menguji URL...');
+      const ok = await probeImageURL(url);
+      if(ok){
+        try{
+          localStorage.setItem(LS_PERSONAL, url);
+        }catch(e){}
+        mainImage.src = url;
+        imgUrl.value = '';
+        showToast('Menggunakan gambar dari URL (personal).');
+      } else showToast('Tidak dapat memuat URL (cek link).');
+    });
+    imgUrl.addEventListener('keydown', (e)=>{ if(e.key === 'Enter') useUrlBtn.click(); });
+
+    /* ======= RESET PERSONAL ======= */
+    resetBtn.addEventListener('click', async ()=>{
+      localStorage.removeItem(LS_PERSONAL);
+      // try server immediate
+      const ok = await probeImageURL(SERVER_IMAGE);
+      if(ok){
+        mainImage.src = SERVER_IMAGE + '?ts=' + Date.now();
+        localStorage.setItem(LS_DATE, new Date().toISOString().slice(0,10));
+        showToast('Reset sukses — menampilkan gambar server.');
+      } else {
+        // fallback keep default mainImage.src as in HTML
+        mainImage.src = 'daily.png';
+        showToast('Reset sukses — menampilkan fallback (daily.png).');
       }
+    });
 
-      async function loadBestImageOnStart(){
-        // 1. personal localStorage dataurl
-        const personal = localStorage.getItem(LOCALSTORAGE_KEY_IMAGE);
-        if(personal){
-          dailyImageEl.src = personal;
-          modeLabel.textContent += ' • Personal';
-          return;
-        }
-
-        // 2. server daily image (try with timestamp to avoid cache)
-        const today = todayString();
-        const lastDate = localStorage.getItem(LOCALSTORAGE_KEY_DATE);
-        // if date changed (or no record), try fetch server image to get updated global image
-        if(!lastDate || lastDate !== today){
-          const url = DAILY_SERVER_IMAGE + '?ts=' + Date.now();
-          const ok = await probeImage(url);
-          if(ok){
-            dailyImageEl.src = url;
-            localStorage.setItem(LOCALSTORAGE_KEY_DATE, today);
-            showToast('Gambar global diperbarui (server).');
-            return;
-          }
-          // else try without ts param (some servers block query)
-          const ok2 = await probeImage(DAILY_SERVER_IMAGE);
-          if(ok2){
-            dailyImageEl.src = DAILY_SERVER_IMAGE;
-            localStorage.setItem(LOCALSTORAGE_KEY_DATE, today);
-            showToast('Gambar global diperbarui (server).');
-            return;
-          }
-        }
-
-        // 3. fallback: keep existing src (from HTML) or show placeholder
-        // if default src 404, browser will show broken image — but we keep it as-is
+    /* ======= REFRESH SERVER (manual) ======= */
+    refreshBtn.addEventListener('click', async ()=>{
+      showToast('Mencoba mengambil gambar server...');
+      const ok = await probeImageURL(SERVER_IMAGE);
+      if(ok){
+        mainImage.src = SERVER_IMAGE + '?ts=' + Date.now();
+        localStorage.setItem(LS_DATE, new Date().toISOString().slice(0,10));
+        showToast('Gambar server berhasil diambil.');
+      } else {
+        showToast('Gagal mengambil gambar server.');
       }
+    });
 
-      // ---------- AUTO REFRESH SCHEDULE ----------
-      // Check every minute if we passed AUTO_REFRESH_HOUR and date changed => try to fetch server image
-      setInterval(async () => {
-        const now = new Date();
-        const lastDate = localStorage.getItem(LOCALSTORAGE_KEY_DATE) || '';
-        const today = todayString();
-        // if date changed (new day) at any time, attempt to fetch server image
-        if(today !== lastDate){
-          // If current local hour >= AUTO_REFRESH_HOUR, perform refresh immediately.
-          // Also attempt refresh on date change regardless of hour to be safe.
-          await tryRefreshServerImage();
-        } else {
-          // if same day, but we reached the refresh hour and haven't refreshed today yet,
-          // we'll refresh at the first minute where hours >= AUTO_REFRESH_HOUR and lastDate != today
-          if(now.getHours() === AUTO_REFRESH_HOUR && now.getMinutes() === 0){
-            await tryRefreshServerImage();
-          }
-        }
-      }, 60_000); // 60s
-
-      // also try at page visibility change (when user focused tab) and on load
-      document.addEventListener('visibilitychange', async () => {
-        if(document.visibilityState === 'visible'){
-          await tryRefreshServerImage();
-        }
-      });
-
-      async function tryRefreshServerImage(){
-        const today = todayString();
-        const url = DAILY_SERVER_IMAGE + '?ts=' + Date.now();
-        const ok = await probeImage(url);
-        if(ok){
-          dailyImageEl.src = url;
-          localStorage.setItem(LOCALSTORAGE_KEY_DATE, today);
-          // only clear personal image if you WANT global to override personal? We keep personal untouched.
-          showToast('Gambar global berhasil diambil dari server.');
-        } else {
-          // nothing to do; do not override personal or fallback
-          // still update stored date to avoid repeated failing probes (but we won't set date to avoid skipping future attempts)
-          // do not set local date here so we will try again next interval.
-        }
+    /* ======= DOWNLOAD CURRENT IMAGE ======= */
+    async function downloadSrc(src){
+      try{
+        const res = await fetch(src, {mode: 'cors'});
+        if(!res.ok) throw 0;
+        const blob = await res.blob();
+        const a = document.createElement('a'); const url = URL.createObjectURL(blob);
+        a.href = url; a.download = 'rhn-analisa.png'; document.body.appendChild(a); a.click();
+        a.remove(); URL.revokeObjectURL(url);
+        showToast('Download dimulai');
+      }catch(e){
+        // fallback: open image in new tab for manual save
+        window.open(src, '_blank');
+        showToast('Gagal langsung download (CORS). Membuka di tab baru.');
       }
+    }
+    downloadBtn.addEventListener('click', ()=> downloadSrc(mainImage.src));
 
-      // ---------- UPLOAD HANDLER (personal preview) ----------
-      fileUpload.addEventListener('change', (ev)=>{
-        const f = ev.target.files && ev.target.files[0];
-        if(!f){ return; }
-        if(f.size > 2_500_000){ // 2.5 MB
-          showToast('File terlalu besar. Gunakan gambar < 2.5MB.');
-          return;
-        }
-        const reader = new FileReader();
-        reader.onload = () => {
-          try{
-            localStorage.setItem(LOCALSTORAGE_KEY_IMAGE, reader.result);
-            // we set image but do NOT modify server file; this is personal preview
-            dailyImageEl.src = reader.result;
-            showToast('Gambar disimpan untuk Anda (local).');
-          }catch(e){
-            showToast('Gagal menyimpan gambar (kapasitas penyimpanan penuh).');
-          }
-        };
-        reader.readAsDataURL(f);
-        // reset input
-        ev.target.value = '';
-      });
+    /* ======= COPY LINK ======= */
+    copyLinkBtn.addEventListener('click', ()=>{
+      navigator.clipboard?.writeText(window.location.href)
+        .then(()=> showToast('Link halaman disalin'))
+        .catch(()=> { showToast('Gagal menyalin link'); });
+    });
 
-      // ---------- SET IMAGE VIA URL ----------
-      setUrlBtn.addEventListener('click', async ()=>{
-        const url = imgUrlInput.value.trim();
-        if(!url){ showToast('Masukkan URL gambar dahulu.'); return; }
-        // try load
-        const ok = await probeImage(url);
-        if(ok){
-          dailyImageEl.src = url;
-          // store personal url into localStorage as reference; we won't store huge dataURL
-          try{
-            localStorage.setItem(LOCALSTORAGE_KEY_IMAGE, url);
-          }catch(e){}
-          showToast('Menggunakan gambar dari URL (personal).');
-          imgUrlInput.value = '';
-        } else {
-          showToast('Tidak dapat memuat URL. Cek kembali link.');
-        }
-      });
-
-      // allow Enter in input
-      imgUrlInput.addEventListener('keydown', (e)=>{ if(e.key === 'Enter'){ setUrlBtn.click(); } });
-
-      // ---------- RESET (hapus personal override) ----------
-      resetBtn.addEventListener('click', ()=>{
-        localStorage.removeItem(LOCALSTORAGE_KEY_IMAGE);
-        // try to get server image immediately
-        tryRefreshServerImage().then(()=> showToast('Gambar personal di-reset. Mencoba ambil gambar server...'));
-      });
-
-      // ---------- REFRESH NOW ----------
-      refreshNowBtn.addEventListener('click', async ()=>{
-        // try server first (cache-busting)
-        await tryRefreshServerImage();
-        // if nothing changed, and there is personal image, keep it
-        showToast('Refresh selesai.');
-      });
-
-      // ---------- DOWNLOAD CURRENT IMAGE ----------
-      downloadBtn.addEventListener('click', ()=>{
-        const src = dailyImageEl.src;
-        if(!src){ showToast('Tidak ada gambar untuk didownload'); return; }
-        // create link
-        fetch(src).then(r=>r.blob()).then(blob=>{
-          const a = document.createElement('a');
-          const url = URL.createObjectURL(blob);
-          a.href = url;
-          a.download = 'analisa-harian.png';
-          document.body.appendChild(a);
-          a.click();
-          a.remove();
-          URL.revokeObjectURL(url);
-          showToast('Downloading...');
-        }).catch(()=> showToast('Gagal mendownload gambar (CORS atau file tidak tersedia).'));
-      });
-
-      // ---------- SEARCH FILTER ----------
-      searchInput.addEventListener('input', ()=>{
-        const q = searchInput.value.trim().toLowerCase();
-        const items = document.querySelectorAll('#listArea .card');
-        items.forEach(it=>{
-          const name = (it.dataset.name || it.textContent || '').toLowerCase();
-          it.style.display = name.includes(q) ? 'block' : 'none';
+    /* ======= FILTERS / SHOW ALL ======= */
+    filterBtns.forEach(btn=>{
+      btn.addEventListener('click', ()=> {
+        const key = btn.dataset.filter.toLowerCase();
+        document.querySelectorAll('.list .list-item').forEach(it=> {
+          const name = (it.dataset.name || '').toLowerCase();
+          it.style.display = name.includes(key) ? 'block' : 'none';
         });
       });
+    });
+    showAllBtn.addEventListener('click', ()=> document.querySelectorAll('.list .list-item').forEach(it=> it.style.display='block'));
 
-      // ---------- INITIAL LOAD ----------
-      // Prefer server image when day changed OR no personal image
-      loadBestImageOnStart();
+    /* ======= SEARCH (right list) ======= */
+    searchInput.addEventListener('input', ()=> {
+      const q = searchInput.value.trim().toLowerCase();
+      document.querySelectorAll('#listArea .list-item').forEach(it=>{
+        it.style.display = (!q || (it.dataset.name || it.textContent).toLowerCase().includes(q)) ? 'block' : 'none';
+      });
+    });
 
-      // ---------- extra: allow clicking image to open in new tab ----------
-      dailyImageEl.addEventListener('click', ()=>{ window.open(dailyImageEl.src, '_blank'); });
+    /* ======= LIST ITEM CLICK -> OPEN MODAL ======= */
+    listArea.addEventListener('click', (e)=>{
+      const it = e.target.closest('.list-item');
+      if(!it) return;
+      const title = it.textContent.trim();
+      const src = it.dataset.img || mainImage.src;
+      const desc = it.dataset.desc || '';
+      openModal(title, src, desc);
+    });
 
-      // safety: update toast position on resize
-      window.addEventListener('resize', ()=>{ /* just prevents weird reflow */ });
+    function openModal(title, imgSrc, desc){
+      modalTitle.textContent = title;
+      modalImage.src = imgSrc;
+      modalDesc.textContent = desc;
+      modal.classList.add('open');
+      modal.setAttribute('aria-hidden','false');
+    }
+    function closeModal(){
+      modal.classList.remove('open');
+      modal.setAttribute('aria-hidden','true');
+    }
+    modalClose.addEventListener('click', closeModal);
+    modal.addEventListener('click', (e)=>{ if(e.target === modal) closeModal(); });
 
-      // expose some debug on window (optional)
-      window.RHN = {
-        config:{AUTO_REFRESH_HOUR, DAILY_SERVER_IMAGE},
-        refreshNow: tryRefreshServerImage,
-        clearPersonalImage: ()=>{ localStorage.removeItem(LOCALSTORAGE_KEY_IMAGE); showToast('Personal image cleared'); }
-      };
+    modalDownload.addEventListener('click', ()=> downloadSrc(modalImage.src));
+    modalShare.addEventListener('click', ()=> {
+      navigator.clipboard?.writeText(modalImage.src).then(()=> showToast('Link gambar disalin'), ()=> showToast('Gagal salin link'));
+    });
 
-    })();
+    /* openChart: open TradingView widget for symbol if present in title */
+    openChart.addEventListener('click', ()=>{
+      const t = modalTitle.textContent.toUpperCase();
+      let symbol = '';
+      if(t.includes('BTC')) symbol = 'BINANCE:BTCUSDT';
+      else if(t.includes('ETH')) symbol = 'BINANCE:ETHUSDT';
+      else if(t.includes('PEPE')) symbol = 'BINANCE:PEPEUSDT';
+      else if(t.includes('XAU')) symbol = 'OANDA:XAUUSD';
+      if(symbol){
+        const w = window.open('', '_blank');
+        w.document.write(<iframe src="https://s.tradingview.com/widgetembed/?symbol=${encodeURIComponent(symbol)}&interval=60&theme=dark" width="100%" height="600" frameborder="0"></iframe>);
+      } else {
+        showToast('Chart tidak tersedia untuk item ini.');
+      }
+    });
+
+    /* clicking main image -> open in new tab */
+    imageBox.addEventListener('click', ()=> window.open(mainImage.src, '_blank'));
+
+    /* initial logic done */
+
+    /* ======= SAFETY: make sure no global errors if browser blocks clipboard/fetch ======= */
+    window.addEventListener('error', (e)=> {
+      console.warn('Captured error:', e.message);
+    });
+
+    // Expose interface for debugging (optional)
+    window.RHN = {
+      refreshServer: async ()=> { const ok = await probeImageURL(SERVER_IMAGE); if(ok){ mainImage.src = SERVER_IMAGE + '?ts=' + Date.now(); showToast('Refreshed server image'); } else showToast('Server image unavailable'); },
+      clearPersonal: ()=> { localStorage.removeItem(LS_PERSONAL); showToast('Personal image cleared'); }
+    };
+
+  })();
   </script>
 </body>
 </html>
