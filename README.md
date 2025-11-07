@@ -112,7 +112,7 @@
     <p>📞 WHATSAPP: <a href="https://wa.me/6285717426626" target="_blank">085717826626</a></p>
     <p>📷 INSTAGRAM: <a href="https://instagram.com/huyrehan" target="_blank">@huyrehan</a></p>
   </div>
-  <a href="Halaman4.html" class="btn">➡Halaman 2</a>
+  <a href="Halaman4.html" class="btn">➡ANALISA RHN CAPITAL</a>
   
   </section>
 <h1><b><marquee>SELAMAT DATANG DI RHN CAPITAL</marquee></b></h1>
