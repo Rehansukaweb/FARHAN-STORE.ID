@@ -1,526 +1,114 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <title>RHN Capital — Analisa Harian (Ultimate)</title>
-  <meta name="description" content="Analisa Harian Crypto — RHN Capital. Ganti gambar harian, tema, upload, URL, auto-refresh, modal detail, share."/>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RHN Capital | Analisa Harian</title>
   <style>
-    /* ========== THEME VARIABLES ========== */
-    :root{
-      --bg:#05060a; --panel: rgba(255,255,255,0.02); --muted:#cbd5e1; --accent:#00c6ff; --card-border: rgba(0,198,255,0.12);
-      --glass: rgba(255,255,255,0.03); --success:#16a34a; --danger:#ef4444; --maxw:1200px;
+    * {margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
+    body {
+      background:#050505; color:#eee; text-align:center;
     }
-    [data-theme="purple"]{ --bg:#0b0520; --panel: rgba(255,255,255,0.02); --muted:#e6d9ff; --accent:#8b5cf6; --card-border: rgba(139,92,246,0.12); }
-    [data-theme="green"]{ --bg:#021205; --panel: rgba(255,255,255,0.02); --muted:#c9f7d3; --accent:#00ff88; --card-border: rgba(0,255,136,0.08); }
-    [data-theme="light"]{ --bg:#f6fbff; --panel:#ffffff; --muted:#475569; --accent:#0066ff; --card-border: rgba(0,102,255,0.08); --glass: rgba(0,0,0,0.03); color-scheme: light; }
-
-    /* ========== BASE ========== */
-    *{box-sizing:border-box;margin:0;padding:0}
-    html,body{height:100%}
-    body{
-      font-family:"Poppins",system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;
-      background:var(--bg); color:var(--muted);
-      -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
-      padding:18px; display:flex; justify-content:center;
+    nav {
+      background:#0a0a0a; padding:15px 20px; display:flex; justify-content:space-between; align-items:center;
+      border-bottom:1px solid #00c6ff; position:sticky; top:0; z-index:999;
     }
-    .wrap{width:100%;max-width:var(--maxw)}
-    a{color:inherit}
+    .logo {
+      display:flex; align-items:center; gap:8px;
+    }
+    .logo span {
+      font-weight:700; font-size:22px; color:#00c6ff;
+    }
+    .logo img {
+      width:35px; height:35px; border-radius:50%;
+      border:2px solid #00c6ff;
+    }
+    nav a {
+      text-decoration:none; color:#bbb; margin-left:18px; transition:.3s;
+    }
+    nav a:hover { color:#00c6ff; }
 
-    /* ========== NAV ========== */
-    nav{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px;border-radius:10px;background:linear-gradient(90deg,rgba(255,255,255,0.01),var(--panel));border:1px solid rgba(255,255,255,0.02); margin-bottom:14px}
-    .brand{display:flex;gap:12px;align-items:center}
-    /* fancy RHN logo */
-    .rhn-logo{width:52px;height:52px;border-radius:12px;background:linear-gradient(135deg,var(--accent),#4dd7ff);display:grid;place-items:center;color:#001;font-weight:800;box-shadow:0 8px 26px rgba(0,0,0,0.35)}
-    .brand h1{font-size:16px;color:var(--accent);font-weight:700}
-    .nav-actions{display:flex;gap:8px;align-items:center}
+    header {
+      padding:40px 20px;
+      background:linear-gradient(90deg,#0033cc,#00c6ff);
+      color:#fff;
+    }
+    header h1 {font-size:30px;}
+    header p {font-size:15px;margin-top:8px;}
 
-    /* ========== HEADER ========== */
-    header{padding:22px;border-radius:12px;background:linear-gradient(90deg, rgba(0,0,0,0.25), rgba(255,255,255,0.02));margin-bottom:18px}
-    header h2{font-size:20px;color:var(--accent);margin-bottom:6px}
-    header p{font-size:13px;color:var(--muted)}
+    .container {
+      width:95%; max-width:1000px; margin:30px auto;
+    }
 
-    /* ========== CONTROLS ========== */
-    .controls{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:14px 0}
-    .btn{padding:8px 12px;border-radius:10px;border:1px solid var(--card-border);background:var(--glass);color:var(--muted);cursor:pointer;font-weight:600}
-    .btn.primary{background:linear-gradient(90deg,var(--accent),#6be7ff);color:#001;border:none}
-    .btn.ghost{background:transparent}
-    .small{padding:6px 8px;font-size:13px}
-    input[type="text"],input[type="search"]{padding:10px;border-radius:10px;border:1px solid rgba(255,255,255,0.03);background:transparent;color:var(--muted);min-width:200px}
-    .uploader{display:flex;gap:8px;align-items:center}
+    .card {
+      background:#111; border:1px solid #00c6ff33; border-radius:12px;
+      padding:20px; margin-bottom:25px; transition:.3s;
+    }
+    .card:hover {transform:translateY(-5px);box-shadow:0 0 20px #00c6ff44;}
+    .card img {
+      width:100%; border-radius:10px; margin-bottom:12px;
+    }
+    .card h3 {color:#00c6ff;margin-bottom:6px;}
+    .card p {font-size:14px;color:#ccc;}
 
-    /* ========== MAIN GRID ========== */
-    .main{display:grid;grid-template-columns:2fr 1fr;gap:18px}
-    @media (max-width:980px){.main{grid-template-columns:1fr}}
-    .panel{background:var(--panel);padding:12px;border-radius:12px;border:1px solid var(--card-border)}
-    .image-box{height:420px;border-radius:10px;overflow:hidden;background:#000;display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,0.02)}
-    .image-box img{width:100%;height:100%;object-fit:cover;display:block}
+    button {
+      margin-top:10px; padding:8px 16px; background:#00c6ff;
+      color:#000; border:none; border-radius:6px; cursor:pointer;
+      transition:.3s; font-weight:600;
+    }
+    button:hover {background:#0099cc;}
 
-    /* cards grid inside left */
-    .cards-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:12px}
-    @media (max-width:760px){.cards-grid{grid-template-columns:1fr}}
-    .mini-card{background:linear-gradient(180deg, rgba(255,255,255,0.01), transparent);padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.02)}
-    .mini-card h4{color:var(--accent);font-size:13px;margin-bottom:6px;text-transform:uppercase}
-    .mini-card p{font-size:13px;color:var(--muted)}
-
-    /* right list */
-    .list .list-item{padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.02);margin-bottom:8px;background:linear-gradient(180deg, rgba(255,255,255,0.01), transparent);cursor:pointer}
-    .list .list-item:hover{transform:translateY(-4px);box-shadow:0 10px 30px rgba(0,0,0,0.28)}
-
-    /* modal */
-    .modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,0.6);z-index:999}
-    .modal.open{display:flex}
-    .modal-box{width:95%;max-width:1000px;background:var(--panel);padding:12px;border-radius:12px;border:1px solid var(--card-border)}
-    .modal-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
-    .modal-body{display:flex;gap:12px;flex-wrap:wrap}
-    .modal-body img{width:48%;max-height:420px;object-fit:cover;border-radius:8px}
-    .modal-body .meta{width:48%;display:flex;flex-direction:column;gap:8px}
-
-    /* toast */
-    .toast{position:fixed;left:50%;transform:translateX(-50%);bottom:20px;background:#000000ce;color:#fff;padding:10px 14px;border-radius:10px;display:none;z-index:1001}
-    .toast.show{display:block}
-
-    footer{margin-top:20px;text-align:center;color:var(--muted);font-size:13px}
-    code{background:rgba(255,255,255,0.02);padding:2px 6px;border-radius:6px;color:var(--muted)}
+    footer {
+      margin-top:30px; padding:20px; color:#777;
+      border-top:1px solid #222; font-size:14px;
+    }
   </style>
 </head>
 <body>
-  <div class="wrap" id="app">
-    <!-- NAV -->
-    <nav>
-      <div class="brand">
-        <div class="rhn-logo" title="RHN Capital">RHN</div>
-        <div>
-          <h1>RHN Capital</h1>
-          <div style="font-size:12px;color:var(--muted)">Analisa Harian Crypto</div>
-        </div>
-      </div>
-      <div class="nav-actions">
-        <div style="display:flex;gap:8px;align-items:center">
-          <select id="themeSelect" class="small" title="Pilih Tema">
-            <option value="auto">Auto (Sistem)</option>
-            <option value="dark">Hitam Kebiruan</option>
-            <option value="purple">Ungu</option>
-            <option value="green">Hijau</option>
-            <option value="light">Terang</option>
-          </select>
-          <button id="copyLinkBtn" class="btn small">Copy Link</button>
-        </div>
-      </div>
-    </nav>
 
-    <!-- HEADER -->
-    <header>
-      <h2>Analisa Harian Market Crypto — RHN Capital</h2>
-      <p>Ganti gambar harian, upload cepat, tema, auto-refresh, dan detail popup. Klik kartu untuk lihat detail.</p>
-    </header>
+  <nav>
+    <div class="logo">
+      <img src="https://i.imgur.com/6pU7OIF.png" alt="RHN Logo">
+      <span>RHN Capital</span>
+    </div>
+    <div>
+      <a href="#">Home</a>
+      <a href="#">Analisa</a>
+      <a href="#">Tentang</a>
+    </div>
+  </nav>
 
-    <!-- CONTROLS -->
-    <div class="controls">
-      <div style="flex:1;min-width:220px">
-        <input id="search" type="search" placeholder="Cari analisa (contoh: BTC, PEPE, ETH)"/>
-      </div>
+  <header>
+    <h1>Analisa Harian Market Crypto</h1>
+    <p>Pantau update dan strategi harian langsung dari RHN Capital</p>
+  </header>
 
-      <div class="uploader">
-        <label class="btn" title="Upload gambar personal">
-          <input id="fileInput" type="file" accept="image/*" style="display:none"/>
-          Upload Gambar
-        </label>
-        <input id="imgUrl" type="text" placeholder="Masukkan URL gambar lalu Enter" />
-        <button id="useUrlBtn" class="btn">Gunakan URL</button>
-        <button id="resetBtn" class="btn">Reset Personal</button>
-        <button id="refreshBtn" class="btn">Refresh Server</button>
-        <button id="downloadBtn" class="btn">Download</button>
-      </div>
+  <div class="container">
+
+    <div class="card">
+      <img src="btc.png" alt="Analisa BTC">
+      <h3>Bitcoin (BTC/USDT)</h3>
+      <p>BTC masih sideways, namun potensi breakout mulai terbentuk di area resistance utama.</p>
+      <button onclick="window.open('https://www.tradingview.com/chart/?symbol=BINANCE:BTCUSDT')">Lihat Grafik</button>
     </div>
 
-    <!-- MAIN -->
-    <div class="main">
-      <!-- LEFT -->
-      <section class="panel">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
-          <div style="font-weight:700">Analisa Hari Ini</div>
-          <div style="font-size:13px;color:var(--muted)" id="dateDisplay"></div>
-        </div>
-
-        <div class="image-box panel" id="imageBox" title="Klik untuk buka gambar besar">
-          <img id="mainImage" src="daily.png" alt="Gambar Analisa"/>
-        </div>
-
-        <div style="margin-top:10px;display:flex;gap:8px;align-items:center;flex-wrap:wrap">
-          <button id="showAllBtn" class="btn small">Tampilkan Semua</button>
-          <button data-filter="BTC" class="btn small filterBtn">BTC</button>
-          <button data-filter="PEPE" class="btn small filterBtn">PEPE</button>
-          <button data-filter="ETH" class="btn small filterBtn">ETH</button>
-          <button data-filter="XAUUSD" class="btn small filterBtn">XAUUSD</button>
-          <div style="margin-left:auto;color:var(--muted);font-size:13px">Auto-refresh jam <code id="hourLabel">08:00</code></div>
-        </div>
-
-        <div class="cards-grid" id="quickCards">
-          <div class="mini-card"><h4>Market Sentimen</h4><p id="sentimen">Bullish ringan — perhatikan volume & support.</p></div>
-          <div class="mini-card"><h4>Top Pick</h4><p id="topPick">PEPE — pantulan dari support kemungkinan besar.</p></div>
-          <div class="mini-card"><h4>Catatan Risiko</h4><p id="riskNote">Waspada data makro besar — volatilitas tinggi.</p></div>
-          <div class="mini-card"><h4>Quick Tips</h4><p id="tips">Stop loss ketat, jangan all-in pada satu posisi.</p></div>
-        </div>
-      </section>
-
-      <!-- RIGHT -->
-      <aside class="panel list">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
-          <div style="font-weight:700">Daftar Analisa</div>
-          <div style="font-size:12px;color:var(--muted)">Klik untuk detail</div>
-        </div>
-
-        <!-- LIST ITEMS (Update nama gambar file sesuai yang lo punya) -->
-        <div id="listArea">
-          <div class="list-item" data-name="BTC" data-img="btc.png" data-desc="BTC konsolidasi; pantau support & volume.">Bitcoin (BTC)</div>
-          <div class="list-item" data-name="PEPE" data-img="pepe.png" data-desc="PEPE di zona demand; potensi reversal jika volume kuat.">PEPE</div>
-          <div class="list-item" data-name="ETH" data-img="eth.png" data-desc="ETH sideways; breakout ke atas akan konfirmasi bullish.">Ethereum (ETH)</div>
-          <div class="list-item" data-name="XAUUSD" data-img="xauusd.png" data-desc="Emas: support penting, perhatikan rilis makro.">XAUUSD</div>
-          <div class="list-item" data-name="DOM" data-img="dominasi.png" data-desc="Dominasi BTC melemah; altcoin season mungkin datang.">Dominasi BTC</div>
-        </div>
-      </aside>
+    <div class="card">
+      <img src="pepe.png" alt="Analisa PEPE">
+      <h3>PEPE</h3>
+      <p>PEPE masih di zona akumulasi kuat, potensi reversal tinggi jika volume meningkat.</p>
+      <button onclick="window.open('https://www.tradingview.com/chart/?symbol=BINANCE:PEPEUSDT')">Lihat Grafik</button>
     </div>
 
-    <footer>© 2025 RHN Capital — All rights reserved.</footer>
+    <div class="card">
+      <img src="eth.png" alt="Analisa ETH">
+      <h3>Ethereum (ETH/USDT)</h3>
+      <p>ETH menunjukkan sinyal bullish halus, peluang naik ke area 3,400 masih terbuka.</p>
+      <button onclick="window.open('https://www.tradingview.com/chart/?symbol=BINANCE:ETHUSDT')">Lihat Grafik</button>
+    </div>
+
   </div>
 
-  <!-- MODAL DETAIL -->
-  <div id="modal" class="modal" role="dialog" aria-modal="true" aria-hidden="true">
-    <div class="modal-box">
-      <div class="modal-header">
-        <div style="font-weight:700" id="modalTitle">Title</div>
-        <div>
-          <button id="modalClose" class="btn small">Tutup</button>
-        </div>
-      </div>
-      <div class="modal-body">
-        <img id="modalImage" src="" alt="Detail Image"/>
-        <div class="meta">
-          <div id="modalDesc" style="color:var(--muted)"></div>
-          <div style="margin-top:auto;display:flex;gap:8px">
-            <button id="openChart" class="btn small primary">Buka Chart</button>
-            <button id="modalDownload" class="btn small">Download</button>
-            <button id="modalShare" class="btn small">Copy Link</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+  <footer>© 2025 RHN Capital | Dibuat dengan ⚡ oleh Mohamed O</footer>
 
-  <div id="toast" class="toast" role="status" aria-live="polite"></div>
-
-  <script>
-  (function(){
-    /* ======= CONFIG ======= */
-    const AUTO_HOUR = 8; // refresh hour local
-    const SERVER_IMAGE = 'daily.png';
-    const LS_PERSONAL = 'rhn_personal_image';
-    const LS_THEME = 'rhn_theme';
-    const LS_DATE = 'rhn_image_date';
-    const MAX_SIZE = 2_500_000; // 2.5MB
-
-    /* ======= ELEMENTS ======= */
-    const themeSelect = document.getElementById('themeSelect');
-    const copyLinkBtn = document.getElementById('copyLinkBtn');
-    const dateDisplay = document.getElementById('dateDisplay');
-    const hourLabel = document.getElementById('hourLabel');
-    const fileInput = document.getElementById('fileInput');
-    const imgUrl = document.getElementById('imgUrl');
-    const useUrlBtn = document.getElementById('useUrlBtn');
-    const resetBtn = document.getElementById('resetBtn');
-    const refreshBtn = document.getElementById('refreshBtn');
-    const downloadBtn = document.getElementById('downloadBtn');
-    const mainImage = document.getElementById('mainImage');
-    const imageBox = document.getElementById('imageBox');
-    const showAllBtn = document.getElementById('showAllBtn');
-    const filterBtns = document.querySelectorAll('.filterBtn');
-    const listArea = document.getElementById('listArea');
-    const searchInput = document.getElementById('search');
-    const listItems = document.querySelectorAll('.list-item');
-    const toast = document.getElementById('toast');
-
-    const modal = document.getElementById('modal');
-    const modalTitle = document.getElementById('modalTitle');
-    const modalImage = document.getElementById('modalImage');
-    const modalDesc = document.getElementById('modalDesc');
-    const modalClose = document.getElementById('modalClose');
-    const openChart = document.getElementById('openChart');
-    const modalDownload = document.getElementById('modalDownload');
-    const modalShare = document.getElementById('modalShare');
-
-    hourLabel.textContent = String(AUTO_HOUR).padStart(2,'0') + ':00';
-
-    /* ======= TOAST ======= */
-    let toastTimer = null;
-    function showToast(msg, ms=2200){
-      toast.textContent = msg;
-      toast.classList.add('show');
-      toast.style.display = 'block';
-      clearTimeout(toastTimer);
-      toastTimer = setTimeout(()=>{ toast.classList.remove('show'); toast.style.display='none'; }, ms);
-    }
-
-    /* ======= THEME HANDLING ======= */
-    function applyTheme(pref){
-      if(pref === 'auto'){
-        const dark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-        document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light');
-      } else {
-        document.documentElement.setAttribute('data-theme', pref);
-      }
-    }
-    // load saved theme
-    const savedTheme = localStorage.getItem(LS_THEME) || 'auto';
-    themeSelect.value = savedTheme;
-    applyTheme(savedTheme);
-    themeSelect.addEventListener('change', () => {
-      const v = themeSelect.value;
-      localStorage.setItem(LS_THEME, v);
-      applyTheme(v);
-      showToast('Tema disimpan: ' + v);
-    });
-    if(window.matchMedia){
-      window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', ()=> {
-        if((localStorage.getItem(LS_THEME) || 'auto') === 'auto') applyTheme('auto');
-      });
-    }
-
-    /* ======= DATE ======= */
-    function renderDate(){
-      const d = new Date();
-      dateDisplay.textContent = d.toLocaleDateString('id-ID', {weekday:'long', day:'numeric', month:'long', year:'numeric'});
-    }
-    renderDate();
-
-    /* ======= IMAGE PROBE USING Image() to avoid CORS fetch issues ======= */
-    function probeImageURL(url, timeout=6000){
-      return new Promise((resolve)=> {
-        try {
-          const img = new Image();
-          let done = false;
-          const clean = (val)=>{ if(done) return; done=true; img.onload = img.onerror = null; resolve(val); };
-          img.onload = ()=> clean(true);
-          img.onerror = ()=> clean(false);
-          img.src = url + (url.includes('?') ? '&' : '?') + 'ts=' + Date.now();
-          setTimeout(()=>clean(false), timeout);
-        } catch(e){
-          resolve(false);
-        }
-      });
-    }
-
-    /* ======= LOAD PREFERRED IMAGE ON START ======= */
-    async function loadInitialImage(){
-      const personal = localStorage.getItem(LS_PERSONAL);
-      if(personal){
-        mainImage.src = personal;
-        showToast('Menampilkan gambar personal (local).');
-        return;
-      }
-      // if date changed, try server image
-      const today = new Date().toISOString().slice(0,10);
-      const lastDate = localStorage.getItem(LS_DATE);
-      if(!lastDate || lastDate !== today){
-        const ok = await probeImageURL(SERVER_IMAGE);
-        if(ok){
-          mainImage.src = SERVER_IMAGE + '?ts=' + Date.now();
-          localStorage.setItem(LS_DATE, today);
-          showToast('Mengambil gambar terbaru dari server.');
-          return;
-        }
-      }
-      // fallback: keep default src from HTML
-    }
-    loadInitialImage();
-
-    /* ======= AUTO REFRESH EVERY DAY at AUTO_HOUR (checks every minute) ======= */
-    setInterval(async ()=>{
-      const now = new Date();
-      const today = now.toISOString().slice(0,10);
-      const lastDate = localStorage.getItem(LS_DATE) || '';
-      if(today !== lastDate && now.getHours() >= AUTO_HOUR){
-        const ok = await probeImageURL(SERVER_IMAGE);
-        if(ok){
-          mainImage.src = SERVER_IMAGE + '?ts=' + Date.now();
-          localStorage.setItem(LS_DATE, today);
-          showToast('Gambar server di-refresh otomatis.');
-        }
-      }
-    }, 60_000);
-
-    /* ======= FILE UPLOAD (personal preview saved) ======= */
-    fileInput.addEventListener('change', (e)=>{
-      const f = e.target.files && e.target.files[0];
-      if(!f) return;
-      if(f.size > MAX_SIZE){ showToast('File terlalu besar (< 2.5MB disarankan).'); return; }
-      const r = new FileReader();
-      r.onload = ()=> {
-        try{
-          localStorage.setItem(LS_PERSONAL, r.result);
-          mainImage.src = r.result;
-          showToast('Gambar disimpan secara lokal untuk Anda.');
-        }catch(err){
-          showToast('Gagal menyimpan gambar ke localStorage.');
-        }
-      };
-      r.readAsDataURL(f);
-      e.target.value = '';
-    });
-
-    /* ======= USE IMAGE FROM URL ======= */
-    useUrlBtn.addEventListener('click', async ()=>{
-      const url = imgUrl.value.trim(); if(!url) { showToast('Masukkan URL gambar dulu.'); return; }
-      showToast('Menguji URL...');
-      const ok = await probeImageURL(url);
-      if(ok){
-        try{
-          localStorage.setItem(LS_PERSONAL, url);
-        }catch(e){}
-        mainImage.src = url;
-        imgUrl.value = '';
-        showToast('Menggunakan gambar dari URL (personal).');
-      } else showToast('Tidak dapat memuat URL (cek link).');
-    });
-    imgUrl.addEventListener('keydown', (e)=>{ if(e.key === 'Enter') useUrlBtn.click(); });
-
-    /* ======= RESET PERSONAL ======= */
-    resetBtn.addEventListener('click', async ()=>{
-      localStorage.removeItem(LS_PERSONAL);
-      // try server immediate
-      const ok = await probeImageURL(SERVER_IMAGE);
-      if(ok){
-        mainImage.src = SERVER_IMAGE + '?ts=' + Date.now();
-        localStorage.setItem(LS_DATE, new Date().toISOString().slice(0,10));
-        showToast('Reset sukses — menampilkan gambar server.');
-      } else {
-        // fallback keep default mainImage.src as in HTML
-        mainImage.src = 'daily.png';
-        showToast('Reset sukses — menampilkan fallback (daily.png).');
-      }
-    });
-
-    /* ======= REFRESH SERVER (manual) ======= */
-    refreshBtn.addEventListener('click', async ()=>{
-      showToast('Mencoba mengambil gambar server...');
-      const ok = await probeImageURL(SERVER_IMAGE);
-      if(ok){
-        mainImage.src = SERVER_IMAGE + '?ts=' + Date.now();
-        localStorage.setItem(LS_DATE, new Date().toISOString().slice(0,10));
-        showToast('Gambar server berhasil diambil.');
-      } else {
-        showToast('Gagal mengambil gambar server.');
-      }
-    });
-
-    /* ======= DOWNLOAD CURRENT IMAGE ======= */
-    async function downloadSrc(src){
-      try{
-        const res = await fetch(src, {mode: 'cors'});
-        if(!res.ok) throw 0;
-        const blob = await res.blob();
-        const a = document.createElement('a'); const url = URL.createObjectURL(blob);
-        a.href = url; a.download = 'rhn-analisa.png'; document.body.appendChild(a); a.click();
-        a.remove(); URL.revokeObjectURL(url);
-        showToast('Download dimulai');
-      }catch(e){
-        // fallback: open image in new tab for manual save
-        window.open(src, '_blank');
-        showToast('Gagal langsung download (CORS). Membuka di tab baru.');
-      }
-    }
-    downloadBtn.addEventListener('click', ()=> downloadSrc(mainImage.src));
-
-    /* ======= COPY LINK ======= */
-    copyLinkBtn.addEventListener('click', ()=>{
-      navigator.clipboard?.writeText(window.location.href)
-        .then(()=> showToast('Link halaman disalin'))
-        .catch(()=> { showToast('Gagal menyalin link'); });
-    });
-
-    /* ======= FILTERS / SHOW ALL ======= */
-    filterBtns.forEach(btn=>{
-      btn.addEventListener('click', ()=> {
-        const key = btn.dataset.filter.toLowerCase();
-        document.querySelectorAll('.list .list-item').forEach(it=> {
-          const name = (it.dataset.name || '').toLowerCase();
-          it.style.display = name.includes(key) ? 'block' : 'none';
-        });
-      });
-    });
-    showAllBtn.addEventListener('click', ()=> document.querySelectorAll('.list .list-item').forEach(it=> it.style.display='block'));
-
-    /* ======= SEARCH (right list) ======= */
-    searchInput.addEventListener('input', ()=> {
-      const q = searchInput.value.trim().toLowerCase();
-      document.querySelectorAll('#listArea .list-item').forEach(it=>{
-        it.style.display = (!q || (it.dataset.name || it.textContent).toLowerCase().includes(q)) ? 'block' : 'none';
-      });
-    });
-
-    /* ======= LIST ITEM CLICK -> OPEN MODAL ======= */
-    listArea.addEventListener('click', (e)=>{
-      const it = e.target.closest('.list-item');
-      if(!it) return;
-      const title = it.textContent.trim();
-      const src = it.dataset.img || mainImage.src;
-      const desc = it.dataset.desc || '';
-      openModal(title, src, desc);
-    });
-
-    function openModal(title, imgSrc, desc){
-      modalTitle.textContent = title;
-      modalImage.src = imgSrc;
-      modalDesc.textContent = desc;
-      modal.classList.add('open');
-      modal.setAttribute('aria-hidden','false');
-    }
-    function closeModal(){
-      modal.classList.remove('open');
-      modal.setAttribute('aria-hidden','true');
-    }
-    modalClose.addEventListener('click', closeModal);
-    modal.addEventListener('click', (e)=>{ if(e.target === modal) closeModal(); });
-
-    modalDownload.addEventListener('click', ()=> downloadSrc(modalImage.src));
-    modalShare.addEventListener('click', ()=> {
-      navigator.clipboard?.writeText(modalImage.src).then(()=> showToast('Link gambar disalin'), ()=> showToast('Gagal salin link'));
-    });
-
-    /* openChart: open TradingView widget for symbol if present in title */
-    openChart.addEventListener('click', ()=>{
-      const t = modalTitle.textContent.toUpperCase();
-      let symbol = '';
-      if(t.includes('BTC')) symbol = 'BINANCE:BTCUSDT';
-      else if(t.includes('ETH')) symbol = 'BINANCE:ETHUSDT';
-      else if(t.includes('PEPE')) symbol = 'BINANCE:PEPEUSDT';
-      else if(t.includes('XAU')) symbol = 'OANDA:XAUUSD';
-      if(symbol){
-        const w = window.open('', '_blank');
-        w.document.write(<iframe src="https://s.tradingview.com/widgetembed/?symbol=${encodeURIComponent(symbol)}&interval=60&theme=dark" width="100%" height="600" frameborder="0"></iframe>);
-      } else {
-        showToast('Chart tidak tersedia untuk item ini.');
-      }
-    });
-
-    /* clicking main image -> open in new tab */
-    imageBox.addEventListener('click', ()=> window.open(mainImage.src, '_blank'));
-
-    /* initial logic done */
-
-    /* ======= SAFETY: make sure no global errors if browser blocks clipboard/fetch ======= */
-    window.addEventListener('error', (e)=> {
-      console.warn('Captured error:', e.message);
-    });
-
-    // Expose interface for debugging (optional)
-    window.RHN = {
-      refreshServer: async ()=> { const ok = await probeImageURL(SERVER_IMAGE); if(ok){ mainImage.src = SERVER_IMAGE + '?ts=' + Date.now(); showToast('Refreshed server image'); } else showToast('Server image unavailable'); },
-      clearPersonal: ()=> { localStorage.removeItem(LS_PERSONAL); showToast('Personal image cleared'); }
-    };
-
-  })();
-  </script>
 </body>
 </html>
