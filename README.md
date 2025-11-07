@@ -113,6 +113,8 @@
     <p>📷 INSTAGRAM: <a href="https://instagram.com/huyrehan" target="_blank">@huyrehan</a></p>
   </div>
   <a href="ANALISA.html" class="btn">➡ANALISA RHN CAPITAL</a>
+  <a href="Halaman3.html" class="btn">➡ANALISA RHN CAPITAL</a>
+  
   
   </section>
 <h1><b><marquee>SELAMAT DATANG DI RHN CAPITAL</marquee></b></h1>
