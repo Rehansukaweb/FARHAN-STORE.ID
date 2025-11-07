@@ -1,11 +1,95 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Halaman 3</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Analisa Harian | RHN Capital</title>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #0a0a0a;
+      color: #f1f1f1;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      text-align: center;
+      padding: 25px 10px;
+      background: linear-gradient(90deg, #0051ff, #00c6ff);
+      color: white;
+      font-size: 24px;
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+    .container {
+      max-width: 900px;
+      margin: 30px auto;
+      padding: 15px;
+      background-color: #111;
+      border-radius: 15px;
+      box-shadow: 0 0 15px rgba(0, 255, 255, 0.1);
+    }
+    .intro {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    .intro p {
+      color: #ccc;
+    }
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 15px;
+    }
+    .gallery img {
+      width: 100%;
+      border-radius: 10px;
+      transition: 0.3s;
+      border: 1px solid #333;
+    }
+    .gallery img:hover {
+      transform: scale(1.05);
+      border-color: #00c6ff;
+    }
+    footer {
+      text-align: center;
+      padding: 20px;
+      margin-top: 40px;
+      border-top: 1px solid #333;
+      color: #777;
+      font-size: 14px;
+    }
+  </style>
 </head>
 <body>
-  <p>halo gays</p>
+  <header>
+    RHN CAPITAL - Analisa Harian
+  </header>
+
+  <div class="container">
+    <div class="intro">
+      <h2>Analisa Harian Market Crypto</h2>
+      <p>Berisi update harian, grafik, dan pandangan pasar dari tim RHN Capital.</p>
+      <p>Upload gambar analisa terbaru di bawah ini 👇</p>
+    </div>
+
+    <div class="gallery">
+      <!-- Tempat gambar analisa lo -->
+      <img src="ANALISA HARIAN 01.png" alt="Analisa BITCOIN">
+      <p>BITCOIN MASIH DALAM TREN BEARISH DARI TIME FRAME KECIL ,NAMUN MEMILIKI KEMUNGKINAN UNTUK REBOUND YANG CUKUP KUAT DI AREA DEMAND ZONE.
+      JIKA TETAP BERTAHAN DI AREA GARIS TREN MAKA LANJUT REBOUND ,DAN JIKA AREA TREND TERTEMBUS MAKA AKAN MENUJU AREA 100K</p>
+      <img src="pepe" alt="Analisa PEPE">
+      <P>PEPE DILIHAT DARI TIME FRAME 4H MASIH TERGOLONG BEARISH,JIKA BERTAHAN DI GARIS TREN MAKA BERPOTENSI UNTUK REBOUND</P>
+      <img src="XAUUSD" alt="Analisa USDJPY">
+      <P>XAUUSD BERPOTENSI UNTUK MELAKUKAN PENURUNAN LEBih DALAM </P>
+      <img src="DOMINASI BTC" alt="Analisa DOMINASI BTC">
+      <P>BTC DOMINASI SEMAKIN MENURUN,KEMUNGKINAN AKAN SEMAKIN TURUN DI BAWAH 60% DAN MEMULAI FASE DISTRIBUSI KE ALTCOIN,
+      TETAPI ADA KEMUNGKINAN UNTUK NAIK JIKA ADA PERPANJANGAN CYCLE 4 TAHUNAN</P>
+    </div>
+  </div>
+
+  <footer>
+    © 2025 RHN Capital | Semua hak dilindungi.
+  </footer>
 </body>
 </html>
