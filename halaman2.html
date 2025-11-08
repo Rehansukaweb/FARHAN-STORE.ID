@@ -1,95 +1,206 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Analisa Harian | RHN Capital</title>
-  <style>
-    body {
-      font-family: 'Poppins', sans-serif;
-      background-color: #0a0a0a;
-      color: #f1f1f1;
-      margin: 0;
-      padding: 0;
-    }
-    header {
-      text-align: center;
-      padding: 25px 10px;
-      background: linear-gradient(90deg, #0051ff, #00c6ff);
-      color: white;
-      font-size: 24px;
-      font-weight: bold;
-      letter-spacing: 1px;
-    }
-    .container {
-      max-width: 900px;
-      margin: 30px auto;
-      padding: 15px;
-      background-color: #111;
-      border-radius: 15px;
-      box-shadow: 0 0 15px rgba(0, 255, 255, 0.1);
-    }
-    .intro {
-      text-align: center;
-      margin-bottom: 30px;
-    }
-    .intro p {
-      color: #ccc;
-    }
-    .gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 15px;
-    }
-    .gallery img {
-      width: 100%;
-      border-radius: 10px;
-      transition: 0.3s;
-      border: 1px solid #333;
-    }
-    .gallery img:hover {
-      transform: scale(1.05);
-      border-color: #00c6ff;
-    }
-    footer {
-      text-align: center;
-      padding: 20px;
-      margin-top: 40px;
-      border-top: 1px solid #333;
-      color: #777;
-      font-size: 14px;
-    }
-  </style>
-</head>
-<body>
-  <header>
-    RHN CAPITAL - Analisa Harian
+import React from "react"; import { motion } from "framer-motion"; import { Card, CardContent, CardHeader } from "@/components/ui/card"; import { Button } from "@/components/ui/button"; import { Input } from "@/components/ui/input"; import { Search } from "lucide-react"; import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer } from "recharts";
+
+// RHN Capital — Single-file React landing component // - Tailwind is used for styling (no import required) // - Uses shadcn/ui components and lucide-react icons (these imports are allowed) // - Recharts for a lightweight price / performance sparkline // - Framer Motion for subtle entrance animations // Notes for integration: // - Add this file to your React app and ensure Tailwind, framer-motion, recharts, lucide-react, and shadcn/ui are installed. // - Replace placeholder images and data with your real assets & API feeds.
+
+const heroStats = [ { label: "AUM (IDR)", value: "Rp 120M" }, { label: "Return 1Y", value: "+18%" }, { label: "Clients", value: "1,240" }, ];
+
+const sampleChart = [ { time: "Jan", value: 40 }, { time: "Feb", value: 45 }, { time: "Mar", value: 48 }, { time: "Apr", value: 55 }, { time: "May", value: 60 }, { time: "Jun", value: 58 }, { time: "Jul", value: 68 }, { time: "Aug", value: 72 }, { time: "Sep", value: 80 }, { time: "Oct", value: 85 }, { time: "Nov", value: 92 }, { time: "Dec", value: 102 }, ];
+
+export default function RHNCapitalLanding() { return ( <main className="min-h-screen bg-gradient-to-b from-slate-50 to-white text-slate-900 antialiased"> {/* Header */} <header className="max-w-7xl mx-auto px-6 py-6 flex items-center justify-between"> <div className="flex items-center gap-3"> <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-indigo-600 to-emerald-400 flex items-center justify-center shadow-lg"> <span className="font-extrabold text-white">RH</span> </div> <div> <h1 className="text-lg font-semibold">RHN CAPITAL</h1> <p className="text-xs text-slate-500">We build long-term wealth with clarity & discipline</p> </div> </div>
+
+<nav className="hidden md:flex items-center gap-6">
+      <a href="#about" className="text-sm hover:text-slate-700">About</a>
+      <a href="#strategies" className="text-sm hover:text-slate-700">Strategies</a>
+      <a href="#insights" className="text-sm hover:text-slate-700">Insights</a>
+      <a href="#contact" className="text-sm hover:text-slate-700">Contact</a>
+      <Button className="ml-2">Client Login</Button>
+    </nav>
+
+    <div className="md:hidden">
+      <button aria-label="Open menu" className="p-2 rounded-lg bg-slate-100">
+        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+    </div>
   </header>
 
-  <div class="container">
-    <div class="intro">
-      <h2>Analisa Harian Market Crypto</h2>
-      <p>Berisi update harian, grafik, dan pandangan pasar dari tim RHN Capital.</p>
-      <p>Upload gambar analisa terbaru di bawah ini 👇</p>
-    </div>
+  {/* Hero */}
+  <section className="max-w-7xl mx-auto px-6 py-12 grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+    <motion.div initial={{ opacity: 0, x: -40 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.6 }}>
+      <h2 className="text-4xl md:text-5xl font-extrabold leading-tight">RHN CAPITAL — Investasi Pintar, Risiko Terkelola</h2>
+      <p className="mt-4 text-slate-600 max-w-xl">Kami menyediakan manajemen aset modern yang menggabungkan analisa kuantitatif, risk management ketat, dan pelaporan transparan untuk klien ritel dan institusi.</p>
 
-    <div class="gallery">
-      <!-- Tempat gambar analisa lo -->
-      <img src="ANALISA HARIAN 01.png" alt="Analisa BITCOIN">
-      <p>BITCOIN MASIH DALAM TREN BEARISH DARI TIME FRAME KECIL ,NAMUN MEMILIKI KEMUNGKINAN UNTUK REBOUND YANG CUKUP KUAT DI AREA DEMAND ZONE.
-      JIKA TETAP BERTAHAN DI AREA GARIS TREN MAKA LANJUT REBOUND ,DAN JIKA AREA TREND TERTEMBUS MAKA AKAN MENUJU AREA 100K</p>
-      <img src="pepe" alt="Analisa PEPE">
-      <P>PEPE DILIHAT DARI TIME FRAME 4H MASIH TERGOLONG BEARISH,JIKA BERTAHAN DI GARIS TREN MAKA BERPOTENSI UNTUK REBOUND</P>
-      <img src="XAUUSD" alt="Analisa USDJPY">
-      <P>XAUUSD BERPOTENSI UNTUK MELAKUKAN PENURUNAN LEBih DALAM </P>
-      <img src="DOMINASI BTC" alt="Analisa DOMINASI BTC">
-      <P>BTC DOMINASI SEMAKIN MENURUN,KEMUNGKINAN AKAN SEMAKIN TURUN DI BAWAH 60% DAN MEMULAI FASE DISTRIBUSI KE ALTCOIN,
-      TETAPI ADA KEMUNGKINAN UNTUK NAIK JIKA ADA PERPANJANGAN CYCLE 4 TAHUNAN</P>
-    </div>
-  </div>
+      <div className="mt-6 flex flex-wrap gap-3 items-center">
+        <Button>Mulai Investasi</Button>
+        <Button variant="ghost">Pelajari Strategi</Button>
 
-  <footer>
-    © 2025 RHN Capital | Semua hak dilindungi.
+        <div className="ml-3 flex items-center gap-2 bg-slate-50 px-3 py-2 rounded-lg shadow-sm">
+          <Search className="w-4 h-4" />
+          <Input placeholder="Cari insight, strategi..." className="!bg-transparent border-0" />
+        </div>
+      </div>
+
+      <div className="mt-8 grid grid-cols-3 gap-3">
+        {heroStats.map((s) => (
+          <Card key={s.label} className="shadow-sm">
+            <CardHeader>
+              <p className="text-xs text-slate-500">{s.label}</p>
+            </CardHeader>
+            <CardContent>
+              <div className="text-lg font-semibold">{s.value}</div>
+            </CardContent>
+          </Card>
+        ))}
+      </div>
+    </motion.div>
+
+    {/* Right panel with chart and features */}
+    <motion.aside initial={{ opacity: 0, x: 40 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.6 }} className="space-y-6">
+      <Card className="p-4">
+        <div className="flex items-center justify-between">
+          <div>
+            <p className="text-xs text-slate-500">Performance (Sample)</p>
+            <h3 className="font-semibold">Growth Portfolio</h3>
+          </div>
+          <div className="text-right">
+            <div className="text-sm font-medium">+28.4%</div>
+            <div className="text-xs text-slate-500">vs benchmark +12.1%</div>
+          </div>
+        </div>
+
+        <div className="mt-4 h-40">
+          <ResponsiveContainer width="100%" height="100%">
+            <LineChart data={sampleChart}>
+              <XAxis dataKey="time" hide />
+              <YAxis hide />
+              <Tooltip />
+              <Line type="monotone" dataKey="value" strokeWidth={2} dot={false} />
+            </LineChart>
+          </ResponsiveContainer>
+        </div>
+      </Card>
+
+      <Card className="p-4">
+        <h4 className="font-semibold">Keunggulan Kami</h4>
+        <ul className="mt-3 space-y-2 text-sm text-slate-600">
+          <li>• Risk-first portfolio construction</li>
+          <li>• Transparansi biaya dan laporan berkala</li>
+          <li>• Akses ke strategi pasar modal & crypto terkurasi</li>
+        </ul>
+      </Card>
+    </motion.aside>
+  </section>
+
+  {/* Strategies Section */}
+  <section id="strategies" className="max-w-7xl mx-auto px-6 py-12">
+    <h3 className="text-2xl font-bold">Strategi Investasi</h3>
+    <p className="mt-2 text-slate-600 max-w-2xl">Pilihan strategi disesuaikan dengan profil risiko Anda: konservatif, seimbang, atau agresif. Berikut contoh strategi unggulan kami.</p>
+
+    <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
+      <Card>
+        <CardHeader>
+          <h4 className="font-semibold">Konservatif</h4>
+        </CardHeader>
+        <CardContent>
+          <p className="text-sm text-slate-600">Fokus pada pendapatan tetap, obligasi korporasi dan alokasi kas yang kuat.</p>
+          <div className="mt-4 flex items-center justify-between">
+            <div className="text-xs text-slate-500">Estimated Return</div>
+            <div className="font-semibold">6–8% p.a.</div>
+          </div>
+        </CardContent>
+      </Card>
+
+      <Card>
+        <CardHeader>
+          <h4 className="font-semibold">Seimbang</h4>
+        </CardHeader>
+        <CardContent>
+          <p className="text-sm text-slate-600">Diversifikasi saham, obligasi, dan exposure selektif ke aset alternatif.</p>
+          <div className="mt-4 flex items-center justify-between">
+            <div className="text-xs text-slate-500">Estimated Return</div>
+            <div className="font-semibold">8–14% p.a.</div>
+          </div>
+        </CardContent>
+      </Card>
+
+      <Card>
+        <CardHeader>
+          <h4 className="font-semibold">Agresif</h4>
+        </CardHeader>
+        <CardContent>
+          <p className="text-sm text-slate-600">High-conviction equities, crypto allocation, dan strategi trading kuantitatif.</p>
+          <div className="mt-4 flex items-center justify-between">
+            <div className="text-xs text-slate-500">Estimated Return</div>
+            <div className="font-semibold">15%+ p.a. (volatil)</div>
+          </div>
+        </CardContent>
+      </Card>
+    </div>
+  </section>
+
+  {/* Insights Section */}
+  <section id="insights" className="max-w-7xl mx-auto px-6 py-12">
+    <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div className="lg:col-span-2">
+        <h3 className="text-2xl font-bold">Latest Insights</h3>
+        <p className="text-slate-600 mt-2">Analisa pasar harian, whitepaper strategi, dan update portofolio yang mudah dipahami.</p>
+
+        <div className="mt-6 space-y-4">
+          {[1, 2, 3].map((i) => (
+            <article key={i} className="p-4 border rounded-lg bg-white">
+              <h4 className="font-semibold">Insight #{i} — Market outlook</h4>
+              <p className="text-sm text-slate-600 mt-2">Ringkasan singkat: pergerakan pasar, faktor risiko, dan rekomendasi aksi singkat untuk investor.</p>
+            </article>
+          ))}
+        </div>
+      </div>
+
+      <aside className="space-y-4">
+        <Card>
+          <CardHeader>
+            <h4 className="font-semibold">Newsletter</h4>
+          </CardHeader>
+          <CardContent>
+            <p className="text-sm text-slate-600">Dapatkan ringkasan mingguan langsung ke email Anda.</p>
+            <form className="mt-3 flex gap-2">
+              <Input placeholder="Email Anda" />
+              <Button type="submit">Subscribe</Button>
+            </form>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader>
+            <h4 className="font-semibold">Quick Contact</h4>
+          </CardHeader>
+          <CardContent>
+            <p className="text-sm text-slate-600">Hubungi tim kami untuk diskusi privat.</p>
+            <div className="mt-3 text-sm">
+              <div>📞 +62 21 555 0101</div>
+              <div>✉ contact@rhncapital.id</div>
+            </div>
+          </CardContent>
+        </Card>
+      </aside>
+    </div>
+  </section>
+
+  {/* Footer */}
+  <footer id="contact" className="border-t mt-12 bg-white">
+    <div className="max-w-7xl mx-auto px-6 py-8 flex flex-col md:flex-row items-center justify-between gap-4">
+      <div>
+        <div className="font-semibold">RHN CAPITAL</div>
+        <div className="text-xs text-slate-500">© {new Date().getFullYear()} RHN Capital. All rights reserved.</div>
+      </div>
+
+      <div className="flex items-center gap-4 text-sm text-slate-600">
+        <a href="#" className="hover:underline">Terms</a>
+        <a href="#" className="hover:underline">Privacy</a>
+        <a href="#" className="hover:underline">Careers</a>
+      </div>
+    </div>
   </footer>
-</body>
-</html>
+</main>
+
+); }
