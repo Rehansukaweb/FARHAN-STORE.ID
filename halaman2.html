@@ -4,84 +4,114 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>RHN CAPITAL — Rehan (Investor Muda)</title>
-  <meta name="description" content="RHN CAPITAL — sederhana, estetik, dan klasik. Personal demo untuk Rehan, investor muda." />
-  <meta name="theme-color" content="#ffffff" />
-  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <meta name="description" content="RHN CAPITAL — Ultra Minimal Elegant. Personal demo untuk Rehan, investor muda." />
+  <meta name="theme-color" content="#0b0b0b" />
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
   <style>
-    /* Minimal · Aesthetic · Classic */
+    /* ============================
+       RHN CAPITAL — Ultra Minimal Elegant
+       Theme: Black & Soft Gold
+       Single file: HTML + CSS + JS
+       ============================ */
     :root{
-      --bg: #ffffff;
-      --text: #0b0b0b;
-      --muted: #6b6b6b;
-      --accent: #b58b3a; /* soft gold */
-      --card: #ffffff;
-      --radius: 12px;
-      --maxW: 960px;
-      --shadow: 0 6px 18px rgba(11,11,11,0.06);
+      --bg:#06060a;
+      --panel:#0b0b0f;
+      --text:#efefef;
+      --muted:#b6b6b6;
+      --gold:#cda15a;
+      --glass: rgba(255,255,255,0.02);
+      --radius:14px;
+      --maxW:980px;
+      --shadow: 0 12px 40px rgba(1,1,1,0.6);
     }
     *{box-sizing:border-box}
     html,body{height:100%}
     body{
       margin:0;
-      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-      background:var(--bg);
+      font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;
+      background:
+        radial-gradient(1200px 600px at 10% 10%, rgba(205,161,90,0.03), transparent 10%),
+        linear-gradient(180deg,var(--bg), #050507 80%);
       color:var(--text);
       -webkit-font-smoothing:antialiased;
       -moz-osx-font-smoothing:grayscale;
-      line-height:1.5;
+      line-height:1.45;
+      padding:40px 18px;
     }
+    a{color:inherit}
+    img{max-width:100%;display:block}
 
-    /* Layout */
-    .wrap{max-width:var(--maxW);margin:32px auto;padding:24px;}
-    header{display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid rgba(0,0,0,0.06)}
+    .wrap{max-width:var(--maxW);margin:0 auto}
+
+    /* Header */
+    header{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:28px}
     .brand{display:flex;align-items:center;gap:14px}
-    .logo{
-      width:62px;height:62px;border-radius:8px;background:linear-gradient(180deg,#f6efe0,#efe2b8);display:flex;align-items:center;justify-content:center;
-      font-family: "Merriweather", serif;font-weight:700;color:var(--text);font-size:18px;box-shadow:var(--shadow)
+    .mark{
+      width:64px;height:64px;border-radius:10px;
+      display:flex;align-items:center;justify-content:center;
+      background:linear-gradient(135deg,#24180f, #3b2a17);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+      border:1px solid rgba(255,255,255,0.03);
+      font-family: "Playfair Display", serif;
+      color:var(--gold); font-weight:700; font-size:20px;
     }
-    .brand h1{margin:0;font-family:"Merriweather",serif;font-size:20px;letter-spacing:1px}
+    .brand h1{font-family:"Playfair Display", serif;margin:0;font-size:18px}
     .brand p{margin:0;font-size:12px;color:var(--muted)}
 
-    nav{display:flex;gap:12px;align-items:center}
-    nav a{color:var(--muted);text-decoration:none;font-size:14px;padding:8px;border-radius:8px}
-    nav a:hover{color:var(--text);background:rgba(181,139,58,0.06)}
+    nav{display:flex;gap:10px;align-items:center}
+    nav a{font-size:14px;color:var(--muted);text-decoration:none;padding:8px;border-radius:8px}
+    nav a:hover{color:var(--text);background:rgba(255,255,255,0.02)}
+    .btn-cta{
+      background:linear-gradient(90deg,var(--gold), #b98c44);
+      color:#0b0b0b;padding:10px 14px;border-radius:10px;border:0;font-weight:700;cursor:pointer;box-shadow:var(--shadow)
+    }
+    .btn-ghost{background:transparent;border:1px solid rgba(255,255,255,0.03);padding:8px 12px;border-radius:10px;color:var(--muted);cursor:pointer}
+
+    @media(max-width:860px){
+      nav{display:none}
+      header{flex-direction:column;align-items:flex-start;gap:18px}
+    }
 
     /* Hero */
-    .hero{display:grid;grid-template-columns:1fr 380px;gap:28px;align-items:center;margin-top:28px}
-    .hero-title{font-family:"Merriweather",serif;font-size:34px;margin:0;color:var(--text);font-weight:700}
-    .hero-sub{color:var(--muted);margin-top:12px;max-width:56ch}
-    .cta-row{margin-top:18px;display:flex;gap:10px;flex-wrap:wrap}
-    .btn{padding:10px 14px;border-radius:10px;border:1px solid rgba(11,11,11,0.06);background:transparent;cursor:pointer;font-weight:600}
-    .btn.primary{background:var(--accent);color:#fff;border:0;box-shadow:var(--shadow)}
-    .btn.ghost{background:transparent;color:var(--text)}
+    .hero{display:grid;grid-template-columns:1fr 360px;gap:28px;align-items:center;margin-bottom:30px}
+    .lead-title{font-family:"Playfair Display", serif;font-size:34px;margin:0;color:var(--text);font-weight:600}
+    .subtitle{color:var(--muted);margin-top:10px;max-width:54ch}
+    .actions{margin-top:18px;display:flex;gap:12px;flex-wrap:wrap}
+    .kpi{display:flex;gap:14px;margin-top:22px;flex-wrap:wrap}
+    .kpibox{background:var(--panel);padding:12px 14px;border-radius:10px;min-width:120px;border:1px solid rgba(255,255,255,0.02)}
+    .kpibox .label{font-size:12px;color:var(--muted)}
+    .kpibox .value{font-size:16px;font-weight:700;color:var(--gold)}
 
-    /* Right card */
-    .card{background:var(--card);border-radius:12px;padding:18px;box-shadow:var(--shadow);border:1px solid rgba(0,0,0,0.03)}
-    .small{font-size:13px;color:var(--muted)}
+    /* Card right */
+    .card{background:linear-gradient(180deg,#070709,#0a0b0f);border-radius:12px;padding:18px;border:1px solid rgba(255,255,255,0.02);box-shadow:var(--shadow)}
+    .profile small{color:var(--muted)}
+    .contact a{color:var(--gold);text-decoration:none}
 
     /* Sections */
     section{margin-top:34px}
-    h2{font-family:"Merriweather",serif;margin:0 0 8px 0;font-size:20px}
-    p.lead{color:var(--muted);max-width:70ch}
+    h2.section{font-family:"Playfair Display", serif;margin:0 0 8px 0;font-size:20px}
+    p.muted{color:var(--muted);max-width:74ch}
 
-    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:14px}
-    .plan{padding:14px;border-radius:10px;border:1px solid rgba(0,0,0,0.04);background:#fff}
+    .services{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:12px}
+    .service{background:transparent;border-radius:10px;padding:16px;border:1px dashed rgba(255,255,255,0.02);min-height:110px}
 
-    /* Contact form simple */
-    form input, form textarea{width:100%;padding:10px;border-radius:8px;border:1px solid rgba(0,0,0,0.06);font-size:14px}
-    form button{margin-top:10px}
+    /* Contact form minimal */
+    .form-row{display:flex;gap:10px;flex-wrap:wrap}
+    input, textarea{width:100%;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.03);background:transparent;color:var(--text)}
+    input::placeholder, textarea::placeholder{color:rgba(255,255,255,0.35)}
+    .form-actions{display:flex;gap:8px;margin-top:10px}
 
-    footer{margin-top:40px;padding:20px 0;border-top:1px solid rgba(0,0,0,0.06);text-align:center;color:var(--muted);font-size:13px}
+    footer{margin-top:48px;text-align:center;color:var(--muted);font-size:13px;padding-bottom:30px}
 
-    /* Responsive */
-    @media(max-width:880px){
+    /* small screen */
+    @media(max-width:820px){
       .hero{grid-template-columns:1fr;gap:18px}
-      .logo{width:52px;height:52px}
-      nav{display:none}
+      .services{grid-template-columns:1fr}
     }
 
-    /* Accessibility focus */
-    :focus{outline:3px solid rgba(181,139,58,0.18);outline-offset:3px}
+    /* focus */
+    :focus{outline:3px solid rgba(205,161,90,0.14);outline-offset:2px}
   </style>
 </head>
 <body>
@@ -89,168 +119,157 @@
     <!-- Header -->
     <header>
       <div class="brand" aria-label="RHN Capital">
-        <div class="logo" aria-hidden="true">RHN</div>
+        <div class="mark" aria-hidden="true">RH</div>
         <div>
           <h1>RHN CAPITAL</h1>
-          <p class="small">Membangun kekayaan digital dengan disiplin</p>
+          <p>Keanggunan sederhana untuk investor muda</p>
         </div>
       </div>
 
-      <nav aria-label="Main navigation">
+      <nav role="navigation" aria-label="Top">
         <a href="#about">About</a>
         <a href="#services">Layanan</a>
         <a href="#contact">Contact</a>
+        <button class="btn-cta" id="topContact">Konsultasi</button>
       </nav>
     </header>
 
     <!-- Hero -->
-    <section class="hero" id="about" aria-labelledby="hero-heading">
+    <section class="hero" aria-labelledby="heroTitle">
       <div>
-        <h2 id="hero-heading" class="hero-title">RHN CAPITAL — sederhana, estetik, klasik</h2>
-        <p class="hero-sub">Kesan profesional tanpa berlebihan. Halaman ini dipersonalisasi untuk <strong>Rehan — investor muda</strong>. Semua kontak telah otomatis diisi dan bisa diklik.</p>
+        <h1 id="heroTitle" class="lead-title">RHN CAPITAL — kesederhanaan & klasik</h1>
+        <p class="subtitle">Desain minimal, navigasi tenang, fungsi penuh. Halaman ini dipersonalisasi untuk <strong>Rehan — investor muda (16)</strong>. Semua kontak sudah terhubung.</p>
 
-        <div class="cta-row" role="group" aria-label="Actions">
-          <button class="btn primary" id="btnConsult">Konsultasi (Email)</button>
-          <button class="btn" id="btnLearn">Pelajari</button>
-          <button class="btn" id="btnCall">Telepon</button>
+        <div class="actions" role="group">
+          <button class="btn-cta" id="btnEmail">Tanya via Email</button>
+          <button class="btn-ghost" id="btnWhatsapp">Chat WA</button>
+          <button class="btn-ghost" id="btnIG">Buka IG</button>
         </div>
 
-        <div style="margin-top:20px;display:flex;gap:12px;flex-wrap:wrap">
-          <div style="min-width:160px">
-            <div class="small">AUM (contoh)</div>
-            <div id="aum" style="font-weight:700;font-size:18px">Rp 0</div>
-          </div>
-          <div style="min-width:120px">
-            <div class="small">Return 1Y</div>
-            <div id="ret" style="font-weight:700;font-size:18px">0%</div>
-          </div>
-          <div style="min-width:120px">
-            <div class="small">Clients</div>
-            <div id="clients" style="font-weight:700;font-size:18px">0</div>
-          </div>
+        <div class="kpi" aria-hidden="false" style="margin-top:20px">
+          <div class="kpibox"><div class="label">AUM</div><div class="value" id="kAum">Rp 0</div></div>
+          <div class="kpibox"><div class="label">Return 1Y</div><div class="value" id="kReturn">0%</div></div>
+          <div class="kpibox"><div class="label">Clients</div><div class="value" id="kClients">0</div></div>
         </div>
       </div>
 
-      <aside class="card" aria-label="Contact card">
-        <div style="display:flex;flex-direction:column;gap:10px">
-          <div>
-            <div class="small">Founder</div>
-            <div style="font-weight:700">Rehan — Investor Muda</div>
-            <div class="small">Bogor, Kencana, TANAHSAREAL</div>
-          </div>
-
-          <div>
-            <div class="small">Kontak</div>
-            <div style="margin-top:6px">
-              <div>✉ <a href="mailto:huyrehan@gmail.com" id="mailLink">huyrehan@gmail.com</a></div>
-              <div>📞 <a href="tel:+6285717426626" id="telLink">085717426626</a></div>
-              <div>IG <a href="https://instagram.com/huyrehan" target="_blank" rel="noopener" id="igLink">@huyrehan</a></div>
+      <aside class="card" aria-label="Profile & Contact">
+        <div class="profile">
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <div>
+              <div style="font-size:14px;color:var(--muted)">Founder</div>
+              <div style="font-weight:700;font-size:16px">Rehan</div>
+              <div class="small" style="color:var(--muted)">Investor muda — 16</div>
+            </div>
+            <div style="text-align:right;font-size:13px;color:var(--muted)">
+              <div id="clock">—</div>
             </div>
           </div>
 
-          <div>
-            <div class="small">Jam & Tanggal</div>
-            <div id="clock" style="font-weight:600;margin-top:6px">—</div>
+          <div style="margin-top:14px" class="contact">
+            <div class="small" style="color:var(--muted)">Kontak</div>
+            <div style="margin-top:8px">
+              <div>✉ <a href="mailto:huyrehan@gmail.com" id="mailLink">huyrehan@gmail.com</a></div>
+              <div>📞 <a href="tel:+6285717426626" id="telLink">085717426626</a></div>
+              <div>IG <a href="https://instagram.com/huyrehan" id="igLink" target="_blank" rel="noopener">@huyrehan</a></div>
+            </div>
           </div>
         </div>
       </aside>
     </section>
 
-    <!-- Services -->
-    <section id="services" aria-labelledby="services-title">
-      <h2 id="services-title">Layanan</h2>
-      <p class="lead">Kami menyediakan layanan manajemen aset digital, edukasi investasi, dan strategi jangka panjang yang sederhana dan terukur.</p>
+    <!-- About -->
+    <section id="about">
+      <h2 class="section">About</h2>
+      <p class="muted">RHN CAPITAL hadir sebagai identitas sederhana untuk investor muda yang ingin membangun kekayaan digital dengan disiplin. Fokus pada alokasi yang rapi, edukasi singkat, serta strategi jangka menengah.</p>
+    </section>
 
-      <div class="grid-3" role="list">
-        <div class="plan" role="listitem">
+    <!-- Services -->
+    <section id="services">
+      <h2 class="section">Layanan</h2>
+      <p class="muted">Pilihan layanan yang dirangkum agar tidak rumit — cukup inti yang berguna.</p>
+      <div class="services" role="list">
+        <div class="service" role="listitem">
           <strong>Manajemen Aset</strong>
-          <p class="small" style="margin-top:8px">Alokasi & manajemen risiko untuk portofolio digital.</p>
+          <p class="muted" style="margin-top:8px">Alokasi & risk management sederhana untuk portofolio digital.</p>
         </div>
-        <div class="plan" role="listitem">
-          <strong>Edukasi</strong>
-          <p class="small" style="margin-top:8px">Materi sederhana untuk investor pemula dan muda.</p>
+        <div class="service" role="listitem">
+          <strong>Edukasi Singkat</strong>
+          <p class="muted" style="margin-top:8px">Panduan mudah bagi investor muda — langkah praktis & contoh riil.</p>
         </div>
-        <div class="plan" role="listitem">
-          <strong>Konsultasi Privat</strong>
-          <p class="small" style="margin-top:8px">Sesi singkat via telepon atau email.</p>
+        <div class="service" role="listitem">
+          <strong>Konsultasi</strong>
+          <p class="muted" style="margin-top:8px">Sesi singkat via chat/WA/email untuk tanya strategi.</p>
         </div>
       </div>
     </section>
 
-    <!-- Philosophy / testimonial -->
-    <section aria-labelledby="phil">
-      <h2 id="phil">Filosofi</h2>
-      <p class="lead">"Disiplin adalah fondasi kekayaan." — prinsip sederhana yang kami pegang untuk membimbing investor muda seperti kamu.</p>
-    </section>
-
     <!-- Contact -->
-    <section id="contact" aria-labelledby="contactTitle">
-      <h2 id="contactTitle">Contact</h2>
-      <p class="lead">Tulis pertanyaanmu — tombol kirim akan membuka aplikasi emailmu dengan pesan yang terisi otomatis.</p>
+    <section id="contact">
+      <h2 class="section">Contact</h2>
+      <p class="muted">Isi pertanyaan — tombol kirim akan membuka aplikasi email dengan pesan terisi otomatis.</p>
 
       <div style="display:flex;gap:18px;flex-wrap:wrap;margin-top:12px">
-        <div style="flex:1;min-width:320px" class="card">
-          <form id="contactForm" aria-label="Contact form">
-            <label class="small" for="name">Nama</label>
-            <input id="name" type="text" value="investor muda" required style="margin-top:6px"/>
-            <label class="small" for="email" style="margin-top:10px;display:block">Email</label>
-            <input id="email" type="email" value="huyrehan@gmail.com" required style="margin-top:6px"/>
-            <label class="small" for="phone" style="margin-top:10px;display:block">Nomor HP</label>
-            <input id="phone" type="tel" value="085717426626" required style="margin-top:6px"/>
-            <label class="small" for="msg" style="margin-top:10px;display:block">Pesan</label>
-            <textarea id="msg" rows="4" style="margin-top:6px" placeholder="Tulis pesan..."></textarea>
+        <div style="flex:1;min-width:280px">
+          <div class="card">
+            <form id="contactForm" aria-label="Contact">
+              <label class="small muted">Nama</label>
+              <input id="formName" value="investor muda" required style="margin-top:8px"/>
 
-            <div style="display:flex;gap:8px;margin-top:12px">
-              <button type="submit" class="btn primary">Kirim Email</button>
-              <button type="button" class="btn" id="btnSave">Simpan Lokal</button>
-              <button type="button" class="btn" id="btnCopy">Salin</button>
-            </div>
-            <div id="formMsg" class="small" style="margin-top:8px;color:var(--muted)"></div>
-          </form>
+              <label class="small muted" style="margin-top:10px;display:block">Email</label>
+              <input id="formEmail" type="email" value="huyrehan@gmail.com" required style="margin-top:8px"/>
+
+              <label class="small muted" style="margin-top:10px;display:block">Nomor HP</label>
+              <input id="formPhone" value="085717426626" required style="margin-top:8px"/>
+
+              <label class="small muted" style="margin-top:10px;display:block">Pesan</label>
+              <textarea id="formMsg" rows="4" style="margin-top:8px" placeholder="Tulis pesan..."></textarea>
+
+              <div class="form-actions">
+                <button class="btn-cta" type="submit">Kirim Email</button>
+                <button class="btn-ghost" type="button" id="saveLocal">Simpan</button>
+                <button class="btn-ghost" type="button" id="copyMsg">Salin</button>
+              </div>
+              <div id="status" class="small" style="margin-top:8px;color:var(--muted)"></div>
+            </form>
+          </div>
         </div>
 
-        <div style="width:300px" class="card">
-          <div class="small">Profil Singkat</div>
-          <div style="font-weight:700;margin-top:8px">Rehan — Investor Muda</div>
-          <div class="small" style="margin-top:6px">Usia: 16</div>
-          <div class="small" style="margin-top:6px">Alamat: Bogor, Kencana, TANAHSAREAL</div>
-          <div style="margin-top:12px">
-            <button class="btn primary" id="btnCall2" style="width:100%"><a href="tel:+6285717426626" style="color:#fff;text-decoration:none">Hubungi via Telepon</a></button>
-            <button class="btn" id="btnIG2" style="width:100%;margin-top:8px" onclick="window.open('https://instagram.com/huyrehan','_blank')">Buka IG @huyrehan</button>
+        <div style="width:300px">
+          <div class="card">
+            <div class="small" style="color:var(--muted)">Profil Singkat</div>
+            <div style="font-weight:700;margin-top:8px">Rehan</div>
+            <div class="small" style="margin-top:6px;color:var(--muted)">Usia: 16</div>
+            <div class="small" style="margin-top:6px;color:var(--muted)">Alamat: Bogor, Kencana, TANAHSAREAL</div>
+            <div style="margin-top:12px">
+              <button class="btn-cta" id="callBtn" style="width:100%;margin-bottom:8px"><a href="tel:+6285717426626" style="color:#0b0b0b;text-decoration:none">Telepon Sekarang</a></button>
+              <button class="btn-ghost" id="openIG" style="width:100%">Buka IG @huyrehan</button>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
     <footer>
-      RHN CAPITAL — klasik & sederhana • © <span id="year"></span>
+      RHN CAPITAL • Keindahan sederhana • © <span id="year"></span>
     </footer>
   </div>
 
   <script>
-    // Small interactive script: counters, clock, form actions
+    // Simple interactivity: clock, counters, contact actions
     const $ = s => document.querySelector(s);
-    const $$ = s => document.querySelectorAll(s);
 
     // Year
     $('#year').textContent = new Date().getFullYear();
 
     // Clock TTL
     function pad(n){ return n < 10 ? '0' + n : n; }
-    function updateClock(){
-      const n = new Date();
-      const hh = pad(n.getHours()), mm = pad(n.getMinutes()), ss = pad(n.getSeconds());
-      const date = n.toLocaleDateString('id-ID', { weekday:'short', day:'2-digit', month:'short', year:'numeric' });
-      $('#clock').textContent = date + ' • ' + hh + ':' + mm + ':' + ss;
-    }
-    setInterval(updateClock, 1000);
-    updateClock();
+    function updateClock(){ const d=new Date(); const hh=pad(d.getHours()), mm=pad(d.getMinutes()), ss=pad(d.getSeconds()); const date = d.toLocaleDateString('id-ID',{ weekday:'short', day:'2-digit', month:'short', year:'numeric' }); $('#clock').textContent = date + ' • ' + hh + ':' + mm + ':' + ss; }
+    setInterval(updateClock, 1000); updateClock();
 
-    // Simple animated counters
-    function animateNumber(el, to, duration = 900){
-      const start = 0;
-      const range = to - start;
-      let startTime = null;
+    // Animated small counters (simple)
+    function animate(el, to, duration=900){
+      const start = 0, range = to - start; let startTime = null;
       function step(ts){
         if(!startTime) startTime = ts;
         const progress = Math.min((ts - startTime) / duration, 1);
@@ -259,67 +278,63 @@
       }
       requestAnimationFrame(step);
     }
-    animateNumber($('#aum'), 120000000); // sample
-    setTimeout(()=> { $('#ret').textContent = '+18%'; }, 600);
-    setTimeout(()=> { $('#clients').textContent = '1.240'; }, 700);
+    animate($('#kAum'), 120000000);
+    setTimeout(()=> $('#kReturn').textContent = '+18%', 500);
+    setTimeout(()=> $('#kClients').textContent = '1.240', 700);
 
-    // Contact form: open mailto and prefill
+    // Contact form: open mailto
     $('#contactForm').addEventListener('submit', (e) => {
       e.preventDefault();
-      const name = $('#name').value.trim();
-      const mail = $('#email').value.trim();
-      const phone = $('#phone').value.trim();
-      const message = $('#msg').value.trim();
-      if(!name || !mail || !phone){ $('#formMsg').textContent = 'Nama, email & nomor wajib diisi.'; return; }
-      const subject = encodeURIComponent('Pertanyaan dari Website RHN CAPITAL - ' + name);
-      const body = encodeURIComponent(Nama: ${name}\nPhone: ${phone}\nEmail: ${mail}\n\nPesan:\n${message}\n\n--\nDikirim dari halaman RHN CAPITAL);
+      const name = $('#formName').value.trim();
+      const mail = $('#formEmail').value.trim();
+      const phone = $('#formPhone').value.trim();
+      const message = $('#formMsg').value.trim();
+      if(!name || !mail || !phone){ $('#status').textContent = 'Nama, email & nomor wajib diisi.'; return; }
+      const subject = encodeURIComponent('Pertanyaan dari RHN CAPITAL — ' + name);
+      const body = encodeURIComponent(Nama: ${name}\nPhone: ${phone}\nEmail: ${mail}\n\nPesan:\n${message}\n\n--\n(Dikirim dari halaman RHN CAPITAL));
       window.location.href = mailto:huyrehan@gmail.com?subject=${subject}&body=${body};
-      $('#formMsg').textContent = 'Membuka aplikasi email...';
+      $('#status').textContent = 'Membuka aplikasi email...';
     });
 
-    // Save lokal (localStorage)
-    $('#btnSave').addEventListener('click', () => {
-      const draft = {
-        name: $('#name').value,
-        email: $('#email').value,
-        phone: $('#phone').value,
-        message: $('#msg').value,
-        savedAt: new Date().toISOString()
-      };
-      try {
-        localStorage.setItem('rhn_contact_draft', JSON.stringify(draft));
-        $('#formMsg').textContent = 'Tersimpan lokal.';
-      } catch (err) {
-        $('#formMsg').textContent = 'Gagal menyimpan lokal.';
-      }
+    // Save to localStorage
+    $('#saveLocal').addEventListener('click', () => {
+      try{
+        const draft = { name: $('#formName').value, email: $('#formEmail').value, phone: $('#formPhone').value, msg: $('#formMsg').value, t: new Date().toISOString() };
+        localStorage.setItem('rhn_draft', JSON.stringify(draft));
+        $('#status').textContent = 'Tersimpan lokal.';
+      }catch(e){ $('#status').textContent = 'Gagal menyimpan.'; }
     });
 
-    // Copy to clipboard
-    $('#btnCopy').addEventListener('click', async () => {
-      const text = Nama: ${$('#name').value}\nPhone: ${$('#phone').value}\nEmail: ${$('#email').value}\n\n${$('#msg').value};
-      try {
-        await navigator.clipboard.writeText(text);
-        $('#formMsg').textContent = 'Teks disalin ke clipboard.';
-      } catch(e) {
-        $('#formMsg').textContent = 'Tidak dapat menyalin otomatis. Salin manual.';
-      }
+    // Copy message
+    $('#copyMsg').addEventListener('click', async () => {
+      const text = Nama: ${$('#formName').value}\nPhone: ${$('#formPhone').value}\nEmail: ${$('#formEmail').value}\n\n${$('#formMsg').value};
+      try{ await navigator.clipboard.writeText(text); $('#status').textContent = 'Teks disalin ke clipboard.'; } catch(e){ $('#status').textContent = 'Tidak dapat menyalin otomatis.'; }
     });
 
-    // CTA buttons behavior
-    $('#btnConsult').addEventListener('click', () => {
-      const subject = encodeURIComponent('Permintaan Konsultasi RHN CAPITAL');
-      const body = encodeURIComponent('Halo Rehan,%0D%0A%0D%0ASaya ingin meminta jadwal konsultasi.%0D%0A%0D%0ASalam.');
+    // Buttons: Email, WhatsApp, IG
+    $('#btnEmail').addEventListener('click', () => {
+      const subject = encodeURIComponent('Pertanyaan singkat — RHN CAPITAL');
+      const body = encodeURIComponent('Halo Rehan,%0D%0ASaya ingin menanyakan...%0D%0A');
       window.location.href = mailto:huyrehan@gmail.com?subject=${subject}&body=${body};
     });
-    $('#btnCall').addEventListener('click', () => { window.location.href = 'tel:+6285717426626'; });
-    $('#btnLearn').addEventListener('click', () => { document.querySelector('#services').scrollIntoView({behavior:'smooth'}); });
 
-    // Secondary call buttons
-    $('#btnCall2').addEventListener('click', () => { /* anchor already contains tel link */ });
-    $('#btnIG2').addEventListener('click', () => { /* opens IG via onclick */ });
+    $('#btnWhatsapp').addEventListener('click', () => {
+      const text = encodeURIComponent('Halo Rehan, saya ingin berkonsultasi mengenai investasi.');
+      // WA link (international +62)
+      window.open(https://wa.me/6285717426626?text=${text}, '_blank');
+    });
 
-    // Ensure accessible focus for interactable anchors (small enhancement)
-    $$('a, button, input, textarea').forEach(el => el.setAttribute('tabindex', '0'));
+    $('#btnIG, #openIG').addEventListener('click', () => {
+      window.open('https://instagram.com/huyrehan', '_blank');
+    });
+
+    $('#topContact').addEventListener('click', () => {
+      document.querySelector('#contact').scrollIntoView({behavior:'smooth'});
+      $('#formName').focus();
+    });
+
+    // ensure focusable elements accessible
+    document.querySelectorAll('a,button,input,textarea').forEach(el => el.setAttribute('tabindex','0'));
   </script>
 </body>
 </html>
