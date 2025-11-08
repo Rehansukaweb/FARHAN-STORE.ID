@@ -3,273 +3,408 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Rehan — Tentang Saya | RHN CAPITAL</title>
-  <meta name="description" content="Profil singkat Rehan — investor muda. Kontak, visi, dan informasi ringkas." />
-  <meta name="theme-color" content="#040406" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
+  <title>Rehan — Tentang Saya | RHN CAPITAL (Blue Modern)</title>
+  <meta name="description" content="Profil singkat Rehan — investor muda. Clean, modern, blue theme." />
+  <meta name="theme-color" content="#0f172a" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Plus+Jakarta+Sans:wght@400;600&display=swap" rel="stylesheet">
   <style>
-    /* Minimal · Elegant · General "About" page (Black & Soft Gold) */
+    /* ================= Blue Modern — Single-file ================= */
     :root{
-      --bg:#050507;
-      --panel:#0a0a0d;
-      --text:#f3f4f6;
-      --muted:#a9aeb3;
-      --gold:#cfa85a;
-      --accent: rgba(207,168,90,0.08);
-      --radius:12px;
-      --maxW:920px;
-      --shadow: 0 18px 40px rgba(0,0,0,0.6);
+      --bg:#f6fbff;
+      --card:#ffffff;
+      --text:#0b1530;
+      --muted:#5b6b85;
+      --blue-1:#0f172a;
+      --accent:#2b9cff; /* bright blue */
+      --accent-2:#1b6ed6;
+      --glass: rgba(43,156,255,0.08);
+      --radius:14px;
+      --maxW:980px;
+      --shadow: 0 10px 30px rgba(11,21,48,0.08);
+      --glass-2: rgba(11,21,48,0.04);
     }
     *{box-sizing:border-box}
     html,body{height:100%}
     body{
       margin:0;
-      font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;
-      background: linear-gradient(180deg,var(--bg),#030304 85%);
+      font-family:"Plus Jakarta Sans",Inter,system-ui,-apple-system,"Segoe UI",Roboto,Arial;
+      background:linear-gradient(180deg,#f6fbff 0%, #eef6ff 60%);
       color:var(--text);
       -webkit-font-smoothing:antialiased;
       -moz-osx-font-smoothing:grayscale;
-      padding:36px 18px;
-      line-height:1.5;
+      line-height:1.45;
+      padding:32px 18px;
     }
     a{color:inherit}
+    img{max-width:100%;display:block}
+
     .wrap{max-width:var(--maxW);margin:0 auto}
 
-    header{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:28px}
-    .brand{display:flex;align-items:center;gap:14px}
-    .badge{
-      width:64px;height:64px;border-radius:12px;display:flex;align-items:center;justify-content:center;
-      background:linear-gradient(135deg,#2f2317,#3c2b18);color:var(--gold);font-family:"Playfair Display",serif;font-weight:700;font-size:20px;box-shadow:var(--shadow);
-      border:1px solid rgba(255,255,255,0.02);
+    /* Header */
+    header{
+      display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:26px;
+      padding:10px 12px;border-radius:12px;background:linear-gradient(90deg,rgba(27,110,214,0.06),rgba(43,156,255,0.02));
+      border:1px solid var(--glass-2);
+      box-shadow:var(--shadow);
+      backdrop-filter: blur(6px);
     }
-    .brand h1{margin:0;font-family:"Playfair Display",serif;font-size:18px}
-    .brand p{margin:0;font-size:12px;color:var(--muted)}
+    .brand{display:flex;align-items:center;gap:14px}
+    .logo{
+      width:56px;height:56px;border-radius:10px;background:linear-gradient(135deg,var(--accent),var(--accent-2));
+      display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:18px;box-shadow:0 8px 30px rgba(43,156,255,0.12)
+    }
+    .brand h1{margin:0;font-size:18px}
+    .brand p{margin:0;font-size:13px;color:var(--muted)}
 
     nav{display:flex;gap:12px;align-items:center}
     nav a{font-size:14px;color:var(--muted);text-decoration:none;padding:8px;border-radius:8px}
-    nav a:hover{background:var(--accent);color:var(--text)}
-    .cta{background:linear-gradient(90deg,var(--gold),#b78b3e);color:#040406;border:0;padding:10px 14px;border-radius:10px;cursor:pointer;font-weight:700;box-shadow:var(--shadow)}
+    nav a:hover{color:var(--blue-1);background:var(--glass)}
 
-    .layout{display:grid;grid-template-columns:1fr 340px;gap:28px;align-items:start}
-    @media(max-width:880px){ .layout{grid-template-columns:1fr} nav{display:none} header{flex-direction:column;align-items:flex-start;gap:18px} }
+    .btn{
+      padding:10px 14px;border-radius:10px;border:0;cursor:pointer;font-weight:700;
+      background:linear-gradient(90deg,var(--accent),var(--accent-2));color:#fff;box-shadow:0 8px 30px rgba(43,156,255,0.12)
+    }
+    .btn.ghost{background:transparent;border:1px solid rgba(11,21,48,0.06);color:var(--blue-1)}
 
-    .card{background:linear-gradient(180deg,#080809,#0b0b0f);padding:20px;border-radius:12px;border:1px solid rgba(255,255,255,0.02);box-shadow:var(--shadow)}
-    .title{font-family:"Playfair Display",serif;font-size:28px;margin:0}
-    .lead{color:var(--muted);margin-top:10px;max-width:60ch}
+    /* Layout */
+    .hero{display:grid;grid-template-columns:1fr 360px;gap:28px;align-items:center;padding:28px 0}
+    @media(max-width:920px){ .hero{grid-template-columns:1fr;gap:18px} nav{display:none} header{flex-direction:column;align-items:flex-start} }
 
-    .info-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:16px}
-    .info{background:transparent;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.02)}
-    .info .k{font-size:12px;color:var(--muted)} .info .v{font-weight:700;margin-top:6px}
+    .title{
+      font-size:34px;margin:0;line-height:1.02;color:var(--blue-1);font-weight:700;
+      display:flex;gap:10px;align-items:center;
+    }
+    .typing{color:var(--accent);font-weight:700}
 
-    .services{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
-    .pill{padding:8px 12px;border-radius:999px;background:rgba(255,255,255,0.02);font-size:13px;color:var(--muted)}
+    .lead{margin-top:12px;color:var(--muted);max-width:60ch;font-size:15px}
 
-    .profile-side{display:flex;flex-direction:column;gap:12px}
-    .name{font-family:"Playfair Display",serif;font-size:20px;font-weight:600}
-    .meta{color:var(--muted);font-size:13px}
+    .actions{margin-top:18px;display:flex;gap:12px;flex-wrap:wrap}
+    .kpis{display:flex;gap:12px;margin-top:20px;flex-wrap:wrap}
+    .kpi{background:var(--card);padding:12px 14px;border-radius:10px;box-shadow:var(--shadow);min-width:120px;border:1px solid var(--glass-2)}
+    .kpi .label{font-size:12px;color:var(--muted)}
+    .kpi .value{font-weight:800;font-size:16px;color:var(--blue-1)}
 
-    .links{display:flex;flex-direction:column;gap:8px;margin-top:8px}
-    .link{display:flex;align-items:center;gap:10px;padding:10px;border-radius:8px;background:rgba(255,255,255,0.02);cursor:pointer}
-    .vcard-controls{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+    /* right card */
+    .card{
+      background:linear-gradient(180deg, #ffffff, #f7fbff);
+      border-radius:12px;padding:18px;border:1px solid rgba(11,21,48,0.04);box-shadow:var(--shadow)
+    }
+    .profile{
+      display:flex;gap:12px;align-items:center;
+    }
+    .avatar{
+      width:84px;height:84px;border-radius:12px;background:linear-gradient(135deg,#eef8ff,#d8efff);display:flex;align-items:center;justify-content:center;font-weight:700;color:var(--accent-2);font-size:22px;border:1px solid rgba(11,21,48,0.03)
+    }
+    .meta small{color:var(--muted)}
 
-    footer{margin-top:32px;text-align:center;color:var(--muted);font-size:13px;padding-bottom:8px}
+    /* sections */
+    section{margin-top:36px}
+    h2.section{font-size:20px;margin:0;color:var(--blue-1)}
+    p.note{color:var(--muted);margin-top:8px}
 
-    input,textarea{width:100%;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.03);background:transparent;color:var(--text)}
-    .muted{color:var(--muted)}
-    :focus{outline:3px solid rgba(207,168,90,0.12);outline-offset:3px}
+    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:16px}
+    .card-plain{background:var(--card);border-radius:10px;padding:12px;border:1px solid var(--glass-2);box-shadow:var(--shadow)}
+
+    /* contact form simple */
+    form input, form textarea{width:100%;padding:10px;border-radius:10px;border:1px solid rgba(11,21,48,0.06);font-size:14px}
+    .form-actions{display:flex;gap:8px;margin-top:10px}
+
+    /* typing cursor */
+    .typing-cursor{display:inline-block;width:2px;height:1.2em;background:var(--blue-1);margin-left:6px;animation:blink 1s steps(2) infinite}
+    @keyframes blink{50%{opacity:0}}
+
+    /* glow hover */
+    .btn:hover{transform:translateY(-3px);transition:all .18s ease}
+    .btn:active{transform:translateY(0)}
+
+    /* footer */
+    footer{margin-top:40px;text-align:center;color:var(--muted);font-size:13px;padding-bottom:18px}
+
+    /* focus accessibility */
+    :focus{outline:3px solid rgba(43,156,255,0.14);outline-offset:3px}
   </style>
 </head>
 <body>
-  <div class="wrap" role="main">
+  <div class="wrap">
+    <!-- Header -->
     <header>
-      <div class="brand" aria-label="Tentang Rehan">
-        <div class="badge" aria-hidden="true">RH</div>
+      <div class="brand">
+        <div class="logo" aria-hidden="true">RH</div>
         <div>
-          <h1>Rehan</h1>
-          <p class="muted">Investor muda — umum & profesional</p>
+          <h1>RHN CAPITAL</h1>
+          <p class="muted">Tentang singkat — Rehan</p>
         </div>
       </div>
 
-      <nav aria-label="Top">
+      <nav role="navigation" aria-label="Top">
         <a href="#about">Tentang</a>
-        <a href="#info">Info</a>
+        <a href="#services">Fokus</a>
         <a href="#contact">Kontak</a>
-        <button class="cta" id="btnTopContact">Kirim Pesan</button>
+        <button class="btn" id="btnContactTop">Hubungi</button>
       </nav>
     </header>
 
-    <div class="layout">
-      <!-- main -->
+    <!-- HERO -->
+    <main class="hero" id="top" role="main">
       <div>
-        <div class="card" id="about">
-          <h2 class="title">Tentang Saya</h2>
-          <p class="lead">Halo — saya <strong>Rehan</strong>, investor muda yang sedang belajar dan bergerak di dunia crypto, trading, dan pengembangan teknologi. Halaman ini bersifat umum dan profesional — berisi keterangan singkat, kontak, dan informasi relevan.</p>
+        <div class="title">
+          Rehan — <span class="typing" id="typed">Investor Muda</span><span class="typing-cursor" aria-hidden="true"></span>
+        </div>
+        <p class="lead">Halo, saya Rehan. Saya fokus belajar dan berpraktik di dunia crypto, trading, dan pengembangan web. Halaman ini adalah ringkasan umum — simple, profesional, dan mudah dihubungi.</p>
 
-          <div id="info" class="info-grid" aria-labelledby="info">
-            <div class="info"><div class="k">Nama</div><div class="v">Rehan</div></div>
-            <div class="info"><div class="k">Usia</div><div class="v">16 tahun</div></div>
-            <div class="info"><div class="k">Email</div><div class="v">huyrehan@gmail.com</div></div>
-            <div class="info"><div class="k">Telepon</div><div class="v">085717426626</div></div>
-          </div>
-
-          <div class="section" style="margin-top:18px">
-            <h3 style="margin:0">Visi Singkat</h3>
-            <p class="muted" style="margin-top:8px">Membangun kebiasaan finansial yang disiplin, memanfaatkan pengetahuan untuk berkembang secara konsisten, dan membangun masa depan melalui pembelajaran & aksi kecil yang berulang.</p>
-          </div>
-
-          <div style="margin-top:18px">
-            <h3 style="margin:0">Fokus</h3>
-            <div class="services" role="list">
-              <div class="pill" role="listitem">Crypto — awareness</div>
-              <div class="pill" role="listitem">Trading — belajar & praktik</div>
-              <div class="pill" role="listitem">Web & AI — pengembangan</div>
-            </div>
-          </div>
+        <div class="actions" role="group" aria-label="Primary actions">
+          <button class="btn" id="btnEmail">Kirim Email</button>
+          <button class="btn ghost" id="btnWA">Chat WA</button>
+          <button class="btn ghost" id="btnIG">Buka IG</button>
         </div>
 
-        <div class="card" style="margin-top:18px">
-          <h3 style="margin:0">Catatan Singkat</h3>
-          <p class="muted" style="margin-top:8px">Halaman ini bersifat umum: bukan portofolio. Gunakan tombol kontak untuk menghubungi lewat email, telepon, atau IG. Anda juga bisa mengunduh vCard atau menyalin kontak.</p>
+        <div class="kpis" aria-hidden="false">
+          <div class="kpi"><div class="label">AUM (contoh)</div><div class="value" id="kAum">Rp 0</div></div>
+          <div class="kpi"><div class="label">Return 1Y</div><div class="value" id="kRet">0%</div></div>
+          <div class="kpi"><div class="label">Clients</div><div class="value" id="kClients">0</div></div>
         </div>
       </div>
 
-      <!-- side -->
-      <aside class="profile-side">
-        <div class="card">
-          <div style="display:flex;justify-content:space-between;align-items:center">
-            <div>
-              <div class="name">Rehan</div>
-              <div class="meta">Investor muda • Bogor</div>
-            </div>
-            <div class="muted" id="clock">—</div>
-          </div>
-
-          <div class="links">
-            <div class="link" id="mailEl" title="Kirim email">✉ <div style="margin-left:6px"><div class="muted">Email</div><div>huyrehan@gmail.com</div></div></div>
-            <div class="link" id="telEl" title="Telepon / WA">📞 <div style="margin-left:6px"><div class="muted">Telepon</div><div>+62 857-1742-6626</div></div></div>
-            <div class="link" id="igEl" title="Instagram">📷 <div style="margin-left:6px"><div class="muted">Instagram</div><div>@huyrehan</div></div></div>
-          </div>
-
-          <div class="vcard-controls">
-            <button id="btnCopy" class="btn" style="background:transparent;border:1px solid rgba(255,255,255,0.04);color:var(--gold)">Salin Kontak</button>
-            <button id="btnVcard" class="btn" style="background:transparent;border:1px solid rgba(255,255,255,0.04);color:var(--text)">Unduh vCard</button>
-            <button id="btnSaveLocal" class="btn" style="background:transparent;border:1px solid rgba(255,255,255,0.04);color:var(--muted)">Simpan Lokal</button>
+      <aside class="card" aria-label="Profile card">
+        <div class="profile">
+          <div class="avatar" id="avatar">R</div>
+          <div>
+            <div style="font-weight:700;font-size:18px">Rehan</div>
+            <div class="meta"><small>Investor muda • 16 tahun • Bogor</small></div>
+            <div style="margin-top:8px;font-size:13px;color:var(--muted)">Email • huyrehan@gmail.com</div>
           </div>
         </div>
 
-        <div class="card" style="text-align:center">
-          <div class="muted" style="font-size:13px">Linked</div>
-          <div style="margin-top:8px;display:flex;gap:8px;justify-content:center">
-            <button id="btnIG2" class="btn" style="background:transparent;border:1px solid rgba(255,255,255,0.04);color:var(--muted)">IG</button>
-            <button id="btnTel2" class="btn" style="background:transparent;border:1px solid rgba(255,255,255,0.04);color:var(--muted)">WA</button>
+        <div style="margin-top:14px">
+          <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px">
+            <button class="btn ghost" id="btnCopy">Salin Kontak</button>
+            <button class="btn ghost" id="btnVCard">Unduh vCard</button>
+            <button class="btn ghost" id="btnSave">Simpan Lokal</button>
           </div>
         </div>
       </aside>
-    </div>
+    </main>
+
+    <!-- About -->
+    <section id="about" aria-labelledby="aboutTitle">
+      <h2 class="section" id="aboutTitle">Tentang Saya</h2>
+      <p class="note">Saya sedang belajar Rekayasa Perangkat Lunak (RPL) di SMK Tri Dharma, Bogor. Minat: cryptocurrency (PEPE & lainnya), trading di Exness, web dev, dan AI. Tujuan: konsisten menumbuhkan modal melalui pembelajaran dan praktik terukur.</p>
+    </section>
+
+    <!-- Services / Focus -->
+    <section id="services" aria-labelledby="servicesTitle">
+      <h2 class="section" id="servicesTitle">Fokus & Minat</h2>
+      <p class="note">Ringkasan bidang yang sering saya kerjakan / pelajari.</p>
+      <div class="grid-3" role="list">
+        <div class="card-plain" role="listitem">
+          <strong>Crypto</strong>
+          <p class="muted" style="margin-top:8px">Analisa dasar & akumulasi jangka panjang; perhatikan on-chain & volume.</p>
+        </div>
+        <div class="card-plain" role="listitem">
+          <strong>Trading</strong>
+          <p class="muted" style="margin-top:8px">Praktik pada akun cent & strategi risk-first.</p>
+        </div>
+        <div class="card-plain" role="listitem">
+          <strong>Web & AI</strong>
+          <p class="muted" style="margin-top:8px">Membangun portofolio web sederhana & eksplorasi AI.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" aria-labelledby="contactTitle">
+      <h2 class="section" id="contactTitle">Kontak</h2>
+      <p class="note">Gunakan tombol di atas atau form singkat ini — tombol 'Kirim Email' akan membuka aplikasi emailmu dengan pesan terisi.</p>
+
+      <div style="display:flex;gap:18px;flex-wrap:wrap;margin-top:12px">
+        <div style="flex:1;min-width:320px" class="card">
+          <form id="contactForm">
+            <label class="muted" for="name">Nama</label>
+            <input id="name" type="text" value="Investor Muda" required style="margin-top:8px"/>
+
+            <label class="muted" for="email" style="margin-top:10px;display:block">Email</label>
+            <input id="email" type="email" value="huyrehan@gmail.com" required style="margin-top:8px"/>
+
+            <label class="muted" for="phone" style="margin-top:10px;display:block">Nomor HP</label>
+            <input id="phone" type="tel" value="085717426626" required style="margin-top:8px"/>
+
+            <label class="muted" for="message" style="margin-top:10px;display:block">Pesan</label>
+            <textarea id="message" rows="4" placeholder="Tulis pesan..." style="margin-top:8px"></textarea>
+
+            <div class="form-actions">
+              <button class="btn" type="submit">Kirim Email</button>
+              <button class="btn ghost" type="button" id="btnCopyForm">Salin</button>
+              <button class="btn ghost" type="button" id="btnSaveForm">Simpan</button>
+            </div>
+            <div id="formMsg" style="margin-top:8px;color:var(--muted);font-size:13px"></div>
+          </form>
+        </div>
+
+        <div style="width:300px">
+          <div class="card">
+            <div style="display:flex;justify-content:space-between;align-items:center">
+              <div>
+                <div style="font-weight:700">Quick Contact</div>
+                <div class="muted" style="margin-top:6px">Email • Phone • IG</div>
+              </div>
+              <div style="font-weight:700;color:var(--accent)">RH</div>
+            </div>
+
+            <div style="margin-top:12px">
+              <div style="margin-bottom:8px">✉ <a href="mailto:huyrehan@gmail.com" id="mailLink">huyrehan@gmail.com</a></div>
+              <div style="margin-bottom:8px">📞 <a href="tel:+6285717426626" id="telLink">085717426626</a></div>
+              <div>📷 <a href="https://instagram.com/huyrehan" id="igLink" target="_blank" rel="noopener">@huyrehan</a></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <footer>
-      RHN CAPITAL — Profil umum • © <span id="year"></span>
+      RHN CAPITAL • Simple • Modern • © <span id="year"></span>
     </footer>
   </div>
 
   <script>
-    // -- Data (from user)
+    // ===================== Interactivity =====================
     const profile = {
       name: "Rehan",
       email: "huyrehan@gmail.com",
       phone_local: "085717426626",
       phone_international: "+6285717426626",
       instagram: "huyrehan",
-      address: "Bogor, Kencana, TANAHSAREAL",
-      age: 16
+      bioShort: "Investor muda — crypto, trading, web"
     };
 
     // Year
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // Clock TTL
-    function pad(n){ return n < 10 ? '0' + n : n; }
-    function tick(){
-      const d = new Date();
-      const hh = pad(d.getHours()), mm = pad(d.getMinutes()), ss = pad(d.getSeconds());
-      const date = d.toLocaleDateString('id-ID',{weekday:'short',day:'2-digit',month:'short',year:'numeric'});
-      document.getElementById('clock').textContent = date + ' • ' + hh + ':' + mm + ':' + ss;
-    }
-    setInterval(tick, 1000); tick();
-
-    // Buttons: mail, tel, IG
-    document.getElementById('mailEl').addEventListener('click', () => {
-      const subj = encodeURIComponent('Halo Rehan');
-      const body = encodeURIComponent('Halo, saya ingin berkomunikasi dengan Anda.');
-      window.location.href = mailto:${profile.email}?subject=${subj}&body=${body};
-    });
-
-    document.getElementById('telEl').addEventListener('click', () => {
-      const ok = confirm('Pilih OK untuk telepon, Cancel untuk chat WhatsApp.');
-      if(ok) window.location.href = tel:${profile.phone_international};
-      else {
-        const text = encodeURIComponent('Halo Rehan, saya ingin berkonsultasi.');
-        window.open(https://wa.me/${profile.phone_international.replace('+','')}?text=${text}, '_blank');
+    // Typing effect (simple)
+    const phrases = ["Investor Muda","Crypto Enthusiast","Learning Web & AI"];
+    let pIndex = 0, cIndex = 0;
+    const typedEl = document.getElementById('typed');
+    function typeLoop(){
+      const full = phrases[pIndex];
+      if(cIndex <= full.length){
+        typedEl.textContent = full.slice(0,cIndex);
+        cIndex++;
+        setTimeout(typeLoop, 80);
+      } else {
+        setTimeout(()=> eraseLoop(), 900);
       }
+    }
+    function eraseLoop(){
+      const full = phrases[pIndex];
+      if(cIndex >= 0){
+        typedEl.textContent = full.slice(0,cIndex);
+        cIndex--;
+        setTimeout(eraseLoop, 40);
+      } else {
+        pIndex = (pIndex + 1) % phrases.length;
+        setTimeout(typeLoop, 200);
+      }
+    }
+    typeLoop();
+
+    // Small animated counters
+    function animateNumber(el, to, duration=900){
+      const start = 0; let s=null;
+      function step(ts){
+        if(!s) s=ts;
+        const progress = Math.min((ts - s)/duration,1);
+        el.textContent = Math.floor(start + (to-start)*progress).toLocaleString('id-ID');
+        if(progress < 1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+    }
+    animateNumber(document.getElementById('kAum'), 120000000);
+    setTimeout(()=> document.getElementById('kRet').textContent = '+18%', 600);
+    setTimeout(()=> document.getElementById('kClients').textContent = '1.240', 700);
+
+    // Buttons: primary actions
+    document.getElementById('btnEmail').addEventListener('click', () => {
+      const subject = encodeURIComponent('Pertanyaan singkat');
+      const body = encodeURIComponent('Halo Rehan,\n\nSaya ingin menanyakan...');
+      window.location.href = mailto:${profile.email}?subject=${subject}&body=${body};
     });
 
-    document.getElementById('igEl').addEventListener('click', () => {
-      window.open(https://instagram.com/${profile.instagram}, '_blank');
+    document.getElementById('btnWA').addEventListener('click', () => {
+      const text = encodeURIComponent('Halo Rehan, saya ingin berkonsultasi mengenai investasi.');
+      window.open(https://wa.me/${profile.phone_international.replace('+','')}?text=${text},'_blank');
     });
 
-    // copy contact
+    document.getElementById('btnIG').addEventListener('click', () => {
+      window.open(https://instagram.com/${profile.instagram},'_blank');
+    });
+
+    // Copy contact & vCard & save
     document.getElementById('btnCopy').addEventListener('click', async () => {
-      const txt = Nama: ${profile.name}\nEmail: ${profile.email}\nPhone: ${profile.phone_local}\nIG: @${profile.instagram}\nAlamat: ${profile.address};
+      const txt = Nama: ${profile.name}\nEmail: ${profile.email}\nPhone: ${profile.phone_local}\nIG: @${profile.instagram};
       try{
         await navigator.clipboard.writeText(txt);
         alert('Kontak disalin ke clipboard ✔');
-      }catch(e){
-        alert('Tidak dapat menyalin otomatis — silakan salin manual.');
-      }
+      }catch(e){ alert('Tidak bisa menyalin otomatis — salin manual.'); }
     });
 
-    // download vCard
-    document.getElementById('btnVcard').addEventListener('click', () => {
-      const v = [
-        'BEGIN:VCARD',
-        'VERSION:3.0',
+    document.getElementById('btnVCard').addEventListener('click', () => {
+      const vcard = [
+        "BEGIN:VCARD",
+        "VERSION:3.0",
         FN:${profile.name},
         EMAIL;TYPE=INTERNET:${profile.email},
         TEL;TYPE=CELL:${profile.phone_international},
-        ADR;TYPE=HOME:;;${profile.address};;;;,
         NOTE:Investor muda,
-        'END:VCARD'
-      ].join('\r\n');
-      const blob = new Blob([v], {type: 'text/vcard'});
+        "END:VCARD"
+      ].join("\r\n");
+      const blob = new Blob([vcard],{type:'text/vcard'});
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a'); a.href = url; a.download = ${profile.name}_contact.vcf; document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url);
     });
 
-    // save local
-    document.getElementById('btnSaveLocal').addEventListener('click', () => {
+    document.getElementById('btnSave').addEventListener('click', () => {
       try{
-        localStorage.setItem('profile_public', JSON.stringify(profile));
-        alert('Profil tersimpan lokal ✔');
-      }catch(e){
-        alert('Gagal menyimpan lokal.');
-      }
+        localStorage.setItem('rhn_profile', JSON.stringify(profile));
+        alert('Profil disimpan lokal ✔');
+      }catch(e){ alert('Gagal menyimpan lokal.'); }
     });
 
-    // extra linked buttons
-    document.getElementById('btnIG2').addEventListener('click', () => window.open(https://instagram.com/${profile.instagram},'_blank'));
-    document.getElementById('btnTel2').addEventListener('click', () => {
-      const text = encodeURIComponent('Halo Rehan, saya ingin berkonsultasi.');
-      window.open(https://wa.me/${profile.phone_international.replace('+','')}?text=${text}, '_blank');
+    // Contact form: mailto prefill, copy, save
+    document.getElementById('contactForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const name = document.getElementById('name').value.trim();
+      const mail = document.getElementById('email').value.trim();
+      const phone = document.getElementById('phone').value.trim();
+      const message = document.getElementById('message').value.trim();
+      if(!name || !mail || !phone){ document.getElementById('formMsg').textContent = 'Nama, email, & nomor wajib diisi.'; return; }
+      const subject = encodeURIComponent(Pertanyaan dari ${name});
+      const body = encodeURIComponent(Nama: ${name}\nPhone: ${phone}\nEmail: ${mail}\n\nPesan:\n${message});
+      window.location.href = mailto:${profile.email}?subject=${subject}&body=${body};
+      document.getElementById('formMsg').textContent = 'Membuka aplikasi email...';
     });
 
-    // top contact CTA
-    document.getElementById('btnTopContact').addEventListener('click', () => {
-      const subj = encodeURIComponent('Konsultasi — Rehan');
-      window.location.href = mailto:${profile.email}?subject=${subj};
+    document.getElementById('btnCopyForm').addEventListener('click', async () => {
+      const txt = Nama: ${document.getElementById('name').value}\nPhone: ${document.getElementById('phone').value}\nEmail: ${document.getElementById('email').value}\n\n${document.getElementById('message').value};
+      try{ await navigator.clipboard.writeText(txt); document.getElementById('formMsg').textContent = 'Tersalin ke clipboard.'; } catch(e){ document.getElementById('formMsg').textContent = 'Gagal salin.'; }
     });
 
-    // Ensure focusable elements
-    document.querySelectorAll('button,a').forEach(el => el.setAttribute('tabindex','0'));
+    document.getElementById('btnSaveForm').addEventListener('click', () => {
+      const draft = { name: document.getElementById('name').value, email: document.getElementById('email').value, phone: document.getElementById('phone').value, msg: document.getElementById('message').value, t: new Date().toISOString() };
+      try{ localStorage.setItem('rhn_contact_draft', JSON.stringify(draft)); document.getElementById('formMsg').textContent = 'Tersimpan lokal.'; } catch(e){ document.getElementById('formMsg').textContent = 'Gagal menyimpan.'; }
+    });
+
+    // quick links
+    document.getElementById('mailLink').addEventListener('click', (e) => { e.preventDefault(); window.location.href = mailto:${profile.email}; });
+    document.getElementById('telLink').addEventListener('click', (e) => { /* default tel link will work */ });
+    document.getElementById('igLink').addEventListener('click', (e) => { /* default anchor works */ });
+
+    // top contact
+    document.getElementById('btnContactTop').addEventListener('click', () => { document.getElementById('contact').scrollIntoView({behavior:'smooth'}); document.getElementById('name').focus(); });
+
+    // typing accessibility: stop when tab focused
+    document.addEventListener('visibilitychange', ()=> { if(document.hidden) { /* no-op */ } });
+
+    // ensure interactive elements keyboard focusable
+    document.querySelectorAll('button,a,input,textarea').forEach(el => el.setAttribute('tabindex','0'));
   </script>
 </body>
 </html>
