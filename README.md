@@ -100,11 +100,11 @@
 
   <div class="PORTOFOLIO">
     <h3>PORTOFOLIO KAMI</h3>
-    <p><strong>PEPE Coin — 100%</strong></p>
-    <a href="https://coinmarketcap.com/currencies/pepe/" target="_blank">
-      <img src="https://assets.coingecko.com/coins/images/29850/large/pepe-token.jpeg" alt="PEPE Coin" class="pepe">
+    <p><strong>btc — 100%</strong></p>
+    <a href="https://coinmarketcap.com/currencies/bitcoin/" target="_blank">
+      <img src="https://assets.coingecko.com/coins/images/29850/large/bitcoin-token.jpeg" alt="BITCOIN" class="BITCOIN">
     </a>
-    <p style="text-align:center;"><em>Klik gambar untuk melihat PEPE di CoinMarketCap</em></p>
+    <p style="text-align:center;"><em>Klik gambar untuk melihat BITCOIN di CoinMarketCap</em></p>
   </div>
 
   <h2>KONTAK</h2>
