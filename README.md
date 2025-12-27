@@ -102,7 +102,7 @@
     <h3>PORTOFOLIO KAMI</h3>
     <p><strong>btc — 100%</strong></p>
     <a href="https://coinmarketcap.com/currencies/bitcoin/" target="_blank">
-      <img src="https://assets.coingecko.com/coins/images/29850/large/bitcoin-token.jpeg" alt="BITCOIN" class="BITCOIN">
+      <img src="https://assets.coingecko.com/coins/images/2083/large/bittorrent.png" alt="BTT" width="200">
     </a>
     <p style="text-align:center;"><em>Klik gambar untuk melihat BITCOIN di CoinMarketCap</em></p>
   </div>
