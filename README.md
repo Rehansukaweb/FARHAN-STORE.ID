@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+
 <html lang="id">
 <head>
   <meta charset="UTF-8" />
@@ -211,7 +211,7 @@
     </nav>
   </div>
 </header>
-
+<img src="RHN LOGO.jpg" alt="Logo RHN" style="width:500px;">
 <section class="hero">
   <div>
     <h1>Independent Digital Asset Management</h1>
