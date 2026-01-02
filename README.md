@@ -73,6 +73,24 @@
     .contact a:hover {
       text-decoration: underline;
     }
+    <div class="portfolio">
+  <h3>PORTOFOLIO KAMI</h3>
+  <p><strong>BTC – 100%</strong></p>
+
+  <a href="https://www.coingecko.com/en/coins/bitcoin" target="_blank" rel="noopener noreferrer">
+    <img 
+      src="https://assets.coingecko.com/coins/images/1/large/bitcoin.png"
+      alt="Bitcoin Logo"
+      width="200"
+      style="display:block;margin:auto;"
+    >
+  </a>
+
+  <p style="text-align:center;">
+    <em>Klik logo untuk melihat Bitcoin di CoinGecko</em>
+  </p>
+</div>
+
   </style>
 </head>
 <body>
@@ -116,15 +134,20 @@
   </p>
 </div>
 
+<h2>KONTAK</h2>
 
-  <h2>KONTAK</h2>
-  <div class="contact">
-   <button><p>📞 WHATSAPP: <a href="https://wa.me/6285717426626" target="_blank">085717826626</a></p></button>
-    <button><p>📷 INSTAGRAM: <a href="https://instagram.com/huyrehan" target="_blank">@huyrehan</a></p></button>
-  </div>
-  <a href="ANALISA.html" class="btn">➡ANALISA RHN CAPITAL</a>
+<div class="contact-buttons">
+  <a href="https://wa.me/6285717826626" target="_blank" class="btn-contact">
+    📞 WhatsApp
+  </a>
 
-  </section>
+  <a href="https://instagram.com/huyrehan" target="_blank" class="btn-contact">
+    📸 Instagram
+  </a>
+</div>
+
+<a href="ANALISA.html" class="btn-analisa">➡ ANALISA RHN CAPITAL</a>
+ 
 <h1><b><marquee>SELAMAT DATANG DI RHN CAPITAL</marquee></b></h1>
 <footer>
   <p>© 2025 RHN CPTL. All rights reserved.</p>
