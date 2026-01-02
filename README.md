@@ -98,14 +98,24 @@
   <h2>DESKRIPSI PERUSAHAAN</h2>
   <p><strong>RHN CAPITAL</strong> ADALAH PERUSAHAAN KEUANGAN YANG DIKELOLA OLEH INDIVIDU MUDA BERBAKAT YANG BERANI MENGAMBIL LANGKAH DALAM DUNIA KEUANGAN DIGITAL.KAMI PERCAYA BAHWA MASA DEPAN BERADA DI TANGAN MEREKA YANG BERANI MENGAMBIL KEPUTUSAN HARI INI.DENGAN FOKUS PADA ASET DIGITAL <strong>PEPE COIN</strong>,KAMI SIAP TUMBUH BERSAMA PERKEMBANGAN INDUSTRI BLOCKCHAIN.</p>
 
-  <div class="PORTOFOLIO">
-    <h3>PORTOFOLIO KAMI</h3>
-    <p><strong>btc — 100%</strong></p>
-    <a href="https://coinmarketcap.com/currencies/bitcoin/" target="_blank">
-      <img src="https://assets.coingecko.com/coins/images/2083/large/bittorrent.png" alt="BTT" width="200">
-    </a>
-    <p style="text-align:center;"><em>Klik gambar untuk melihat BITCOIN di CoinMarketCap</em></p>
-  </div>
+  <div class="portfolio">
+  <h3>PORTOFOLIO KAMI</h3>
+  <p><strong>BTC – 100%</strong></p>
+
+  <a href="https://www.coingecko.com/en/coins/bitcoin" target="_blank" rel="noopener noreferrer">
+    <img 
+      src="https://assets.coingecko.com/coins/images/1/large/bitcoin.png"
+      alt="Bitcoin Logo"
+      width="200"
+      style="display:block;margin:auto;"
+    >
+  </a>
+
+  <p style="text-align:center;">
+    <em>Klik logo untuk melihat Bitcoin di CoinGecko</em>
+  </p>
+</div>
+
 
   <h2>KONTAK</h2>
   <div class="contact">
