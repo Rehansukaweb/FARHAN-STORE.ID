@@ -119,8 +119,8 @@
 
   <h2>KONTAK</h2>
   <div class="contact">
-    <p>📞 WHATSAPP: <a href="https://wa.me/6285717426626" target="_blank">085717826626</a></p>
-    <p>📷 INSTAGRAM: <a href="https://instagram.com/huyrehan" target="_blank">@huyrehan</a></p>
+   <button><p>📞 WHATSAPP: <a href="https://wa.me/6285717426626" target="_blank">085717826626</a></p></button>
+    <button><p>📷 INSTAGRAM: <a href="https://instagram.com/huyrehan" target="_blank">@huyrehan</a></p></button>
   </div>
   <a href="ANALISA.html" class="btn">➡ANALISA RHN CAPITAL</a>
 
