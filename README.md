@@ -216,8 +216,7 @@
   <div>
     <h1>RHN CAPITAL</h1>
     <p>
-      RHN Capital adalah entitas independen yang berfokus pada pengelolaan
-      aset digital jangka panjang berbasis teknologi blockchain.
+      Rehan CPTL adalah entitas independen yang berfokus pada pengelolaan aset digital jangka panjang berbasis teknologi blockchain. RHN Capital mengedepankan pendekatan rasional, disiplin, dan manajemen risiko yang ketat dalam setiap pengambilan keputusan, dengan menempatkan Bitcoin sebagai fondasi utama portofolio. Berorientasi pada keberlanjutan dan konsistensi, RHN Capital hadir sebagai representasi investasi modern yang profesional, transparan, dan bertanggung jawab dalam menghadapi dinamika pasar global.
     </p>
     <a href="ANALISA.html" class="btn">Analisa RHN Capital</a>
   </div>
@@ -251,7 +250,7 @@
     </div>
   </div>
 </section>
- <a href="ANALISA.html" class="btn">Analisa RHN Capital</a>
+     <a href="ANALISA.html" class="btn">Analisa RHN Capital</a>
 <section id="contact">
   <h2>Kontak</h2>
   <div class="contact">
