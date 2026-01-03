@@ -214,7 +214,7 @@
 <img src="RHN LOGO.jpg" alt="Logo RHN" style="width:1000px;">
 <section class="hero">
   <div>
-    <h1>Independent Digital Asset Management</h1>
+    <h1>RHN CAPITAL</h1>
     <p>
       RHN Capital adalah entitas independen yang berfokus pada pengelolaan
       aset digital jangka panjang berbasis teknologi blockchain.
@@ -223,7 +223,7 @@
   </div>
 
   <div class="hero-card">
-    <img src="https://assets.coingecko.com/coins/images/1/large/bitcoin.png" width="120">
+    <img src="https://assets.coingecko.com/coins/images/1/large/bitcoin.png" width="500">
     <h3>Bitcoin (BTC)</h3>
     <p class="text-muted">Primary Strategic Asset</p>
   </div>
@@ -241,7 +241,7 @@
   <h2>Portofolio</h2>
   <div class="portfolio">
     <div class="card">
-      <img src="https://assets.coingecko.com/coins/images/1/large/bitcoin.png">
+      <img src="https://assets.coingecko.com/coins/images/1/large/bitcoin.png" width="120">
       <h3>Bitcoin (BTC)</h3>
       <p class="text-muted">Alokasi: 100%</p>
       <br>
