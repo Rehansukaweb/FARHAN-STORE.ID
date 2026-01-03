@@ -241,7 +241,7 @@
   <h2>Portofolio</h2>
   <div class="portfolio">
     <div class="card">
-      <img src="https://assets.coingecko.com/coins/images/1/large/bitcoin.png" width="120">
+      <img src="https://assets.coingecko.com/coins/images/1/large/bitcoin.png" width="250">
       <h3>Bitcoin (BTC)</h3>
       <p class="text-muted">Alokasi: 100%</p>
       <br>
