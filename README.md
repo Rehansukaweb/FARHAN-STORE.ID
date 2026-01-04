@@ -278,5 +278,45 @@ box-shadow:0 8px 20px rgba(0,200,83,.35);
   © 2025 RHN Capital. All rights reserved.
 </footer>
 
+<div style="
+max-width:360px;
+margin:auto;
+background:#0f172a;
+padding:20px;
+border-radius:18px;
+color:#fff;
+text-align:center;
+box-shadow:0 20px 40px rgba(0,0,0,.4);
+">
+
+<h3>Pembayaran RHN Capital</h3>
+<p>Pilih metode pembayaran</p>
+
+<img src="qris.png" alt="QRIS RHN Capital" style="
+width:100%;
+border-radius:12px;
+margin:15px 0;
+">
+
+<p style="font-size:13px;opacity:.8">
+Mendukung GoPay, DANA, OVO, ShopeePay, & Mobile Banking
+</p>
+
+<button onclick="alert('Silakan scan QRIS menggunakan GoPay / DANA / Mobile Banking')" style="
+width:100%;
+padding:14px;
+border:none;
+border-radius:12px;
+background:linear-gradient(135deg,#22c55e,#16a34a);
+color:#000;
+font-weight:600;
+cursor:pointer;
+margin-top:10px;
+">
+Bayar Sekarang
+</button>
+
+</div>
+
 </body>
 </html>
