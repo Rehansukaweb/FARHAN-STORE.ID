@@ -278,6 +278,175 @@ box-shadow:0 8px 20px rgba(0,200,83,.35);
   © 2025 RHN Capital. All rights reserved.
 </footer>
 
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RHN Capital – Edukasi Premium</title>
 
+<style>
+body{
+margin:0;
+font-family:Inter,system-ui,Arial;
+background:linear-gradient(180deg,#020617,#020617);
+color:#e5e7eb;
+}
+
+.app{
+max-width:420px;
+margin:auto;
+min-height:100vh;
+padding:20px;
+}
+
+.card{
+background:#020617;
+border:1px solid #1f2937;
+border-radius:18px;
+padding:18px;
+margin-bottom:16px;
+box-shadow:0 20px 40px rgba(0,0,0,.6);
+}
+
+h1,h2{
+margin:0 0 10px;
+}
+
+input{
+width:100%;
+padding:14px;
+border-radius:12px;
+border:none;
+background:#020617;
+border:1px solid #1f2937;
+color:#fff;
+margin-bottom:12px;
+font-size:15px;
+}
+
+button{
+width:100%;
+padding:16px;
+border:none;
+border-radius:14px;
+font-size:16px;
+font-weight:600;
+cursor:pointer;
+}
+
+.btn-primary{
+background:#fbbf24;
+color:#000;
+}
+
+.btn-green{
+background:#16a34a;
+color:#fff;
+}
+
+.btn-gray{
+background:#1f2937;
+color:#9ca3af;
+}
+
+.hidden{
+display:none;
+}
+
+.footer{
+text-align:center;
+font-size:12px;
+opacity:.5;
+margin-top:30px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+<!-- PAGE 1 -->
+<div class="card" id="page-register">
+<h1>RHN Capital</h1>
+<p>Akses edukasi aset digital premium</p>
+
+<input id="name" placeholder="Nama Lengkap">
+<input id="contact" placeholder="WhatsApp / Email">
+
+<button class="btn-primary" onclick="nextPayment()">Lanjut Pembayaran</button>
+</div>
+
+<!-- PAGE 2 -->
+<div class="card hidden" id="page-payment">
+<h2>Pembayaran</h2>
+<p>Bayar via QRIS (GoPay, DANA, OVO, Mobile Banking)</p>
+
+<button class="btn-green" onclick="openQRIS()">💳 Bayar via QRIS</button>
+
+<button class="btn-gray" onclick="nextAccess()">Saya Sudah Bayar</button>
+</div>
+
+<!-- PAGE 3 -->
+<div class="card hidden" id="page-access">
+<h2>Masukkan Kode Akses</h2>
+<input id="pin" placeholder="Kode Akses">
+
+<button class="btn-primary" onclick="checkPIN()">Masuk</button>
+</div>
+
+<!-- PAGE 4 -->
+<div class="card hidden" id="page-private">
+<h2>📚 Edukasi RHN Capital</h2>
+<p>
+• Mindset Investor Disiplin<br>
+• Tidak FOMO & Tidak Leverage<br>
+• Strategi Jangka Panjang<br>
+• Analisa Rasional Market
+</p>
+
+<p style="margin-top:10px;font-size:13px;opacity:.7">
+Akses ini bersifat pribadi.
+</p>
+</div>
+
+<div class="footer">
+© 2025 RHN Capital
+</div>
+
+</div>
+
+<script>
+const QRIS_LINK = "https://gopay.co.id/app/scanqr?deeplink_source=request_money";
+const ACCESS_PIN = "RHN2025";
+
+function nextPayment(){
+document.getElementById("page-register").classList.add("hidden");
+document.getElementById("page-payment").classList.remove("hidden");
+}
+
+function openQRIS(){
+window.open(QRIS_LINK,"_blank");
+}
+
+function nextAccess(){
+document.getElementById("page-payment").classList.add("hidden");
+document.getElementById("page-access").classList.remove("hidden");
+}
+
+function checkPIN(){
+const pin = document.getElementById("pin").value;
+if(pin === ACCESS_PIN){
+document.getElementById("page-access").classList.add("hidden");
+document.getElementById("page-private").classList.remove("hidden");
+}else{
+alert("Kode salah");
+}
+}
+</script>
+
+</body>
+</html>
 </body>
 </html>
