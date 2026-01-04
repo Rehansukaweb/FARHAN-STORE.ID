@@ -296,7 +296,7 @@ box-shadow:0 10px 25px rgba(34,197,94,.35);
 <script>
 function openQRIS(){
   window.open(
-    "LINK_QRIS_KAMU_DI_SINI",
+    "https://gopay.co.id/app/scanqr?deeplink_source=request_money",
     "_blank"
   );
 }
