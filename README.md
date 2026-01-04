@@ -785,7 +785,7 @@ function nav(id,el){
 }
 
 function openPayment(){
-  window.open("https://wa.me/6285717826626","_blank");
+  window.open("https://wa.me/6285717426626","_blank");
 }
 </script>
 
