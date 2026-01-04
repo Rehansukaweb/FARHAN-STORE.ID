@@ -278,89 +278,27 @@ box-shadow:0 8px 20px rgba(0,200,83,.35);
   © 2025 RHN Capital. All rights reserved.
 </footer>
 
-<div style="
-max-width:360px;
-margin:auto;
-background:#0f172a;
-padding:20px;
-border-radius:18px;
-color:#fff;
-text-align:center;
-box-shadow:0 20px 40px rgba(0,0,0,.4);
-">
-
-<!-- TOMBOL BAYAR -->
 <button onclick="openQRIS()" style="
 width:100%;
 padding:16px;
-background:#16a34a;
+background:linear-gradient(135deg,#16a34a,#22c55e);
 color:#fff;
 border:none;
-border-radius:12px;
+border-radius:14px;
 font-size:16px;
 font-weight:600;
 margin-top:20px;
+box-shadow:0 10px 25px rgba(34,197,94,.35);
 ">
 💳 Bayar via QRIS
 </button>
 
-<!-- MODAL QRIS -->
-<div id="qrisModal" style="
-display:none;
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-background:rgba(0,0,0,0.6);
-z-index:9999;
-align-items:center;
-justify-content:center;
-">
-
-  <div style="
-  width:90%;
-  max-width:360px;
-  background:#0f172a;
-  border-radius:16px;
-  padding:20px;
-  text-align:center;
-  color:#fff;
-  ">
-
-    <h3 style="margin-bottom:8px;">Pembayaran RHN Capital</h3>
-    <p style="font-size:13px;color:#94a3b8;margin-bottom:14px;">
-      Scan QRIS menggunakan GoPay, DANA, OVO, ShopeePay, atau Mobile Banking
-    </p>
-
-    <!-- GAMBAR QRIS -->
-    <img src="QRIS_KAMU.png" alt="QRIS RHN Capital" style="
-    width:100%;
-    border-radius:12px;
-    margin-bottom:16px;
-    ">
-
-    <button onclick="closeQRIS()" style="
-    width:100%;
-    padding:12px;
-    background:#1e293b;
-    color:#fff;
-    border:none;
-    border-radius:10px;
-    font-size:14px;
-    ">
-    Tutup
-    </button>
-
-  </div>
-</div>
-
 <script>
 function openQRIS(){
-  document.getElementById("qrisModal").style.display="flex";
-}
-function closeQRIS(){
-  document.getElementById("qrisModal").style.display="none";
+  window.open(
+    "LINK_QRIS_KAMU_DI_SINI",
+    "_blank"
+  );
 }
 </script>
 
