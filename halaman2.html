@@ -1,410 +1,351 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Rehan — Tentang Saya | RHN CAPITAL (Blue Modern)</title>
-  <meta name="description" content="Profil singkat Rehan — investor muda. Clean, modern, blue theme." />
-  <meta name="theme-color" content="#0f172a" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Plus+Jakarta+Sans:wght@400;600&display=swap" rel="stylesheet">
-  <style>
-    /* ================= Blue Modern — Single-file ================= */
-    :root{
-      --bg:#f6fbff;
-      --card:#ffffff;
-      --text:#0b1530;
-      --muted:#5b6b85;
-      --blue-1:#0f172a;
-      --accent:#2b9cff; /* bright blue */
-      --accent-2:#1b6ed6;
-      --glass: rgba(43,156,255,0.08);
-      --radius:14px;
-      --maxW:980px;
-      --shadow: 0 10px 30px rgba(11,21,48,0.08);
-      --glass-2: rgba(11,21,48,0.04);
-    }
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0;
-      font-family:"Plus Jakarta Sans",Inter,system-ui,-apple-system,"Segoe UI",Roboto,Arial;
-      background:linear-gradient(180deg,#f6fbff 0%, #eef6ff 60%);
-      color:var(--text);
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
-      line-height:1.45;
-      padding:32px 18px;
-    }
-    a{color:inherit}
-    img{max-width:100%;display:block}
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RHN Capital — Rehan</title>
 
-    .wrap{max-width:var(--maxW);margin:0 auto}
+<style>
+:root{
+  --bg:#f4f8fc;
+  --card:#ffffff;
+  --primary:#2563eb;
+  --text:#0f172a;
+  --muted:#64748b;
+  --radius:16px;
+}
 
-    /* Header */
-    header{
-      display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:26px;
-      padding:10px 12px;border-radius:12px;background:linear-gradient(90deg,rgba(27,110,214,0.06),rgba(43,156,255,0.02));
-      border:1px solid var(--glass-2);
-      box-shadow:var(--shadow);
-      backdrop-filter: blur(6px);
-    }
-    .brand{display:flex;align-items:center;gap:14px}
-    .logo{
-      width:56px;height:56px;border-radius:10px;background:linear-gradient(135deg,var(--accent),var(--accent-2));
-      display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:18px;box-shadow:0 8px 30px rgba(43,156,255,0.12)
-    }
-    .brand h1{margin:0;font-size:18px}
-    .brand p{margin:0;font-size:13px;color:var(--muted)}
+*{
+  box-sizing:border-box;
+  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+}
 
-    nav{display:flex;gap:12px;align-items:center}
-    nav a{font-size:14px;color:var(--muted);text-decoration:none;padding:8px;border-radius:8px}
-    nav a:hover{color:var(--blue-1);background:var(--glass)}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.6;
+}
 
-    .btn{
-      padding:10px 14px;border-radius:10px;border:0;cursor:pointer;font-weight:700;
-      background:linear-gradient(90deg,var(--accent),var(--accent-2));color:#fff;box-shadow:0 8px 30px rgba(43,156,255,0.12)
-    }
-    .btn.ghost{background:transparent;border:1px solid rgba(11,21,48,0.06);color:var(--blue-1)}
+.container{
+  max-width:960px;
+  margin:auto;
+  padding:32px 20px 80px;
+}
 
-    /* Layout */
-    .hero{display:grid;grid-template-columns:1fr 360px;gap:28px;align-items:center;padding:28px 0}
-    @media(max-width:920px){ .hero{grid-template-columns:1fr;gap:18px} nav{display:none} header{flex-direction:column;align-items:flex-start} }
+/* HEADER */
+.header{
+  background:linear-gradient(135deg,#e0edff,#f8fbff);
+  border-radius:var(--radius);
+  padding:24px;
+  margin-bottom:28px;
+}
 
-    .title{
-      font-size:34px;margin:0;line-height:1.02;color:var(--blue-1);font-weight:700;
-      display:flex;gap:10px;align-items:center;
-    }
-    .typing{color:var(--accent);font-weight:700}
+.brand{
+  display:flex;
+  align-items:center;
+  gap:14px;
+}
 
-    .lead{margin-top:12px;color:var(--muted);max-width:60ch;font-size:15px}
+.logo{
+  width:48px;
+  height:48px;
+  background:var(--primary);
+  color:#fff;
+  font-weight:700;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:12px;
+}
 
-    .actions{margin-top:18px;display:flex;gap:12px;flex-wrap:wrap}
-    .kpis{display:flex;gap:12px;margin-top:20px;flex-wrap:wrap}
-    .kpi{background:var(--card);padding:12px 14px;border-radius:10px;box-shadow:var(--shadow);min-width:120px;border:1px solid var(--glass-2)}
-    .kpi .label{font-size:12px;color:var(--muted)}
-    .kpi .value{font-weight:800;font-size:16px;color:var(--blue-1)}
+.brand h1{
+  margin:0;
+  font-size:20px;
+}
 
-    /* right card */
-    .card{
-      background:linear-gradient(180deg, #ffffff, #f7fbff);
-      border-radius:12px;padding:18px;border:1px solid rgba(11,21,48,0.04);box-shadow:var(--shadow)
-    }
-    .profile{
-      display:flex;gap:12px;align-items:center;
-    }
-    .avatar{
-      width:84px;height:84px;border-radius:12px;background:linear-gradient(135deg,#eef8ff,#d8efff);display:flex;align-items:center;justify-content:center;font-weight:700;color:var(--accent-2);font-size:22px;border:1px solid rgba(11,21,48,0.03)
-    }
-    .meta small{color:var(--muted)}
+.brand p{
+  margin:0;
+  font-size:14px;
+  color:var(--muted);
+}
 
-    /* sections */
-    section{margin-top:36px}
-    h2.section{font-size:20px;margin:0;color:var(--blue-1)}
-    p.note{color:var(--muted);margin-top:8px}
+/* HERO */
+.hero{
+  margin-top:18px;
+}
 
-    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:16px}
-    .card-plain{background:var(--card);border-radius:10px;padding:12px;border:1px solid var(--glass-2);box-shadow:var(--shadow)}
+.hero h2{
+  font-size:28px;
+  margin:0 0 8px;
+}
 
-    /* contact form simple */
-    form input, form textarea{width:100%;padding:10px;border-radius:10px;border:1px solid rgba(11,21,48,0.06);font-size:14px}
-    .form-actions{display:flex;gap:8px;margin-top:10px}
+.hero span{
+  color:var(--primary);
+}
 
-    /* typing cursor */
-    .typing-cursor{display:inline-block;width:2px;height:1.2em;background:var(--blue-1);margin-left:6px;animation:blink 1s steps(2) infinite}
-    @keyframes blink{50%{opacity:0}}
+.hero p{
+  max-width:640px;
+  color:var(--muted);
+}
 
-    /* glow hover */
-    .btn:hover{transform:translateY(-3px);transition:all .18s ease}
-    .btn:active{transform:translateY(0)}
+.actions{
+  margin-top:18px;
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+}
 
-    /* footer */
-    footer{margin-top:40px;text-align:center;color:var(--muted);font-size:13px;padding-bottom:18px}
+.btn{
+  padding:10px 16px;
+  border-radius:10px;
+  border:none;
+  font-weight:600;
+  cursor:pointer;
+  text-decoration:none;
+}
 
-    /* focus accessibility */
-    :focus{outline:3px solid rgba(43,156,255,0.14);outline-offset:3px}
-  </style>
+.btn.primary{
+  background:var(--primary);
+  color:#fff;
+}
+
+.btn.outline{
+  background:#fff;
+  border:1px solid #e2e8f0;
+  color:var(--text);
+}
+
+/* STATS */
+.stats{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+  gap:16px;
+  margin:28px 0;
+}
+
+.stat{
+  background:var(--card);
+  padding:18px;
+  border-radius:var(--radius);
+  text-align:center;
+}
+
+.stat small{
+  color:var(--muted);
+}
+
+/* PROFILE CARD */
+.card{
+  background:var(--card);
+  border-radius:var(--radius);
+  padding:24px;
+  margin-bottom:28px;
+}
+
+.profile{
+  display:flex;
+  justify-content:space-between;
+  gap:20px;
+  flex-wrap:wrap;
+}
+
+.profile-info h3{
+  margin:0;
+}
+
+.profile-info p{
+  margin:4px 0;
+  color:var(--muted);
+}
+
+.profile-actions{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+}
+
+/* SECTION */
+.section-title{
+  margin:40px 0 12px;
+  font-size:20px;
+}
+
+/* FOCUS */
+.focus{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:16px;
+}
+
+.focus-item{
+  background:var(--card);
+  border-radius:var(--radius);
+  padding:20px;
+}
+
+.focus-item h4{
+  margin:0 0 6px;
+}
+
+/* CONTACT */
+.contact{
+  display:grid;
+  grid-template-columns:1.3fr 1fr;
+  gap:20px;
+}
+
+.contact input,
+.contact textarea{
+  width:100%;
+  padding:12px;
+  border-radius:10px;
+  border:1px solid #e2e8f0;
+  margin-bottom:10px;
+}
+
+.contact textarea{
+  resize:none;
+  height:100px;
+}
+
+.quick{
+  background:var(--card);
+  border-radius:var(--radius);
+  padding:20px;
+}
+
+.quick p{
+  margin:8px 0;
+  color:var(--muted);
+}
+
+footer{
+  text-align:center;
+  color:var(--muted);
+  margin-top:60px;
+  font-size:14px;
+}
+
+/* RESPONSIVE */
+@media(max-width:700px){
+  .contact{
+    grid-template-columns:1fr;
+  }
+}
+</style>
 </head>
+
 <body>
-  <div class="wrap">
-    <!-- Header -->
-    <header>
-      <div class="brand">
-        <div class="logo" aria-hidden="true">RH</div>
-        <div>
-          <h1>RHN CAPITAL</h1>
-          <p class="muted">Tentang singkat — Rehan</p>
-        </div>
-      </div>
 
-      <nav role="navigation" aria-label="Top">
-        <a href="#about">Tentang</a>
-        <a href="#services">Fokus</a>
-        <a href="#contact">Kontak</a>
-        <button class="btn" id="btnContactTop">Hubungi</button>
-      </nav>
-    </header>
+<div class="container">
 
-    <!-- HERO -->
-    <main class="hero" id="top" role="main">
+  <!-- HEADER -->
+  <div class="header">
+    <div class="brand">
+      <div class="logo">RH</div>
       <div>
-        <div class="title">
-          Rehan — <span class="typing" id="typed">Investor Muda</span><span class="typing-cursor" aria-hidden="true"></span>
-        </div>
-        <p class="lead">Halo, saya Rehan. Saya fokus belajar dan berpraktik di dunia crypto, trading, dan pengembangan web. Halaman ini adalah ringkasan umum — simple, profesional, dan mudah dihubungi.</p>
-
-        <div class="actions" role="group" aria-label="Primary actions">
-          <button class="btn" id="btnEmail">Kirim Email</button>
-          <button class="btn ghost" id="btnWA">Chat WA</button>
-          <button class="btn ghost" id="btnIG">Buka IG</button>
-        </div>
-
-        <div class="kpis" aria-hidden="false">
-          <div class="kpi"><div class="label">AUM (contoh)</div><div class="value" id="kAum">Rp 0</div></div>
-          <div class="kpi"><div class="label">Return 1Y</div><div class="value" id="kRet">0%</div></div>
-          <div class="kpi"><div class="label">Clients</div><div class="value" id="kClients">0</div></div>
-        </div>
+        <h1>RHN Capital</h1>
+        <p>Tentang singkat — Rehan</p>
       </div>
+    </div>
 
-      <aside class="card" aria-label="Profile card">
-        <div class="profile">
-          <div class="avatar" id="avatar">R</div>
-          <div>
-            <div style="font-weight:700;font-size:18px">Rehan</div>
-            <div class="meta"><small>Investor muda • 16 tahun • Bogor</small></div>
-            <div style="margin-top:8px;font-size:13px;color:var(--muted)">Email • huyrehan@gmail.com</div>
-          </div>
-        </div>
+    <div class="hero">
+      <h2>Rehan — <span>Investor Muda</span></h2>
+      <p>
+        Halo, saya Rehan. Fokus belajar dan praktik di dunia crypto, trading,
+        dan pengembangan web. Halaman ini adalah ringkasan umum — simple,
+        profesional, dan mudah dihubungi.
+      </p>
 
-        <div style="margin-top:14px">
-          <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px">
-            <button class="btn ghost" id="btnCopy">Salin Kontak</button>
-            <button class="btn ghost" id="btnVCard">Unduh vCard</button>
-            <button class="btn ghost" id="btnSave">Simpan Lokal</button>
-          </div>
-        </div>
-      </aside>
-    </main>
-
-    <!-- About -->
-    <section id="about" aria-labelledby="aboutTitle">
-      <h2 class="section" id="aboutTitle">Tentang Saya</h2>
-      <p class="note">Saya sedang belajar Rekayasa Perangkat Lunak (RPL) di SMK Tri Dharma, Bogor. Minat: cryptocurrency (PEPE & lainnya), trading di Exness, web dev, dan AI. Tujuan: konsisten menumbuhkan modal melalui pembelajaran dan praktik terukur.</p>
-    </section>
-
-    <!-- Services / Focus -->
-    <section id="services" aria-labelledby="servicesTitle">
-      <h2 class="section" id="servicesTitle">Fokus & Minat</h2>
-      <p class="note">Ringkasan bidang yang sering saya kerjakan / pelajari.</p>
-      <div class="grid-3" role="list">
-        <div class="card-plain" role="listitem">
-          <strong>Crypto</strong>
-          <p class="muted" style="margin-top:8px">Analisa dasar & akumulasi jangka panjang; perhatikan on-chain & volume.</p>
-        </div>
-        <div class="card-plain" role="listitem">
-          <strong>Trading</strong>
-          <p class="muted" style="margin-top:8px">Praktik pada akun cent & strategi risk-first.</p>
-        </div>
-        <div class="card-plain" role="listitem">
-          <strong>Web & AI</strong>
-          <p class="muted" style="margin-top:8px">Membangun portofolio web sederhana & eksplorasi AI.</p>
-        </div>
+      <div class="actions">
+        <a class="btn primary" href="mailto:huyrehan@gmail.com">Kirim Email</a>
+        <a class="btn outline" href="https://wa.me/6285717426626" target="_blank">Chat WA</a>
+        <a class="btn outline" href="https://instagram.com/huyrehan" target="_blank">Buka IG</a>
       </div>
-    </section>
-
-    <!-- Contact -->
-    <section id="contact" aria-labelledby="contactTitle">
-      <h2 class="section" id="contactTitle">Kontak</h2>
-      <p class="note">Gunakan tombol di atas atau form singkat ini — tombol 'Kirim Email' akan membuka aplikasi emailmu dengan pesan terisi.</p>
-
-      <div style="display:flex;gap:18px;flex-wrap:wrap;margin-top:12px">
-        <div style="flex:1;min-width:320px" class="card">
-          <form id="contactForm">
-            <label class="muted" for="name">Nama</label>
-            <input id="name" type="text" value="Investor Muda" required style="margin-top:8px"/>
-
-            <label class="muted" for="email" style="margin-top:10px;display:block">Email</label>
-            <input id="email" type="email" value="huyrehan@gmail.com" required style="margin-top:8px"/>
-
-            <label class="muted" for="phone" style="margin-top:10px;display:block">Nomor HP</label>
-            <input id="phone" type="tel" value="085717426626" required style="margin-top:8px"/>
-
-            <label class="muted" for="message" style="margin-top:10px;display:block">Pesan</label>
-            <textarea id="message" rows="4" placeholder="Tulis pesan..." style="margin-top:8px"></textarea>
-
-            <div class="form-actions">
-              <button class="btn" type="submit">Kirim Email</button>
-              <button class="btn ghost" type="button" id="btnCopyForm">Salin</button>
-              <button class="btn ghost" type="button" id="btnSaveForm">Simpan</button>
-            </div>
-            <div id="formMsg" style="margin-top:8px;color:var(--muted);font-size:13px"></div>
-          </form>
-        </div>
-
-        <div style="width:300px">
-          <div class="card">
-            <div style="display:flex;justify-content:space-between;align-items:center">
-              <div>
-                <div style="font-weight:700">Quick Contact</div>
-                <div class="muted" style="margin-top:6px">Email • Phone • IG</div>
-              </div>
-              <div style="font-weight:700;color:var(--accent)">RH</div>
-            </div>
-
-            <div style="margin-top:12px">
-              <div style="margin-bottom:8px">✉ <a href="mailto:huyrehan@gmail.com" id="mailLink">huyrehan@gmail.com</a></div>
-              <div style="margin-bottom:8px">📞 <a href="tel:+6285717426626" id="telLink">085717426626</a></div>
-              <div>📷 <a href="https://instagram.com/huyrehan" id="igLink" target="_blank" rel="noopener">@huyrehan</a></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <footer>
-      RHN CAPITAL • Simple • Modern • © <span id="year"></span>
-    </footer>
+    </div>
   </div>
 
-  <script>
-    // ===================== Interactivity =====================
-    const profile = {
-      name: "Rehan",
-      email: "huyrehan@gmail.com",
-      phone_local: "085717426626",
-      phone_international: "+6285717426626",
-      instagram: "huyrehan",
-      bioShort: "Investor muda — crypto, trading, web"
-    };
+  <!-- STATS -->
+  <div class="stats">
+    <div class="stat">
+      <h3>Rp 0</h3>
+      <small>AUM (contoh)</small>
+    </div>
+    <div class="stat">
+      <h3>0%</h3>
+      <small>Return 1Y</small>
+    </div>
+    <div class="stat">
+      <h3>0</h3>
+      <small>Clients</small>
+    </div>
+  </div>
 
-    // Year
-    document.getElementById('year').textContent = new Date().getFullYear();
+  <!-- PROFILE -->
+  <div class="card profile">
+    <div class="profile-info">
+      <h3>Rehan</h3>
+      <p>Investor muda • 16 tahun • Bogor</p>
+      <p>Email: huyrehan@gmail.com</p>
+    </div>
+    <div class="profile-actions">
+      <button class="btn outline">Salin Kontak</button>
+      <button class="btn outline">Unduh vCard</button>
+      <button class="btn outline">Simpan Lokal</button>
+    </div>
+  </div>
 
-    // Typing effect (simple)
-    const phrases = ["Investor Muda","Crypto Enthusiast","Learning Web & AI"];
-    let pIndex = 0, cIndex = 0;
-    const typedEl = document.getElementById('typed');
-    function typeLoop(){
-      const full = phrases[pIndex];
-      if(cIndex <= full.length){
-        typedEl.textContent = full.slice(0,cIndex);
-        cIndex++;
-        setTimeout(typeLoop, 80);
-      } else {
-        setTimeout(()=> eraseLoop(), 900);
-      }
-    }
-    function eraseLoop(){
-      const full = phrases[pIndex];
-      if(cIndex >= 0){
-        typedEl.textContent = full.slice(0,cIndex);
-        cIndex--;
-        setTimeout(eraseLoop, 40);
-      } else {
-        pIndex = (pIndex + 1) % phrases.length;
-        setTimeout(typeLoop, 200);
-      }
-    }
-    typeLoop();
+  <!-- ABOUT -->
+  <h3 class="section-title">Tentang Saya</h3>
+  <p class="card">
+    Saya sedang belajar Rekayasa Perangkat Lunak (RPL) di SMK Tri Dharma, Bogor.
+    Minat utama: cryptocurrency (PEPE & lainnya), trading di Exness, web
+    development, dan AI. Tujuan saya adalah konsisten menumbuhkan modal melalui
+    pembelajaran dan praktik terukur.
+  </p>
 
-    // Small animated counters
-    function animateNumber(el, to, duration=900){
-      const start = 0; let s=null;
-      function step(ts){
-        if(!s) s=ts;
-        const progress = Math.min((ts - s)/duration,1);
-        el.textContent = Math.floor(start + (to-start)*progress).toLocaleString('id-ID');
-        if(progress < 1) requestAnimationFrame(step);
-      }
-      requestAnimationFrame(step);
-    }
-    animateNumber(document.getElementById('kAum'), 120000000);
-    setTimeout(()=> document.getElementById('kRet').textContent = '+18%', 600);
-    setTimeout(()=> document.getElementById('kClients').textContent = '1.240', 700);
+  <!-- FOCUS -->
+  <h3 class="section-title">Fokus & Minat</h3>
+  <div class="focus">
+    <div class="focus-item">
+      <h4>Crypto</h4>
+      <p>Analisa dasar & akumulasi jangka panjang, on-chain & volume.</p>
+    </div>
+    <div class="focus-item">
+      <h4>Trading</h4>
+      <p>Praktik akun cent & strategi risk-first.</p>
+    </div>
+    <div class="focus-item">
+      <h4>Web & AI</h4>
+      <p>Portofolio web sederhana & eksplorasi AI.</p>
+    </div>
+  </div>
 
-    // Buttons: primary actions
-    document.getElementById('btnEmail').addEventListener('click', () => {
-      const subject = encodeURIComponent('Pertanyaan singkat');
-      const body = encodeURIComponent('Halo Rehan,\n\nSaya ingin menanyakan...');
-      window.location.href = mailto:${profile.email}?subject=${subject}&body=${body};
-    });
+  <!-- CONTACT -->
+  <h3 class="section-title">Kontak</h3>
+  <div class="contact">
+    <div class="card">
+      <input type="text" placeholder="Nama">
+      <input type="email" placeholder="Email">
+      <input type="text" placeholder="Nomor HP">
+      <textarea placeholder="Tulis pesan..."></textarea>
+      <button class="btn primary" style="width:100%">Kirim</button>
+    </div>
 
-    document.getElementById('btnWA').addEventListener('click', () => {
-      const text = encodeURIComponent('Halo Rehan, saya ingin berkonsultasi mengenai investasi.');
-      window.open(https://wa.me/${profile.phone_international.replace('+','')}?text=${text},'_blank');
-    });
+    <div class="quick">
+      <strong>Quick Contact</strong>
+      <p>📧 huyrehan@gmail.com</p>
+      <p>📱 085717426626</p>
+      <p>📸 @huyrehan</p>
+    </div>
+  </div>
 
-    document.getElementById('btnIG').addEventListener('click', () => {
-      window.open(https://instagram.com/${profile.instagram},'_blank');
-    });
+  <footer>
+    © 2026 RHN Capital. All rights reserved.
+  </footer>
 
-    // Copy contact & vCard & save
-    document.getElementById('btnCopy').addEventListener('click', async () => {
-      const txt = Nama: ${profile.name}\nEmail: ${profile.email}\nPhone: ${profile.phone_local}\nIG: @${profile.instagram};
-      try{
-        await navigator.clipboard.writeText(txt);
-        alert('Kontak disalin ke clipboard ✔');
-      }catch(e){ alert('Tidak bisa menyalin otomatis — salin manual.'); }
-    });
+</div>
 
-    document.getElementById('btnVCard').addEventListener('click', () => {
-      const vcard = [
-        "BEGIN:VCARD",
-        "VERSION:3.0",
-        FN:${profile.name},
-        EMAIL;TYPE=INTERNET:${profile.email},
-        TEL;TYPE=CELL:${profile.phone_international},
-        NOTE:Investor muda,
-        "END:VCARD"
-      ].join("\r\n");
-      const blob = new Blob([vcard],{type:'text/vcard'});
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a'); a.href = url; a.download = ${profile.name}_contact.vcf; document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url);
-    });
-
-    document.getElementById('btnSave').addEventListener('click', () => {
-      try{
-        localStorage.setItem('rhn_profile', JSON.stringify(profile));
-        alert('Profil disimpan lokal ✔');
-      }catch(e){ alert('Gagal menyimpan lokal.'); }
-    });
-
-    // Contact form: mailto prefill, copy, save
-    document.getElementById('contactForm').addEventListener('submit', (e) => {
-      e.preventDefault();
-      const name = document.getElementById('name').value.trim();
-      const mail = document.getElementById('email').value.trim();
-      const phone = document.getElementById('phone').value.trim();
-      const message = document.getElementById('message').value.trim();
-      if(!name || !mail || !phone){ document.getElementById('formMsg').textContent = 'Nama, email, & nomor wajib diisi.'; return; }
-      const subject = encodeURIComponent(Pertanyaan dari ${name});
-      const body = encodeURIComponent(Nama: ${name}\nPhone: ${phone}\nEmail: ${mail}\n\nPesan:\n${message});
-      window.location.href = mailto:${profile.email}?subject=${subject}&body=${body};
-      document.getElementById('formMsg').textContent = 'Membuka aplikasi email...';
-    });
-
-    document.getElementById('btnCopyForm').addEventListener('click', async () => {
-      const txt = Nama: ${document.getElementById('name').value}\nPhone: ${document.getElementById('phone').value}\nEmail: ${document.getElementById('email').value}\n\n${document.getElementById('message').value};
-      try{ await navigator.clipboard.writeText(txt); document.getElementById('formMsg').textContent = 'Tersalin ke clipboard.'; } catch(e){ document.getElementById('formMsg').textContent = 'Gagal salin.'; }
-    });
-
-    document.getElementById('btnSaveForm').addEventListener('click', () => {
-      const draft = { name: document.getElementById('name').value, email: document.getElementById('email').value, phone: document.getElementById('phone').value, msg: document.getElementById('message').value, t: new Date().toISOString() };
-      try{ localStorage.setItem('rhn_contact_draft', JSON.stringify(draft)); document.getElementById('formMsg').textContent = 'Tersimpan lokal.'; } catch(e){ document.getElementById('formMsg').textContent = 'Gagal menyimpan.'; }
-    });
-
-    // quick links
-    document.getElementById('mailLink').addEventListener('click', (e) => { e.preventDefault(); window.location.href = mailto:${profile.email}; });
-    document.getElementById('telLink').addEventListener('click', (e) => { /* default tel link will work */ });
-    document.getElementById('igLink').addEventListener('click', (e) => { /* default anchor works */ });
-
-    // top contact
-    document.getElementById('btnContactTop').addEventListener('click', () => { document.getElementById('contact').scrollIntoView({behavior:'smooth'}); document.getElementById('name').focus(); });
-
-    // typing accessibility: stop when tab focused
-    document.addEventListener('visibilitychange', ()=> { if(document.hidden) { /* no-op */ } });
-
-    // ensure interactive elements keyboard focusable
-    document.querySelectorAll('button,a,input,textarea').forEach(el => el.setAttribute('tabindex','0'));
-  </script>
 </body>
 </html>
