@@ -788,6 +788,22 @@ function openPayment(){
   window.open("https://wa.me/6285717426626","_blank");
 }
 </script>
+<!-- LOGIN MODAL -->
+<div id="loginModal" style="display:none;position:fixed;inset:0;background:#0008">
+  <div style="max-width:360px;margin:15% auto;background:#121a2f;padding:20px;border-radius:16px">
+    <h3>Login</h3>
+    <input id="email" placeholder="Email" style="width:100%;padding:12px;margin:8px 0">
+    <input id="pass" type="password" placeholder="Password" style="width:100%;padding:12px;margin:8px 0">
+    <button class="btn" onclick="fakeLogin()">Masuk</button>
+  </div>
+</div>
 
+<script>
+function fakeLogin(){
+  localStorage.setItem("user","Rehan");
+  document.getElementById("userName").innerText="Rehan";
+  document.getElementById("loginModal").style.display="none";
+}
+</script>
 </body>
 </html>
