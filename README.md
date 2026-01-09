@@ -240,7 +240,6 @@ Berorientasi pada kepercayaan dan konsistensi, Farhan Store siap menjadi partner
      
     </div>
   </div>
-</section>
       <div style="text-align:center;">
     
       </div>
@@ -252,7 +251,7 @@ Berorientasi pada kepercayaan dan konsistensi, Farhan Store siap menjadi partner
     <a href="https://www.tiktok.com/@rehanhuy" target="_blank">Tiktok</a>
   </div>
 </section>
-<button onclick="window.open('https://wa.me/6285717426626?text=Halo%20RHN%20Capital,%20saya%20ingin%20melakukan%20pembayaran%20via%20GoPay.','_blank')" style="
+<button onclick="window.open('https://wa.me/6285717426626?text=Halo%20FARHAN%20STORE,%20saya%20ingin%20melakukan%20pembayaran%20via%20GoPay.','_blank')" style="
 width:100%;
 padding:14px;
 border:none;
@@ -271,7 +270,7 @@ box-shadow:0 8px 20px rgba(0,200,83,.35);
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>RHN Capital – Edukasi Premium</title>
+<title>FARHAN STORE – AKSES ROOM WANGI</title>
 
 <style>
 body{
@@ -357,8 +356,8 @@ margin-top:30px;
 
 <!-- PAGE 1 -->
 <div class="card" id="page-register">
-<h1>RHN Capital</h1>
-<p>Akses edukasi aset digital premium</p>
+<h1>FARHAN STORE</h1>
+<p>Akses ROOM WANGI</p>
 
 <input id="name" placeholder="Nama Lengkap">
 <input id="contact" placeholder="WhatsApp / Email">
@@ -386,10 +385,10 @@ margin-top:30px;
 
 <!-- PAGE 4 -->
 <div class="card hidden" id="page-private">
-<a href="ANALISA.html" class="btn">Analisa RHN Capital</a>
+<a href="ANALISA.html" class="btn">ROOM WANGI</a>
 
 <p style="margin-top:10px;font-size:13px;opacity:.7">
-Akses ini bersifat pribadi.
+Akses ini bersifat berbayar
 </p>
 </div>
 
