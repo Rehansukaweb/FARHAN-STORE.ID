@@ -231,6 +231,15 @@ Berorientasi pada kepercayaan dan konsistensi, Farhan Store siap menjadi partner
   </p>
 </section>
 
+<section class="card fade-up">
+  <h2>Kenapa Pilih Farhan Store?</h2>
+  <ul>
+    <li>✅ Akun aman & privasi terjaga</li>
+    <li>⚡ Proses cepat & transparan</li>
+    <li>🤝 Komunikasi jelas via WhatsApp</li>
+    <li>🎮 Fokus FF & ML (bukan abal-abal)</li>
+  </ul>
+</section>
 
   <h2>FARHAN STORE</h2>
   <div class="portfolio">
