@@ -3,192 +3,114 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Farhan Store • Pulsa & Token</title>
-
+<title>FARHAN STORE • Pulsa & Token</title>
 <style>
-*{box-sizing:border-box;font-family:Arial,Helvetica,sans-serif}
 body{
-margin:0;
-background:linear-gradient(180deg,#050b1e,#020617);
-color:#fff;
-display:flex;
-justify-content:center;
-padding:20px;
+  margin:0;font-family:Arial;
+  background:linear-gradient(180deg,#050b1e,#020617);
+  color:#fff;
 }
-.container{
-width:100%;
-max-width:420px;
-}
+.container{max-width:420px;margin:auto;padding:20px}
 .header{
-text-align:center;
-padding:14px;
-font-weight:bold;
-background:linear-gradient(90deg,#00ffa3,#00c2ff);
-color:#000;
-border-radius:12px;
-margin-bottom:20px;
+  text-align:center;
+  padding:15px;
+  background:linear-gradient(90deg,#00ffb3,#00b3ff);
+  color:#000;font-weight:bold;border-radius:12px;
 }
 .card{
-background:#0b1228;
-padding:16px;
-border-radius:16px;
-margin-bottom:16px;
-box-shadow:0 0 20px rgba(0,0,0,.4);
+  background:#0b122a;
+  margin-top:20px;
+  padding:15px;
+  border-radius:15px;
 }
-.btn{
-width:100%;
-padding:14px;
-border:none;
-border-radius:12px;
-font-size:16px;
-font-weight:bold;
-cursor:pointer;
-margin-top:10px;
+select,input,button{
+  width:100%;padding:12px;margin-top:10px;
+  border:none;border-radius:10px;
 }
-.btn-primary{background:linear-gradient(90deg,#00ffa3,#00c2ff);color:#000}
-.btn-secondary{background:#222;color:#fff}
-.btn-admin{background:#ffaa00;color:#000}
-input,select{
-width:100%;
-padding:12px;
-margin-top:8px;
-border-radius:10px;
-border:none;
-outline:none;
-font-size:14px;
+button{
+  background:linear-gradient(90deg,#00ffb3,#00b3ff);
+  font-weight:bold;cursor:pointer;
 }
-.hidden{display:none}
-.loader{
-width:40px;height:40px;
-border:4px solid #222;
-border-top:4px solid #00ffa3;
-border-radius:50%;
-margin:10px auto;
-animation:spin 1s linear infinite;
+.status{
+  margin-top:20px;
+  padding:15px;
+  border-radius:12px;
+  display:none;
+  animation:fade .5s ease;
 }
-@keyframes spin{100%{transform:rotate(360deg)}}
-.success{
-background:linear-gradient(180deg,#00c853,#009624);
-padding:16px;
-border-radius:14px;
-text-align:center;
-font-weight:bold;
-}
-.info{
-font-size:13px;
-opacity:.85;
-margin-top:8px;
-}
-.toggle button{
-width:48%;
-}
-.toggle{
-display:flex;
-justify-content:space-between;
-gap:4%;
-}
+.process{background:#1e293b}
+.success{background:#16a34a}
+@keyframes fade{from{opacity:0;transform:scale(.9)}to{opacity:1}}
+.admin{margin-top:10px;background:#1f2937}
 </style>
 </head>
-
 <body>
+
 <div class="container">
+  <div class="header">FARHAN STORE • PULSA & TOKEN</div>
 
-<div class="header">FARHAN STORE • PULSA & TOKEN</div>
+  <div class="card">
+    <select id="jenis">
+      <option value="Pulsa HP">📱 Pulsa HP</option>
+      <option value="Token PLN">⚡ Token PLN</option>
+    </select>
 
-<div class="card toggle">
-<button class="btn btn-secondary" onclick="pilihJenis('pulsa')">📱 Pulsa HP</button>
-<button class="btn btn-secondary" onclick="pilihJenis('token')">⚡ Token PLN</button>
-</div>
+    <input id="target" placeholder="Nomor HP / ID PLN">
 
-<div class="card">
-<h3 id="judul">📱 Pembelian Pulsa</h3>
+    <select id="nominal"></select>
 
-<input id="tujuan" placeholder="Nomor HP / ID PLN">
+    <button onclick="order()">Pesan Sekarang</button>
 
-<select id="nominal"></select>
+    <div class="status process" id="process">
+      ⏳ Pesanan sedang diproses...<br>
+      Menunggu konfirmasi admin
+    </div>
 
-<button class="btn btn-primary" onclick="pesan()">Pesan Sekarang</button>
+    <div class="status success" id="success">
+      ✅ TRANSAKSI BERHASIL<br>
+      Terima kasih telah berbelanja
+    </div>
 
-<div class="info">
-✔ Nominal 5.000 – 1.000.000<br>
-✔ Admin Rp1.000 / transaksi<br>
-✔ Order langsung ke WhatsApp
-</div>
-</div>
-
-<div id="proses" class="card hidden" style="text-align:center">
-<div class="loader"></div>
-<p>Memproses pesanan…</p>
-</div>
-
-<div id="menunggu" class="card hidden" style="text-align:center">
-<div class="loader"></div>
-<p>Menunggu konfirmasi admin…</p>
-<button class="btn btn-admin" onclick="konfirmasi()">Konfirmasi Berhasil (Admin)</button>
-</div>
-
-<div id="sukses" class="card hidden">
-<div class="success">
-✅ TRANSAKSI BERHASIL<br><br>
-Pesanan telah diproses.<br>
-Terima kasih telah menggunakan Farhan Store.
-</div>
-</div>
-
+    <button class="admin" onclick="adminConfirm()">🔐 Admin: Tandai Berhasil</button>
+  </div>
 </div>
 
 <script>
-let jenis="pulsa";
-const admin=1000;
-const wa="6285717426626";
+const wa = "6285717426626";
+const adminPIN = "1234";
 
-function isiNominal(){
-let n=document.getElementById("nominal");
-n.innerHTML="";
+const nominalSelect = document.getElementById("nominal");
 for(let i=5000;i<=1000000;i+=5000){
-let o=document.createElement("option");
-o.value=i;
-o.textContent="Rp "+i.toLocaleString();
-n.appendChild(o);
-}
-}
-isiNominal();
-
-function pilihJenis(j){
-jenis=j;
-document.getElementById("judul").innerText =
-j==="pulsa" ? "📱 Pembelian Pulsa" : "⚡ Pembelian Token PLN";
-document.getElementById("tujuan").placeholder =
-j==="pulsa" ? "Nomor HP" : "ID Pelanggan PLN";
+  nominalSelect.innerHTML += `<option value="${i}">Rp ${i.toLocaleString()}</option>`;
 }
 
-function pesan(){
-let tujuan=document.getElementById("tujuan").value;
-let nominal=document.getElementById("nominal").value;
-if(!tujuan){alert("Isi tujuan!");return;}
+function order(){
+  const jenis=document.getElementById("jenis").value;
+  const target=document.getElementById("target").value;
+  const nominal=document.getElementById("nominal").value;
+  if(!target)return alert("Isi nomor / ID");
 
-document.getElementById("proses").classList.remove("hidden");
+  const total = Number(nominal)+1000;
 
-let total=parseInt(nominal)+admin;
+  const msg = `ORDER FARHAN STORE
+Produk: ${jenis}
+Target: ${target}
+Nominal: Rp${Number(nominal).toLocaleString()}
+Admin: Rp1.000
+Total: Rp${total.toLocaleString()}
+Status: DIPROSES`;
 
-let teks=
-`📌 ORDER FARHAN STORE
-Jenis: ${jenis.toUpperCase()}
-Tujuan: ${tujuan}
-Nominal: Rp ${parseInt(nominal).toLocaleString()}
-Admin: Rp 1.000
-Total: Rp ${total.toLocaleString()}`;
+  window.open(`https://wa.me/${wa}?text=${encodeURIComponent(msg)}`,"_blank");
 
-setTimeout(()=>{
-window.open(`https://wa.me/${wa}?text=${encodeURIComponent(teks)}`,"_blank");
-document.getElementById("proses").classList.add("hidden");
-document.getElementById("menunggu").classList.remove("hidden");
-},1200);
+  document.getElementById("process").style.display="block";
 }
 
-function konfirmasi(){
-document.getElementById("menunggu").classList.add("hidden");
-document.getElementById("sukses").classList.remove("hidden");
+function adminConfirm(){
+  const pin = prompt("Masukkan PIN Admin");
+  if(pin!==adminPIN)return alert("PIN salah");
+
+  document.getElementById("process").style.display="none";
+  document.getElementById("success").style.display="block";
 }
 </script>
 
