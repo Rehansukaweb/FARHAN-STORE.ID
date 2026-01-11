@@ -250,6 +250,8 @@ Berorientasi pada kepercayaan dan konsistensi, Farhan Store siap menjadi partner
     </div>
   </div>
       <div style="text-align:center;">
+
+<a href="JUALPULSA.html" class="btn">JUAL PULSA MURAH</a>
     
       </div>
 <section id="contact">
