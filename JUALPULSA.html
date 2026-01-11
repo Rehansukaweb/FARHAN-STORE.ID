@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Farhan Store PRO</title>
+
+<style>
+*{box-sizing:border-box}
+body{
+margin:0;
+font-family:Arial,Helvetica,sans-serif;
+background:#0a0f1f;
+color:#fff;
+}
+header{
+padding:15px;
+text-align:center;
+font-size:22px;
+font-weight:bold;
+background:linear-gradient(135deg,#00ff99,#00ccff);
+color:#000;
+}
+.container{
+max-width:420px;
+margin:auto;
+padding:15px;
+}
+.card{
+background:#121a33;
+border-radius:14px;
+padding:15px;
+margin-bottom:15px;
+box-shadow:0 0 20px rgba(0,0,0,.4);
+animation:fadeUp .6s ease;
+}
+@keyframes fadeUp{
+from{opacity:0;transform:translateY(20px)}
+to{opacity:1;transform:translateY(0)}
+}
+input,select,button{
+width:100%;
+padding:12px;
+border-radius:10px;
+border:none;
+margin-top:8px;
+font-size:16px;
+}
+input,select{
+background:#0a0f1f;
+color:#fff;
+border:1px solid #2a3cff;
+}
+button{
+background:linear-gradient(135deg,#00ff99,#00ccff);
+color:#000;
+font-weight:bold;
+cursor:pointer;
+}
+button:hover{opacity:.9}
+.small{font-size:13px;opacity:.7}
+</style>
+</head>
+
+<body>
+
+<header>FARHAN STORE • PRO</header>
+
+<div class="container">
+
+<div class="card">
+💰 <b>Saldo Anda</b><br>
+<span id="saldo">Rp100.000</span>
+</div>
+
+<div class="card">
+<h3>📱 Beli Pulsa</h3>
+<input type="number" id="nomor" placeholder="Nomor HP">
+
+<select id="produk">
+<option value="0">Pilih Nominal</option>
+<option value="52000">Pulsa 50.000 → Rp52.000</option>
+<option value="105000">Pulsa 100.000 → Rp105.000</option>
+<option value="210000">Pulsa 200.000 → Rp210.000</option>
+</select>
+
+<button onclick="checkout()">Checkout</button>
+</div>
+
+<div class="card" id="checkoutBox" style="display:none">
+<h3>🧾 Detail Pesanan</h3>
+<div id="detail"></div>
+<button onclick="bayar()">Bayar Sekarang</button>
+</div>
+
+<div class="card" id="adminBox" style="display:none">
+<h3>🛠 Admin Panel (Simulasi)</h3>
+<div id="orderAdmin"></div>
+</div>
+
+<p class="small" style="text-align:center">
+⚠️ QRIS & saldo masih simulasi (frontend)
+</p>
+
+</div>
+
+<script>
+let saldo = 100000;
+let lastOrder = "";
+
+function format(x){
+return "Rp"+x.toLocaleString("id-ID");
+}
+
+function checkout(){
+let nomor=document.getElementById("nomor").value;
+let harga=document.getElementById("produk").value;
+let nama=document.getElementById("produk").selectedOptions[0].text;
+
+if(nomor==""||harga==0){
+alert("Lengkapi data!");
+return;
+}
+
+document.getElementById("checkoutBox").style.display="block";
+document.getElementById("detail").innerHTML=
+"Nomor: <b>"+nomor+"</b><br>"+
+"Produk: <b>"+nama+"</b><br>"+
+"Total: <b>"+format(Number(harga))+"</b>";
+
+lastOrder = `
+📦 ORDER BARU<br>
+Nomor: ${nomor}<br>
+Produk: ${nama}<br>
+Total: ${format(Number(harga))}
+`;
+}
+
+function bayar(){
+let harga=Number(document.getElementById("produk").value);
+
+if(saldo<harga){
+alert("Saldo tidak cukup!");
+return;
+}
+
+saldo-=harga;
+document.getElementById("saldo").innerHTML=format(saldo);
+alert("Pembayaran berhasil!");
+
+document.getElementById("adminBox").style.display="block";
+document.getElementById("orderAdmin").innerHTML=lastOrder;
+}
+</script>
+
+</body>
+</html>
