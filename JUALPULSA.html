@@ -110,9 +110,9 @@ let nominal=document.getElementById("nominal");
 judul.innerText=j==="pulsa"?"📱 Pembelian Pulsa HP":"⚡ Pembelian Token Listrik PLN";
 tujuan.placeholder=j==="pulsa"?"Nomor HP tujuan":"ID Pelanggan PLN";
 
-nominal.innerHTML='<option value="0">Pilih Nominal</option>';
-for(let i=5000;i<=1000000;i+=5000){
-nominal.innerHTML+=`<option value="${i}">${rupiah(i)}</option>`;
+nominal.innerHTML = '<option value="">Pilih Nominal</option>';
+for (let i = 5000; i <= 1000000; i += 5000) {
+nominal.innerHTML += `<option value="${i}">Rp${i.toLocaleString('id-ID')}</option>`;
 }
 }
 
