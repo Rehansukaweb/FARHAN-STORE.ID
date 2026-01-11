@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Farhan Store – Pulsa Resmi</title>
+<title>Farhan Store – Pulsa & Token</title>
 
 <style>
 body{
@@ -61,25 +61,31 @@ text-align:center;
 
 <body>
 
-<header>FARHAN STORE • PULSA</header>
+<header>FARHAN STORE • PULSA & TOKEN</header>
 
 <div class="container">
 
 <div class="card">
-📱 <b>Form Pembelian Pulsa</b>
+📦 <b>Pilih Produk</b>
 
-<input id="nomor" placeholder="Nomor HP tujuan">
+<select id="jenis" onchange="ubahForm()">
+<option value="">-- Pilih Produk --</option>
+<option value="pulsa">Pulsa HP</option>
+<option value="token">Token Listrik PLN</option>
+</select>
+
+<input id="tujuan" placeholder="Nomor HP / ID Pelanggan PLN">
 
 <select id="nominal">
 <option value="0">Pilih Nominal</option>
-<option value="5000">Pulsa 5.000</option>
-<option value="10000">Pulsa 10.000</option>
-<option value="20000">Pulsa 20.000</option>
-<option value="50000">Pulsa 50.000</option>
-<option value="100000">Pulsa 100.000</option>
-<option value="200000">Pulsa 200.000</option>
-<option value="500000">Pulsa 500.000</option>
-<option value="1000000">Pulsa 1.000.000</option>
+<option value="5000">5.000</option>
+<option value="10000">10.000</option>
+<option value="20000">20.000</option>
+<option value="50000">50.000</option>
+<option value="100000">100.000</option>
+<option value="200000">200.000</option>
+<option value="500000">500.000</option>
+<option value="1000000">1.000.000</option>
 </select>
 
 <button onclick="order()">Pesan Sekarang</button>
@@ -88,49 +94,69 @@ text-align:center;
 <div class="card" id="hasil" style="display:none"></div>
 
 <p class="small">
+✔ Pulsa & Token Listrik PLN<br>
 ✔ Admin Rp1.000 / transaksi<br>
-✔ Order otomatis ke WhatsApp Farhan Store
+✔ Order otomatis ke WhatsApp
 </p>
 
 </div>
 
 <script>
+const WA = "6285717426626";
+const ADMIN = 1000;
+
 function rupiah(x){
 return "Rp"+x.toLocaleString("id-ID");
 }
 
+function ubahForm(){
+let jenis=document.getElementById("jenis").value;
+let tujuan=document.getElementById("tujuan");
+
+if(jenis==="pulsa"){
+tujuan.placeholder="Nomor HP tujuan";
+}else if(jenis==="token"){
+tujuan.placeholder="ID Pelanggan PLN";
+}else{
+tujuan.placeholder="Nomor / ID";
+}
+}
+
 function order(){
-let no=document.getElementById("nomor").value;
+let jenis=document.getElementById("jenis").value;
+let tujuan=document.getElementById("tujuan").value;
 let nominal=Number(document.getElementById("nominal").value);
 
-if(no==""||nominal==0){
-alert("Lengkapi nomor & nominal!");
+if(jenis==""||tujuan==""||nominal==0){
+alert("Lengkapi data!");
 return;
 }
 
-let admin=1000;
-let total=nominal+admin;
+let total=nominal+ADMIN;
 
 let pesan=
 `Halo Farhan Store 👋
-Saya mau beli pulsa
+Saya mau order ${jenis==="pulsa"?"Pulsa HP":"Token Listrik PLN"}
 
-📱 Nomor Tujuan: ${no}
+📌 Tujuan: ${tujuan}
 💳 Nominal: ${rupiah(nominal)}
-💼 Admin: ${rupiah(admin)}
+💼 Admin: ${rupiah(ADMIN)}
 💰 Total: ${rupiah(total)}
 
-Mohon diproses ya 🙏`;
+Mohon diproses 🙏`;
 
-let wa="https://wa.me/6285717426626?text="+encodeURIComponent(pesan);
-window.open(wa,"_blank");
+window.open(
+"https://wa.me/"+WA+"?text="+encodeURIComponent(pesan),
+"_blank"
+);
 
 document.getElementById("hasil").style.display="block";
 document.getElementById("hasil").innerHTML=
 `🧾 <b>Ringkasan Pesanan</b><br>
-Nomor: ${no}<br>
-Pulsa: ${rupiah(nominal)}<br>
-Admin: ${rupiah(admin)}<br>
+Produk: ${jenis==="pulsa"?"Pulsa HP":"Token Listrik PLN"}<br>
+Tujuan: ${tujuan}<br>
+Nominal: ${rupiah(nominal)}<br>
+Admin: ${rupiah(ADMIN)}<br>
 <b>Total: ${rupiah(total)}</b>`;
 }
 </script>
