@@ -3,60 +3,110 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Farhan Store – Pulsa & Token</title>
+<title>Farhan Store • Pulsa & Token</title>
 
 <style>
+*{box-sizing:border-box;font-family:system-ui,-apple-system,Segoe UI}
 body{
 margin:0;
-font-family:Arial,Helvetica,sans-serif;
-background:#0a0f1f;
+background:linear-gradient(180deg,#020617,#020617,#020617);
 color:#fff;
 }
+
 header{
+background:linear-gradient(90deg,#22c55e,#06b6d4);
 padding:16px;
 text-align:center;
-font-weight:bold;
-font-size:20px;
-background:linear-gradient(135deg,#00ff99,#00ccff);
-color:#000;
+font-weight:700;
+letter-spacing:1px;
 }
+
 .container{
 max-width:420px;
-margin:auto;
-padding:15px;
+margin:20px auto;
+padding:16px;
 }
+
 .card{
-background:#121a33;
-border-radius:14px;
-padding:15px;
-margin-bottom:15px;
+background:#020617;
+border-radius:18px;
+padding:18px;
+margin-bottom:16px;
 box-shadow:0 0 20px rgba(0,0,0,.4);
 }
-button,input,select{
-width:100%;
-padding:12px;
-margin-top:10px;
-border-radius:10px;
-border:none;
-font-size:16px;
-}
-input,select{
-background:#0a0f1f;
-color:#fff;
-border:1px solid #2a3cff;
-}
+
 .btn{
-font-weight:bold;
+width:100%;
+padding:14px;
+border:none;
+border-radius:12px;
+font-size:16px;
+font-weight:600;
 cursor:pointer;
 }
-.btn-pulsa{background:#2563eb;color:#fff}
-.btn-token{background:#facc15;color:#000}
-.btn-order{
-background:linear-gradient(135deg,#00ff99,#00ccff);
+
+.btn-primary{
+background:linear-gradient(90deg,#22c55e,#06b6d4);
 color:#000;
 }
+
+.btn-secondary{
+background:#1f2937;
+color:#fff;
+}
+
+input,select{
+width:100%;
+padding:14px;
+border-radius:12px;
+border:1px solid #1f2937;
+background:#020617;
+color:#fff;
+margin-bottom:12px;
+font-size:15px;
+}
+
 .hidden{display:none}
-.small{text-align:center;font-size:13px;opacity:.7}
+
+/* ANIMASI */
+.process,.success{
+text-align:center;
+padding:20px;
+border-radius:14px;
+animation:fade .5s ease;
+}
+
+.process{
+background:#020617;
+border:1px solid #22c55e;
+}
+
+.success{
+background:linear-gradient(135deg,#16a34a,#22c55e);
+color:#000;
+}
+
+.loader{
+width:40px;
+height:40px;
+border:4px solid #1f2937;
+border-top:4px solid #22c55e;
+border-radius:50%;
+margin:0 auto 10px;
+animation:spin 1s linear infinite;
+}
+
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes fade{
+from{opacity:0;transform:translateY(10px)}
+to{opacity:1;transform:translateY(0)}
+}
+
+.note{
+font-size:13px;
+opacity:.8;
+text-align:center;
+}
 </style>
 </head>
 
@@ -67,87 +117,96 @@ color:#000;
 <div class="container">
 
 <div class="card">
-<b>Pilih Jenis Pembelian</b>
-<button class="btn btn-pulsa" onclick="pilih('pulsa')">📱 Pulsa HP</button>
-<button class="btn btn-token" onclick="pilih('token')">⚡ Token Listrik PLN</button>
+<button class="btn btn-secondary" onclick="pilih('pulsa')">📱 Pulsa HP</button>
+<br><br>
+<button class="btn btn-secondary" onclick="pilih('token')">⚡ Token Listrik PLN</button>
 </div>
 
-<div class="card hidden" id="form">
-<b id="judul"></b>
-<input id="tujuan" placeholder="">
+<div id="form" class="card hidden">
+<h3 id="judul"></h3>
+
+<input id="tujuan" placeholder="Nomor HP / ID PLN">
+
 <select id="nominal"></select>
-<button class="btn btn-order" onclick="order()">Pesan Sekarang</button>
-</div>
 
-<div class="card hidden" id="hasil"></div>
+<button class="btn btn-primary" onclick="pesan()">Pesan Sekarang</button>
 
-<p class="small">
+<p class="note">
 ✔ Nominal 5.000 – 1.000.000<br>
 ✔ Admin Rp1.000 / transaksi<br>
 ✔ Order langsung ke WhatsApp
 </p>
+</div>
+
+<div id="proses" class="process hidden">
+<div class="loader"></div>
+<p>Sedang memproses pesanan…</p>
+</div>
+
+<div id="sukses" class="success hidden">
+<h2>✓ Berhasil</h2>
+<p>Pesanan telah dikirim ke WhatsApp</p>
+<small>Silakan tunggu konfirmasi admin</small>
+</div>
 
 </div>
 
 <script>
-const WA="6285717426626";
-const ADMIN=1000;
-let jenis="";
+const WA = "6285717426626"; // WA KAMU
+let jenis = "";
 
-function rupiah(x){
-return "Rp"+x.toLocaleString("id-ID");
-}
-
-function pilih(j){
-jenis=j;
+function pilih(x){
+jenis = x;
 document.getElementById("form").classList.remove("hidden");
-document.getElementById("hasil").classList.add("hidden");
+document.getElementById("judul").innerText =
+x==="pulsa" ? "📱 Pembelian Pulsa HP" : "⚡ Pembelian Token PLN";
 
-let judul=document.getElementById("judul");
-let tujuan=document.getElementById("tujuan");
-let nominal=document.getElementById("nominal");
+document.getElementById("tujuan").placeholder =
+x==="pulsa" ? "Nomor HP" : "ID Pelanggan PLN";
 
-judul.innerText=j==="pulsa"?"📱 Pembelian Pulsa HP":"⚡ Pembelian Token Listrik PLN";
-tujuan.placeholder=j==="pulsa"?"Nomor HP tujuan":"ID Pelanggan PLN";
+isiNominal();
+}
 
-nominal.innerHTML = '<option value="">Pilih Nominal</option>';
-for (let i = 5000; i <= 1000000; i += 5000) {
-nominal.innerHTML += `<option value="${i}">Rp${i.toLocaleString('id-ID')}</option>`;
+function isiNominal(){
+let s = document.getElementById("nominal");
+s.innerHTML = "<option value=''>Pilih Nominal</option>";
+for(let i=5000;i<=1000000;i+=5000){
+s.innerHTML += `<option value="${i}">
+Rp ${i.toLocaleString()}
+</option>`;
 }
 }
 
-function order(){
-let tujuan=document.getElementById("tujuan").value;
-let nominal=Number(document.getElementById("nominal").value);
+function pesan(){
+let tujuan = document.getElementById("tujuan").value;
+let nominal = document.getElementById("nominal").value;
 
-if(tujuan==""||nominal==0){
+if(!tujuan || !nominal){
 alert("Lengkapi data!");
 return;
 }
 
-let total=nominal+ADMIN;
+document.getElementById("proses").classList.remove("hidden");
 
-let pesan=
-`Halo Farhan Store 👋
-Saya mau beli ${jenis==="pulsa"?"Pulsa HP":"Token Listrik PLN"}
+let total = parseInt(nominal) + 1000;
 
-📌 Tujuan: ${tujuan}
-💳 Nominal: ${rupiah(nominal)}
-💼 Admin: ${rupiah(ADMIN)}
-💰 Total: ${rupiah(total)}
+let pesan = 
+`📌 ORDER FARHAN STORE
+Jenis: ${jenis.toUpperCase()}
+Tujuan: ${tujuan}
+Nominal: Rp ${parseInt(nominal).toLocaleString()}
+Admin: Rp 1.000
+Total: Rp ${total.toLocaleString()}`;
 
-Mohon diproses 🙏`;
+setTimeout(()=>{
+window.open(
+`https://wa.me/${WA}?text=${encodeURIComponent(pesan)}`,
+"_blank"
+);
 
-window.open("https://wa.me/"+WA+"?text="+encodeURIComponent(pesan),"_blank");
-
-document.getElementById("hasil").classList.remove("hidden");
-document.getElementById("hasil").innerHTML=
-`🧾 <b>Ringkasan Pesanan</b><br>
-Produk: ${jenis==="pulsa"?"Pulsa HP":"Token Listrik PLN"}<br>
-Tujuan: ${tujuan}<br>
-Nominal: ${rupiah(nominal)}<br>
-Admin: ${rupiah(ADMIN)}<br>
-<b>Total: ${rupiah(total)}</b>`;
+document.getElementById("proses").classList.add("hidden");
+document.getElementById("sukses").classList.remove("hidden");
+},1200);
 }
 </script>
 
