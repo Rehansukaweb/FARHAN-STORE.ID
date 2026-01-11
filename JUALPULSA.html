@@ -3,132 +3,115 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Farhan Store • PPOB</title>
+<title>FARHAN STORE • Pulsa & Token</title>
 <style>
-body{margin:0;font-family:Arial;background:#020617;color:#fff}
-.container{max-width:430px;margin:auto;padding:16px}
-.header{background:linear-gradient(90deg,#00ffb3,#00b3ff);color:#000;
-padding:14px;text-align:center;font-weight:bold;border-radius:12px}
-.card{background:#0b122a;margin-top:14px;padding:14px;border-radius:14px}
-input,select,button{width:100%;padding:12px;margin-top:8px;border-radius:10px;border:none}
-button{font-weight:bold;cursor:pointer}
-.btn-main{background:linear-gradient(90deg,#00ffb3,#00b3ff);color:#000}
-.btn-admin{background:#facc15;color:#000}
-.btn-qris{background:#22c55e;color:#000}
-.status{margin-top:10px;padding:10px;border-radius:10px;display:none}
-.pending{background:#1e293b}
-.success{background:#16a34a;color:#000}
-small{opacity:.8}
-.list{font-size:13px;margin-top:6px}
+body{
+  margin:0;font-family:Arial;
+  background:linear-gradient(180deg,#050b1e,#020617);
+  color:#fff;
+}
+.container{max-width:420px;margin:auto;padding:20px}
+.header{
+  text-align:center;
+  padding:15px;
+  background:linear-gradient(90deg,#00ffb3,#00b3ff);
+  color:#000;font-weight:bold;border-radius:12px;
+}
+.card{
+  background:#0b122a;
+  margin-top:20px;
+  padding:15px;
+  border-radius:15px;
+}
+select,input,button{
+  width:100%;padding:12px;margin-top:10px;
+  border:none;border-radius:10px;
+}
+button{
+  background:linear-gradient(90deg,#00ffb3,#00b3ff);
+  font-weight:bold;cursor:pointer;
+}
+.status{
+  margin-top:20px;
+  padding:15px;
+  border-radius:12px;
+  display:none;
+  animation:fade .5s ease;
+}
+.process{background:#1e293b}
+.success{background:#16a34a}
+@keyframes fade{from{opacity:0;transform:scale(.9)}to{opacity:1}}
+.admin{margin-top:10px;background:#1f2937}
 </style>
 </head>
 <body>
 
 <div class="container">
-<div class="header">FARHAN STORE • PULSA & TOKEN</div>
+  <div class="header">FARHAN STORE • PULSA & TOKEN</div>
 
-<div class="card">
-<select id="jenis">
-<option value="Pulsa HP">📱 Pulsa HP</option>
-<option value="Token PLN">⚡ Token PLN</option>
-</select>
+  <div class="card">
+    <select id="jenis">
+      <option value="Pulsa HP">📱 Pulsa HP</option>
+      <option value="Token PLN">⚡ Token PLN</option>
+    </select>
 
-<input id="tujuan" placeholder="Nomor HP / ID PLN">
+    <input id="target" placeholder="Nomor HP / ID PLN">
 
-<select id="nominal"></select>
+    <select id="nominal"></select>
 
-<button class="btn-main" onclick="buatOrder()">Pesan</button>
-<button class="btn-qris" onclick="bayarQRIS()">Bayar via QRIS</button>
+    <button onclick="order()">Pesan Sekarang</button>
 
-<div id="status" class="status pending">⏳ Menunggu pembayaran</div>
-<div id="success" class="status success">✅ TRANSAKSI BERHASIL</div>
-</div>
+    <div class="status process" id="process">
+      ⏳ Pesanan sedang diproses...<br>
+      Menunggu konfirmasi admin
+    </div>
 
-<div class="card">
-<b>Riwayat Transaksi</b>
-<div id="riwayat" class="list"></div>
-<button class="btn-admin" onclick="adminKonfirmasi()">Admin: Konfirmasi</button>
-</div>
+    <div class="status success" id="success">
+      ✅ TRANSAKSI BERHASIL<br>
+      Terima kasih telah berbelanja
+    </div>
+
+    <button class="admin" onclick="adminConfirm()">🔐 Admin: Tandai Berhasil</button>
+  </div>
 </div>
 
 <script>
-const ADMIN_PIN="1234";
-const WA="6285717426626";
-const QRIS_LINK="https://linktr.ee/";
-const ADMIN_FEE=1000;
+const wa = "6285717426626";
+const adminPIN = "1234";
 
-const nominal=document.getElementById("nominal");
+const nominalSelect = document.getElementById("nominal");
 for(let i=5000;i<=1000000;i+=5000){
-nominal.innerHTML+=`<option value="${i}">Rp ${i.toLocaleString()}</option>`;
+  nominalSelect.innerHTML += `<option value="${i}">Rp ${i.toLocaleString()}</option>`;
 }
 
-let currentOrder=null;
+function order(){
+  const jenis=document.getElementById("jenis").value;
+  const target=document.getElementById("target").value;
+  const nominal=document.getElementById("nominal").value;
+  if(!target)return alert("Isi nomor / ID");
 
-function buatOrder(){
-let jenis=document.getElementById("jenis").value;
-let tujuan=document.getElementById("tujuan").value;
-let nom=Number(nominal.value);
-if(!tujuan)return alert("Isi tujuan");
+  const total = Number(nominal)+1000;
 
-let id="FS-"+Date.now();
-let total=nom+ADMIN_FEE;
-
-currentOrder={id,jenis,tujuan,nom,total,status:"Pending"};
-simpan(currentOrder);
-
-let msg=`ORDER ${id}
-${jenis}
-Tujuan: ${tujuan}
-Nominal: Rp${nom.toLocaleString()}
+  const msg = `ORDER FARHAN STORE
+Produk: ${jenis}
+Target: ${target}
+Nominal: Rp${Number(nominal).toLocaleString()}
 Admin: Rp1.000
-Total: Rp${total.toLocaleString()}`;
+Total: Rp${total.toLocaleString()}
+Status: DIPROSES`;
 
-window.open(`https://wa.me/${WA}?text=${encodeURIComponent(msg)}`,"_blank");
+  window.open(`https://wa.me/${wa}?text=${encodeURIComponent(msg)}`,"_blank");
 
-document.getElementById("status").style.display="block";
-render();
+  document.getElementById("process").style.display="block";
 }
 
-function bayarQRIS(){
-window.open(QRIS_LINK,"_blank");
+function adminConfirm(){
+  const pin = prompt("Masukkan PIN Admin");
+  if(pin!==adminPIN)return alert("PIN salah");
+
+  document.getElementById("process").style.display="none";
+  document.getElementById("success").style.display="block";
 }
-
-function adminKonfirmasi(){
-let pin=prompt("Masukkan PIN Admin");
-if(pin!==ADMIN_PIN)return alert("PIN salah");
-
-if(!currentOrder)return;
-currentOrder.status="Berhasil";
-update(currentOrder.id,"Berhasil");
-
-document.getElementById("status").style.display="none";
-document.getElementById("success").style.display="block";
-render();
-}
-
-function simpan(o){
-let data=JSON.parse(localStorage.getItem("trx")||"[]");
-data.push(o);
-localStorage.setItem("trx",JSON.stringify(data));
-}
-
-function update(id,status){
-let data=JSON.parse(localStorage.getItem("trx")||"[]");
-data=data.map(x=>x.id===id?{...x,status}:x);
-localStorage.setItem("trx",JSON.stringify(data));
-}
-
-function render(){
-let data=JSON.parse(localStorage.getItem("trx")||"[]");
-let el=document.getElementById("riwayat");
-el.innerHTML="";
-data.reverse().forEach(x=>{
-el.innerHTML+=`<div>
-${x.id} | ${x.jenis} | Rp${x.nom.toLocaleString()} | <b>${x.status}</b>
-</div>`;
-});
-}
-render();
 </script>
 
 </body>
