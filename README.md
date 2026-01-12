@@ -277,6 +277,109 @@ box-shadow:0 8px 20px rgba(0,200,83,.35);
 💳 Bayar
 </button>
 
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Bayar via QRIS</title>
+<style>
+body{
+  font-family: Arial, sans-serif;
+  background:#0f172a;
+  color:#fff;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:100vh;
+}
+
+/* Tombol */
+.btn-qris{
+  padding:16px 24px;
+  font-size:18px;
+  font-weight:600;
+  background:#16a34a;
+  border:none;
+  border-radius:14px;
+  color:#fff;
+  cursor:pointer;
+  box-shadow:0 10px 30px rgba(0,0,0,.4);
+}
+
+/* Overlay */
+.overlay{
+  position:fixed;
+  top:0; left:0;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,.7);
+  display:none;
+  justify-content:center;
+  align-items:center;
+  z-index:999;
+}
+
+/* Box QR */
+.qr-box{
+  background:#fff;
+  color:#000;
+  padding:20px;
+  border-radius:16px;
+  text-align:center;
+  max-width:320px;
+  animation:zoom .3s ease;
+}
+
+.qr-box img{
+  width:250px;
+  margin:10px 0;
+}
+
+.qr-box button{
+  margin-top:10px;
+  padding:10px 18px;
+  border:none;
+  border-radius:10px;
+  background:#ef4444;
+  color:#fff;
+  font-weight:600;
+  cursor:pointer;
+}
+
+@keyframes zoom{
+  from{transform:scale(.7); opacity:0;}
+  to{transform:scale(1); opacity:1;}
+}
+</style>
+</head>
+
+<body>
+
+<button class="btn-qris" onclick="openQRIS()">
+💳 Bayar via QRIS
+</button>
+
+<div class="overlay" id="qrisModal">
+  <div class="qr-box">
+    <h3>Scan QRIS</h3>
+    <img src="assets/qris.png" alt="QRIS">
+    <p>Setelah bayar, kirim bukti ke WhatsApp</p>
+    <button onclick="closeQRIS()">Tutup</button>
+  </div>
+</div>
+
+<script>
+function openQRIS(){
+  document.getElementById("qrisModal").style.display="flex";
+}
+function closeQRIS(){
+  document.getElementById("qrisModal").style.display="none";
+}
+</script>
+
+
+
+
 <html lang="id">
 <head>
 <meta charset="UTF-8">
