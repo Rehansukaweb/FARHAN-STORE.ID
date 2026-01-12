@@ -250,8 +250,204 @@ Berorientasi pada kepercayaan dan konsistensi, Farhan Store siap menjadi partner
     </div>
   </div>
       <div style="text-align:center;">
-    
-      </div>
+
+  <!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Farhan Store • Pulsa & Token</title>
+
+<style>
+*{box-sizing:border-box;font-family:Arial,Helvetica,sans-serif}
+body{
+margin:0;
+background:linear-gradient(180deg,#050b1e,#020617);
+color:#fff;
+display:flex;
+justify-content:center;
+padding:20px;
+}
+.container{
+width:100%;
+max-width:420px;
+}
+.header{
+text-align:center;
+padding:14px;
+font-weight:bold;
+background:linear-gradient(90deg,#00ffa3,#00c2ff);
+color:#000;
+border-radius:12px;
+margin-bottom:20px;
+}
+.card{
+background:#0b1228;
+padding:16px;
+border-radius:16px;
+margin-bottom:16px;
+box-shadow:0 0 20px rgba(0,0,0,.4);
+}
+.btn{
+width:100%;
+padding:14px;
+border:none;
+border-radius:12px;
+font-size:16px;
+font-weight:bold;
+cursor:pointer;
+margin-top:10px;
+}
+.btn-primary{background:linear-gradient(90deg,#00ffa3,#00c2ff);color:#000}
+.btn-secondary{background:#222;color:#fff}
+.btn-admin{background:#ffaa00;color:#000}
+input,select{
+width:100%;
+padding:12px;
+margin-top:8px;
+border-radius:10px;
+border:none;
+outline:none;
+font-size:14px;
+}
+.hidden{display:none}
+.loader{
+width:40px;height:40px;
+border:4px solid #222;
+border-top:4px solid #00ffa3;
+border-radius:50%;
+margin:10px auto;
+animation:spin 1s linear infinite;
+}
+@keyframes spin{100%{transform:rotate(360deg)}}
+.success{
+background:linear-gradient(180deg,#00c853,#009624);
+padding:16px;
+border-radius:14px;
+text-align:center;
+font-weight:bold;
+}
+.info{
+font-size:13px;
+opacity:.85;
+margin-top:8px;
+}
+.toggle button{
+width:48%;
+}
+.toggle{
+display:flex;
+justify-content:space-between;
+gap:4%;
+}
+</style>
+</head>
+
+<body>
+<div class="container">
+
+<div class="header">FARHAN STORE • PULSA & TOKEN</div>
+
+<div class="card toggle">
+<button class="btn btn-secondary" onclick="pilihJenis('pulsa')">📱 Pulsa HP</button>
+<button class="btn btn-secondary" onclick="pilihJenis('token')">⚡ Token PLN</button>
+</div>
+
+<div class="card">
+<h3 id="judul">📱 Pembelian Pulsa</h3>
+
+<input id="tujuan" placeholder="Nomor HP / ID PLN">
+
+<select id="nominal"></select>
+
+<button class="btn btn-primary" onclick="pesan()">Pesan Sekarang</button>
+
+<div class="info">
+✔ Nominal 5.000 – 1.000.000<br>
+✔ Admin Rp1.000 / transaksi<br>
+✔ Order langsung ke WhatsApp
+</div>
+</div>
+
+<div id="proses" class="card hidden" style="text-align:center">
+<div class="loader"></div>
+<p>Memproses pesanan…</p>
+</div>
+
+<div id="menunggu" class="card hidden" style="text-align:center">
+<div class="loader"></div>
+<p>Menunggu konfirmasi admin…</p>
+<button class="btn btn-admin" onclick="konfirmasi()">Konfirmasi Berhasil (Admin)</button>
+</div>
+
+<div id="sukses" class="card hidden">
+<div class="success">
+✅ TRANSAKSI BERHASIL<br><br>
+Pesanan telah diproses.<br>
+Terima kasih telah menggunakan Farhan Store.
+</div>
+</div>
+
+</div>
+
+<script>
+let jenis="pulsa";
+const admin=1000;
+const wa="6285717426626";
+
+function isiNominal(){
+let n=document.getElementById("nominal");
+n.innerHTML="";
+for(let i=5000;i<=1000000;i+=5000){
+let o=document.createElement("option");
+o.value=i;
+o.textContent="Rp "+i.toLocaleString();
+n.appendChild(o);
+}
+}
+isiNominal();
+
+function pilihJenis(j){
+jenis=j;
+document.getElementById("judul").innerText =
+j==="pulsa" ? "📱 Pembelian Pulsa" : "⚡ Pembelian Token PLN";
+document.getElementById("tujuan").placeholder =
+j==="pulsa" ? "Nomor HP" : "ID Pelanggan PLN";
+}
+
+function pesan(){
+let tujuan=document.getElementById("tujuan").value;
+let nominal=document.getElementById("nominal").value;
+if(!tujuan){alert("Isi tujuan!");return;}
+
+document.getElementById("proses").classList.remove("hidden");
+
+let total=parseInt(nominal)+admin;
+
+let teks=
+`📌 ORDER FARHAN STORE
+Jenis: ${jenis.toUpperCase()}
+Tujuan: ${tujuan}
+Nominal: Rp ${parseInt(nominal).toLocaleString()}
+Admin: Rp 1.000
+Total: Rp ${total.toLocaleString()}`;
+
+setTimeout(()=>{
+window.open(`https://wa.me/${wa}?text=${encodeURIComponent(teks)}`,"_blank");
+document.getElementById("proses").classList.add("hidden");
+document.getElementById("menunggu").classList.remove("hidden");
+},1200);
+}
+
+function konfirmasi(){
+document.getElementById("menunggu").classList.add("hidden");
+document.getElementById("sukses").classList.remove("hidden");
+}
+</script>
+
+</body>
+</html>  
+     
 <section id="contact">
   <h2>Kontak</h2>
   <div class="contact">
