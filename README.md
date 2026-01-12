@@ -362,7 +362,7 @@ body{
 <div class="overlay" id="qrisModal">
   <div class="qr-box">
     <h3>Scan QRIS</h3>
-    <img src="assets/qris.png" alt="QRIS">
+    <img src="RHN LOGO.jpg" alt="QRIS">
     <p>Setelah bayar, kirim bukti ke WhatsApp</p>
     <button onclick="closeQRIS()">Tutup</button>
   </div>
