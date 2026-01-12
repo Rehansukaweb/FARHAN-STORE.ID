@@ -166,7 +166,7 @@ dan pengalaman bermain secara aman dan efisien.
 <div class="overlay" id="qris">
 <div class="qr-box">
 <h3>Scan QRIS</h3>
-<img src="assets/qris.png" alt="QRIS">
+<img src="LOGO RHN.jpg" alt="QRIS">
 <p>Setelah bayar, kirim bukti ke WhatsApp</p>
 <button class="btn" onclick="closeQR()">Tutup</button>
 </div>
