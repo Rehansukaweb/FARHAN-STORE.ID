@@ -251,7 +251,7 @@ Berorientasi pada kepercayaan dan konsistensi, Farhan Store siap menjadi partner
   </div>
       <div style="text-align:center;">
 
-  <!DOCTYPE html>
+  
 <html lang="id">
 <head>
 <meta charset="UTF-8">
