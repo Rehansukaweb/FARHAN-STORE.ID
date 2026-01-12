@@ -275,64 +275,96 @@ box-shadow:0 8px 20px rgba(0,200,83,.35);
 💳 Bayar
 </button>
 
-<!-- ===== QRIS BUTTON + MODAL (SINGLE BLOCK) ===== -->
-<button onclick="openQRIS()" style="
-width:100%;
-padding:14px;
-border:none;
-border-radius:12px;
-background:linear-gradient(135deg,#22c55e,#16a34a);
-color:#000;
-font-size:16px;
-font-weight:600;
-cursor:pointer;
-box-shadow:0 8px 20px rgba(34,197,94,.35);
-">
-💳 Bayar via QRIS
-</button>
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Bayar via QRIS</title>
+<style>
+body{
+  font-family: Arial, sans-serif;
+  background:#0f172a;
+  color:#fff;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:100vh;
+}
 
-<div id="qrisModal" style="
-display:none;
-position:fixed;
-inset:0;
-background:rgba(0,0,0,.7);
-z-index:9999;
-align-items:center;
-justify-content:center;
-">
-  <div style="
+/* Tombol */
+.btn-qris{
+  padding:16px 24px;
+  font-size:18px;
+  font-weight:600;
+  background:#16a34a;
+  border:none;
+  border-radius:14px;
+  color:#fff;
+  cursor:pointer;
+  box-shadow:0 10px 30px rgba(0,0,0,.4);
+}
+
+/* Overlay */
+.overlay{
+  position:fixed;
+  top:0; left:0;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,.7);
+  display:none;
+  justify-content:center;
+  align-items:center;
+  z-index:999;
+}
+
+/* Box QR */
+.qr-box{
   background:#fff;
   color:#000;
   padding:20px;
-  border-radius:18px;
+  border-radius:16px;
   text-align:center;
   max-width:320px;
-  animation:zoomQR .3s ease;
-  ">
-    <h3>Scan QRIS</h3>
-    <img src="RHN LOGO.jpg" alt="QRIS" style="width:260px;margin:10px 0">
-    <p>Setelah bayar, kirim bukti ke WhatsApp</p>
-    <button onclick="closeQRIS()" style="
-    margin-top:10px;
-    padding:10px 18px;
-    border:none;
-    border-radius:10px;
-    background:#ef4444;
-    color:#fff;
-    font-weight:600;
-    cursor:pointer;
-    ">
-    Tutup
-    </button>
-  </div>
-</div>
+  animation:zoom .3s ease;
+}
 
-<style>
-@keyframes zoomQR{
-  from{transform:scale(.85);opacity:0}
-  to{transform:scale(1);opacity:1}
+.qr-box img{
+  width:250px;
+  margin:10px 0;
+}
+
+.qr-box button{
+  margin-top:10px;
+  padding:10px 18px;
+  border:none;
+  border-radius:10px;
+  background:#ef4444;
+  color:#fff;
+  font-weight:600;
+  cursor:pointer;
+}
+
+@keyframes zoom{
+  from{transform:scale(.7); opacity:0;}
+  to{transform:scale(1); opacity:1;}
 }
 </style>
+</head>
+
+<body>
+
+<button class="btn-qris" onclick="openQRIS()">
+💳 Bayar via QRIS
+</button>
+
+<div class="overlay" id="qrisModal">
+  <div class="qr-box">
+    <h3>Scan QRIS</h3>
+    <img src="assets/qris.png" alt="QRIS">
+    <p>Setelah bayar, kirim bukti ke WhatsApp</p>
+    <button onclick="closeQRIS()">Tutup</button>
+  </div>
+</div>
 
 <script>
 function openQRIS(){
@@ -342,93 +374,9 @@ function closeQRIS(){
   document.getElementById("qrisModal").style.display="none";
 }
 </script>
-<!-- ===== END QRIS ===== -->
 
-<html lang="id">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>FARHAN STORE – AKSES ROOM WANGI</title>
 
-<style>
-body{
-margin:0;
-font-family:Inter,system-ui,Arial;
-background:linear-gradient(180deg,#020617,#020617);
-color:#e5e7eb;
-}
 
-.app{
-max-width:420px;
-margin:auto;
-min-height:100vh;
-padding:20px;
-}
-
-.card{
-background:#020617;
-border:1px solid #1f2937;
-border-radius:18px;
-padding:18px;
-margin-bottom:16px;
-box-shadow:0 20px 40px rgba(0,0,0,.6);
-}
-
-h1,h2{
-margin:0 0 10px;
-}
-
-input{
-width:100%;
-padding:14px;
-border-radius:12px;
-border:none;
-background:#020617;
-border:1px solid #1f2937;
-color:#fff;
-margin-bottom:12px;
-font-size:15px;
-}
-
-button{
-width:100%;
-padding:16px;
-border:none;
-border-radius:14px;
-font-size:16px;
-font-weight:600;
-cursor:pointer;
-}
-
-.btn-primary{
-background:#fbbf24;
-color:#000;
-}
-
-.btn-green{
-background:#16a34a;
-color:#fff;
-}
-
-.btn-gray{
-background:#1f2937;
-color:#9ca3af;
-}
-
-.hidden{
-display:none;
-}
-
-.footer{
-text-align:center;
-font-size:12px;
-opacity:.5;
-margin-top:30px;
-}
-</style>
-</head>
-
-<body>
 
 <div class="app">
 
