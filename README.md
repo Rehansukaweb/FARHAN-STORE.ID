@@ -252,6 +252,7 @@ Berorientasi pada kepercayaan dan konsistensi, Farhan Store siap menjadi partner
       <div style="text-align:center;">
 
   
+<!DOCTYPE html>
 <html lang="id">
 <head>
 <meta charset="UTF-8">
@@ -445,9 +446,7 @@ document.getElementById("sukses").classList.remove("hidden");
 }
 </script>
 
-</body>
-</html>  
-     
+
 <section id="contact">
   <h2>Kontak</h2>
   <div class="contact">
