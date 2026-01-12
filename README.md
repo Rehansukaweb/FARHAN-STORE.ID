@@ -275,7 +275,91 @@ box-shadow:0 8px 20px rgba(0,200,83,.35);
 💳 Bayar
 </button>
 
-<img src="RHN LOGO.jpg" alt="QRIS FARHAN STORE">
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FARHAN STORE – AKSES ROOM WANGI</title>
+
+<style>
+body{
+margin:0;
+font-family:Inter,system-ui,Arial;
+background:linear-gradient(180deg,#020617,#020617);
+color:#e5e7eb;
+}
+
+.app{
+max-width:420px;
+margin:auto;
+min-height:100vh;
+padding:20px;
+}
+
+.card{
+background:#020617;
+border:1px solid #1f2937;
+border-radius:18px;
+padding:18px;
+margin-bottom:16px;
+box-shadow:0 20px 40px rgba(0,0,0,.6);
+}
+
+h1,h2{
+margin:0 0 10px;
+}
+
+input{
+width:100%;
+padding:14px;
+border-radius:12px;
+border:none;
+background:#020617;
+border:1px solid #1f2937;
+color:#fff;
+margin-bottom:12px;
+font-size:15px;
+}
+
+button{
+width:100%;
+padding:16px;
+border:none;
+border-radius:14px;
+font-size:16px;
+font-weight:600;
+cursor:pointer;
+}
+
+.btn-primary{
+background:#fbbf24;
+color:#000;
+}
+
+.btn-green{
+background:#16a34a;
+color:#fff;
+}
+
+.btn-gray{
+background:#1f2937;
+color:#9ca3af;
+}
+
+.hidden{
+display:none;
+}
+
+.footer{
+text-align:center;
+font-size:12px;
+opacity:.5;
+margin-top:30px;
+}
+</style>
+</head>
+
+<body>
 
 <div class="app">
 
