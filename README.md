@@ -257,7 +257,7 @@ Berorientasi pada kepercayaan dan konsistensi, Farhan Store siap menjadi partner
 <section id="contact">
   <h2>Kontak</h2>
   <div class="contact">
-    <a href="https://wa.me/6285717426626" target="_blank">WhatsApp</a>
+    <a href="https://wa.me/62895343057440" target="_blank">WhatsApp</a>
     <a href="https://instagram.com/huyrehan" target="_blank">Instagram</a>
     <a href="https://www.tiktok.com/@farhanstore86?_r=1&_t=ZS-92xb5ODYqyl" target="_blank">Tiktok</a>
   </div>
