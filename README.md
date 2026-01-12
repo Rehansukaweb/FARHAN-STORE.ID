@@ -275,6 +275,75 @@ box-shadow:0 8px 20px rgba(0,200,83,.35);
 💳 Bayar
 </button>
 
+<!-- ===== QRIS BUTTON + MODAL (SINGLE BLOCK) ===== -->
+<button onclick="openQRIS()" style="
+width:100%;
+padding:14px;
+border:none;
+border-radius:12px;
+background:linear-gradient(135deg,#22c55e,#16a34a);
+color:#000;
+font-size:16px;
+font-weight:600;
+cursor:pointer;
+box-shadow:0 8px 20px rgba(34,197,94,.35);
+">
+💳 Bayar via QRIS
+</button>
+
+<div id="qrisModal" style="
+display:none;
+position:fixed;
+inset:0;
+background:rgba(0,0,0,.7);
+z-index:9999;
+align-items:center;
+justify-content:center;
+">
+  <div style="
+  background:#fff;
+  color:#000;
+  padding:20px;
+  border-radius:18px;
+  text-align:center;
+  max-width:320px;
+  animation:zoomQR .3s ease;
+  ">
+    <h3>Scan QRIS</h3>
+    <img src="RHN LOGO.jpg" alt="QRIS" style="width:260px;margin:10px 0">
+    <p>Setelah bayar, kirim bukti ke WhatsApp</p>
+    <button onclick="closeQRIS()" style="
+    margin-top:10px;
+    padding:10px 18px;
+    border:none;
+    border-radius:10px;
+    background:#ef4444;
+    color:#fff;
+    font-weight:600;
+    cursor:pointer;
+    ">
+    Tutup
+    </button>
+  </div>
+</div>
+
+<style>
+@keyframes zoomQR{
+  from{transform:scale(.85);opacity:0}
+  to{transform:scale(1);opacity:1}
+}
+</style>
+
+<script>
+function openQRIS(){
+  document.getElementById("qrisModal").style.display="flex";
+}
+function closeQRIS(){
+  document.getElementById("qrisModal").style.display="none";
+}
+</script>
+<!-- ===== END QRIS ===== -->
+
 <html lang="id">
 <head>
 <meta charset="UTF-8">
