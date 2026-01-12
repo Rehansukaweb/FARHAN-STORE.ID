@@ -251,7 +251,7 @@ Berorientasi pada kepercayaan dan konsistensi, Farhan Store siap menjadi partner
   </div>
       <div style="text-align:center;">
 
-  <a href="ANALISA.html" class="btn">ROOM WANGI</a>
+  <a href="JUALPULSA.html" class="btn">JUAL PULSA MURAH</a>
 
 
 <section id="contact">
