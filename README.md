@@ -576,7 +576,6 @@ document.querySelectorAll(".card").forEach(card => observer.observe(card));
 
 
 
-</body>
-</html>
+
 </body>
 </html>
